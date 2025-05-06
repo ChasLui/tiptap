@@ -53,8 +53,8 @@ export interface EditorEvents {
     editor: Editor;
     error: Error;
     /**
-     * If called, will re-initialize the editor with the collaboration extension removed.
-     * This will prevent syncing back deletions of content not present in the current schema.
+     * 如果调用，将重新初始化编辑器，删除协作扩展。
+     * 这将防止同步回当前模式中不存在的删除内容。
      */
     disableCollaboration: () => void;
   };
@@ -89,18 +89,18 @@ export interface EditorOptions {
   enableInputRules: EnableRules;
   enablePasteRules: EnableRules;
   /**
-   * Determines whether core extensions are enabled.
+   * 确定是否启用了核心扩展。
    *
-   * If set to `false`, all core extensions will be disabled.
-   * To disable specific core extensions, provide an object where the keys are the extension names and the values are `false`.
-   * Extensions not listed in the object will remain enabled.
+   * 如果设置为 `false`，所有核心扩展都将被禁用。
+   * 要禁用特定的核心扩展，请提供一个对象，其中键是扩展名称，值为 `false`。
+   * 未在对象中列出的扩展将保持启用。
    *
    * @example
-   * // Disable all core extensions
+   * // 禁用所有核心扩展
    * enabledCoreExtensions: false
    *
    * @example
-   * // Disable only the keymap core extension
+   * // 仅禁用 keymap 核心扩展
    * enabledCoreExtensions: { keymap: false }
    *
    * @default true
@@ -121,17 +121,17 @@ export interface EditorOptions {
         >
       >;
   /**
-   * If `true`, the editor will check the content for errors on initialization.
-   * Emitting the `contentError` event if the content is invalid.
-   * Which can be used to show a warning or error message to the user.
+   * 如果设置为 `true`，编辑器将在初始化时检查内容是否存在错误。
+   * 如果内容无效，将发出 `contentError` 事件。
+   * 这可以用于向用户显示警告或错误消息。
    * @default false
    */
   enableContentCheck: boolean;
   onBeforeCreate: (props: EditorEvents['beforeCreate']) => void;
   onCreate: (props: EditorEvents['create']) => void;
   /**
-   * Called when the editor encounters an error while parsing the content.
-   * Only enabled if `enableContentCheck` is `true`.
+   * 当编辑器在解析内容时遇到错误时调用。
+   * 仅在 `enableContentCheck` 设置为 `true` 时启用。
    */
   onContentError: (props: EditorEvents['contentError']) => void;
   onUpdate: (props: EditorEvents['update']) => void;
@@ -199,11 +199,11 @@ export type ExtensionAttribute = {
 
 export type GlobalAttributes = {
   /**
-   * The node & mark types this attribute should be applied to.
+   * 应该应用此属性的节点和标记类型。
    */
   types: string[];
   /**
-   * The attributes to add to the node or mark types.
+   * 要添加到节点或标记类型的属性。
    */
   attributes: Record<string, Attribute | undefined>;
 }[];
@@ -229,8 +229,8 @@ export type KeysWithTypeOf<T, Type> = { [P in keyof T]: T[P] extends Type ? P : 
 export type DOMNode = InstanceType<typeof window.Node>
 
 /**
- * prosemirror-view does not export the `type` property of `Decoration`.
- * So, this defines the `DecorationType` interface to include the `type` property.
+ * prosemirror-view 不导出 `Decoration` 的 `type` 属性。
+ * 所以，这个定义了 `DecorationType` 接口，包括 `type` 属性。
  */
 export interface DecorationType {
   spec: any
@@ -242,15 +242,15 @@ export interface DecorationType {
 }
 
 /**
- * prosemirror-view does not export the `type` property of `Decoration`.
- * This adds the `type` property to the `Decoration` type.
+ * prosemirror-view 不导出 `Decoration` 的 `type` 属性。
+ * 这个添加了 `type` 属性到 `Decoration` 类型。
  */
 export type DecorationWithType = Decoration & {
   type: DecorationType;
 };
 
 export interface NodeViewProps extends NodeViewRendererProps {
-  // TODO this type is not technically correct, but it's the best we can do for now since prosemirror doesn't expose the type of decorations
+  // TODO 这个类型在技术上不正确，但这是我们目前可以做的最好的事情，因为 prosemirror 不暴露装饰的类型
   decorations: readonly DecorationWithType[];
   selected: boolean;
   updateAttributes: (attributes: Record<string, any>) => void;
@@ -268,38 +268,38 @@ export interface NodeViewRendererOptions {
 export interface NodeViewRendererProps {
   // pass-through from prosemirror
   /**
-   * The node that is being rendered.
+   * 正在渲染的节点。
    */
   node: Parameters<NodeViewConstructor>[0];
   /**
-   * The editor's view.
+   * 编辑器的视图。
    */
   view: Parameters<NodeViewConstructor>[1];
   /**
-   * A function that can be called to get the node's current position in the document.
+   * 一个可以调用的函数，用于获取节点的当前位置。
    */
-  getPos: () => number; // TODO getPos was incorrectly typed before, change to `Parameters<NodeViewConstructor>[2];` in the next major version
+  getPos: () => number; // TODO getPos 之前被错误地类型化，在下一个主要版本中更改为 `Parameters<NodeViewConstructor>[2];`
   /**
-   * is an array of node or inline decorations that are active around the node.
-   * They are automatically drawn in the normal way, and you will usually just want to ignore this, but they can also be used as a way to provide context information to the node view without adding it to the document itself.
+   * 一个包含节点或内联装饰的数组，这些装饰在节点周围是活动的。
+   * 它们会自动以正常方式绘制，通常只需忽略它们，但也可以用作提供节点视图上下文信息的方法，而无需将其添加到文档中。
    */
   decorations: Parameters<NodeViewConstructor>[3];
   /**
-   * holds the decorations for the node's content. You can safely ignore this if your view has no content or a contentDOM property, since the editor will draw the decorations on the content.
-   * But if you, for example, want to create a nested editor with the content, it may make sense to provide it with the inner decorations.
+   * 持有节点的内容装饰。如果您的视图没有内容或 contentDOM 属性，可以安全地忽略它，因为编辑器将在内容上绘制装饰。
+   * 但如果你想要创建一个包含内容的嵌套编辑器，可能需要提供它作为 inner decorations。
    */
   innerDecorations: Parameters<NodeViewConstructor>[4];
   // tiptap-specific
   /**
-   * The editor instance.
+   * 编辑器实例。
    */
   editor: Editor;
   /**
-   * The extension that is responsible for the node.
+   * 负责节点的扩展。
    */
   extension: Node;
   /**
-   * The HTML attributes that should be added to the node's DOM element.
+   * 应该添加到节点 DOM 元素的 HTML 属性。
    */
   HTMLAttributes: Record<string, any>;
 }

@@ -12,7 +12,7 @@ function findMarkInSet(
     return (
       item.type === type
       && objectIncludes(
-        // Only check equality for the attributes that are provided
+        // 仅检查提供的属性
         Object.fromEntries(Object.keys(attributes).map(k => [k, item.attrs[k]])),
         attributes,
       )
@@ -29,20 +29,20 @@ function isMarkInSet(
 }
 
 /**
- * Get the range of a mark at a resolved position.
+ * 获取在解析位置的标记范围。
  */
 export function getMarkRange(
   /**
-   * The position to get the mark range for.
+   * 要获取标记范围的位置。
    */
   $pos: ResolvedPos,
   /**
-   * The mark type to get the range for.
+   * 要获取标记范围的标记类型。
    */
   type: MarkType,
   /**
-   * The attributes to match against.
-   * If not provided, only the first mark at the position will be matched.
+   * 要匹配的属性。
+   * 如果未提供，则仅匹配位置处的第一个标记。
    */
   attributes?: Record<string, any>,
 ): Range | void {
@@ -51,21 +51,20 @@ export function getMarkRange(
   }
   let start = $pos.parent.childAfter($pos.parentOffset)
 
-  // If the cursor is at the start of a text node that does not have the mark, look backward
+  // 如果光标位于没有标记的文本节点，则向后查找
   if (!start.node || !start.node.marks.some(mark => mark.type === type)) {
     start = $pos.parent.childBefore($pos.parentOffset)
   }
 
-  // If there is no text node with the mark even backward, return undefined
+  // 如果向后查找也没有标记，则返回 undefined
   if (!start.node || !start.node.marks.some(mark => mark.type === type)) {
     return
   }
 
-  // Default to only matching against the first mark's attributes
+  // 默认只匹配第一个标记的属性
   attributes = attributes || start.node.marks[0]?.attrs
 
-  // We now know that the cursor is either at the start, middle or end of a text node with the specified mark
-  // so we can look it up on the targeted mark
+  // 现在我们知道光标位于具有指定标记的文本节点，因此我们可以查找它
   const mark = findMarkInSet([...start.node.marks], type, attributes)
 
   if (!mark) {

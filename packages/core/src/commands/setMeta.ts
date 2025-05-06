@@ -6,9 +6,9 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     setMeta: {
       /**
-       * Store a metadata property in the current transaction.
-       * @param key The key of the metadata property.
-       * @param value The value to store.
+       * 在当前事务中存储一个元数据属性。
+       * @param key 元数据属性的键。
+       * @param value 要存储的值。
        * @example editor.commands.setMeta('foo', 'bar')
        */
       setMeta: (key: string | Plugin | PluginKey, value: any) => ReturnType,

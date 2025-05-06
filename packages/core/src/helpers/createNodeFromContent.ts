@@ -16,11 +16,11 @@ export type CreateNodeFromContentOptions = {
 }
 
 /**
- * Takes a JSON or HTML content and creates a Prosemirror node or fragment from it.
- * @param content The JSON or HTML content to create the node from
- * @param schema The Prosemirror schema to use for the node
- * @param options Options for the parser
- * @returns The created Prosemirror node or fragment
+ * 接受 JSON 或 HTML 内容并从中创建 Prosemirror 节点或片段。
+ * @param content 要从中创建节点的 JSON 或 HTML 内容
+ * @param schema 用于节点的 Prosemirror 架构
+ * @param options 解析器的选项
+ * @returns 创建的 Prosemirror 节点或片段
  */
 export function createNodeFromContent(
   content: Content | ProseMirrorNode | Fragment,

@@ -7,6 +7,6 @@ export function isiOS(): boolean {
     'iPhone',
     'iPod',
   ].includes(navigator.platform)
-  // iPad on iOS 13 detection
+  // iPad 或 iOS 13 检测
   || (navigator.userAgent.includes('Mac') && 'ontouchend' in document)
 }

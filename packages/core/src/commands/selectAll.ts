@@ -6,7 +6,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     selectAll: {
       /**
-       * Select the whole document.
+       * 选择整个文档。
        * @example editor.commands.selectAll()
        */
       selectAll: () => ReturnType,

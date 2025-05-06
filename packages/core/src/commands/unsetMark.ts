@@ -8,20 +8,20 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     unsetMark: {
       /**
-       * Remove all marks in the current selection.
-       * @param typeOrName The mark type or name.
-       * @param options.extendEmptyMarkRange Removes the mark even across the current selection. Defaults to `false`.
+       * 删除当前选择中的所有标记。
+       * @param typeOrName 标记的类型或名称。
+       * @param options.extendEmptyMarkRange 在当前选择范围内删除标记。默认值为 `false`。
        * @example editor.commands.unsetMark('bold')
        */
       unsetMark: (
         /**
-         * The mark type or name.
+         * 标记的类型或名称。
          */
         typeOrName: string | MarkType,
 
         options?: {
           /**
-           * Removes the mark even across the current selection. Defaults to `false`.
+           * 在当前选择范围内删除标记。默认值为 `false`。
            */
           extendEmptyMarkRange?: boolean
         },

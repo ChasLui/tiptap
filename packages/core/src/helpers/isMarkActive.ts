@@ -57,7 +57,7 @@ export function isMarkActive(
     return false
   }
 
-  // calculate range of matched mark
+  // 计算匹配标记的范围
   const matchedRange = markRanges
     .filter(markRange => {
       if (!type) {
@@ -69,8 +69,7 @@ export function isMarkActive(
     .filter(markRange => objectIncludes(markRange.mark.attrs, attributes, { strict: false }))
     .reduce((sum, markRange) => sum + markRange.to - markRange.from, 0)
 
-  // calculate range of marks that excludes the searched mark
-  // for example `code` doesn’t allow any other marks
+  // 计算排除搜索标记的范围，例如 `code` 不允许任何其他标记
   const excludedRange = markRanges
     .filter(markRange => {
       if (!type) {
@@ -81,8 +80,7 @@ export function isMarkActive(
     })
     .reduce((sum, markRange) => sum + markRange.to - markRange.from, 0)
 
-  // we only include the result of `excludedRange`
-  // if there is a match at all
+  // 只有当有匹配时才包含 `excludedRange` 的结果
   const range = matchedRange > 0 ? matchedRange + excludedRange : matchedRange
 
   return range >= selectionRange

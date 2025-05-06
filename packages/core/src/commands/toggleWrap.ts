@@ -8,9 +8,9 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     toggleWrap: {
       /**
-       * Wraps nodes in another node, or removes an existing wrap.
-       * @param typeOrName The type or name of the node.
-       * @param attributes The attributes of the node.
+       * 包裹节点在另一个节点中，或删除现有的包裹。
+       * @param typeOrName 节点的类型或名称。
+       * @param attributes 节点的属性。
        * @example editor.commands.toggleWrap('blockquote')
        */
       toggleWrap: (typeOrName: string | NodeType, attributes?: Record<string, any>) => ReturnType

@@ -9,8 +9,7 @@ export type ChangedRange = {
 }
 
 /**
- * Removes duplicated ranges and ranges that are
- * fully captured by other ranges.
+ * 删除重复的范围和完全被其他范围捕获的范围。
  */
 function simplifyChangedRanges(changes: ChangedRange[]): ChangedRange[] {
   const uniqueChanges = removeDuplicates(changes)
@@ -30,8 +29,7 @@ function simplifyChangedRanges(changes: ChangedRange[]): ChangedRange[] {
 }
 
 /**
- * Returns a list of changed ranges
- * based on the first and last state of all steps.
+ * 基于所有步骤的第一个和最后一个状态返回一个更改范围列表。
  */
 export function getChangedRanges(transform: Transform): ChangedRange[] {
   const { mapping, steps } = transform
@@ -40,8 +38,8 @@ export function getChangedRanges(transform: Transform): ChangedRange[] {
   mapping.maps.forEach((stepMap, index) => {
     const ranges: Range[] = []
 
-    // This accounts for step changes where no range was actually altered
-    // e.g. when setting a mark, node attribute, etc.
+    // 这考虑了步骤更改，其中没有实际更改范围
+    // 例如，当设置标记、节点属性等时。
     // @ts-ignore
     if (!stepMap.ranges.length) {
       const { from, to } = steps[index] as Step & {

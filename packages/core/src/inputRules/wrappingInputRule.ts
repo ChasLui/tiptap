@@ -7,18 +7,16 @@ import { ExtendedRegExpMatchArray } from '../types.js'
 import { callOrReturn } from '../utilities/callOrReturn.js'
 
 /**
- * Build an input rule for automatically wrapping a textblock when a
- * given string is typed. When using a regular expresion you’ll
- * probably want the regexp to start with `^`, so that the pattern can
- * only occur at the start of a textblock.
+ * 构建一个输入规则，当输入给定的字符串时自动包裹一个文本块。
+ * 当使用正则表达式时，你可能想在正则表达式开始时使用 `^`，
+ * 这样模式只能出现在文本块的开始处。
  *
- * `type` is the type of node to wrap in.
+ * `type` 是要包裹的节点类型。
  *
- * By default, if there’s a node with the same type above the newly
- * wrapped node, the rule will try to join those
- * two nodes. You can pass a join predicate, which takes a regular
- * expression match and the node before the wrapped node, and can
- * return a boolean to indicate whether a join should happen.
+ * 默认情况下，如果有一个相同类型的节点在包裹的节点之上，
+ * 规则将尝试加入这两个节点。你可以传递一个 join 谓词，
+ * 它接受一个正则表达式匹配和包裹节点之前的节点，
+ * 并可以返回一个布尔值来指示是否应该加入节点。
  * @see https://tiptap.dev/docs/editor/extensions/custom-extensions/extend-existing#input-rules
  */
 export function wrappingInputRule(config: {
@@ -64,7 +62,7 @@ export function wrappingInputRule(config: {
         }
       }
       if (config.keepAttributes) {
-        /** If the nodeType is `bulletList` or `orderedList` set the `nodeType` as `listItem` */
+        /** 如果节点类型是 `bulletList` 或 `orderedList`，设置 `nodeType` 为 `listItem` */
         const nodeType = config.type.name === 'bulletList' || config.type.name === 'orderedList' ? 'listItem' : 'taskList'
 
         chain().updateAttributes(nodeType, attributes).run()

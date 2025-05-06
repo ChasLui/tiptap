@@ -15,7 +15,7 @@ const removeWhitespaces = (node: HTMLElement) => {
 }
 
 export function elementFromString(value: string): HTMLElement {
-  // add a wrapper to preserve leading and trailing whitespace
+  // 添加一个包装器以保留前导和尾随空白
   const wrappedValue = `<body>${value}</body>`
 
   const html = new window.DOMParser().parseFromString(wrappedValue, 'text/html').body

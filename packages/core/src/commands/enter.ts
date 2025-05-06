@@ -4,7 +4,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     enter: {
       /**
-       * Trigger enter.
+       * 触发 enter。
        * @example editor.commands.enter()
        */
       enter: () => ReturnType,

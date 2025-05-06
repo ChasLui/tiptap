@@ -6,7 +6,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     exitCode: {
       /**
-       * Exit from a code block.
+       * 从代码块中退出。
        * @example editor.commands.exitCode()
        */
       exitCode: () => ReturnType

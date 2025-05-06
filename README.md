@@ -1,53 +1,61 @@
-# Tiptap Editor
-The Tiptap Editor is a headless, framework-agnostic rich text editor that's customizable and extendable through extensions. Its headless nature means it comes without a set user interface, offering full design freedom (for a jumpstart, see linked [UI templates](#examples-codesandbox-and-ui-templates) below). Tiptap is based on the highly reliable [ProseMirror](https://github.com/ProseMirror/prosemirror) library.
+# Tiptap 编辑器
 
-Tiptap Editor is complemented by the collaboration open-source backend [Hocuspocus](https://github.com/ueberdosis/hocuspocus). Both the Editor and Hocuspocus form the foundation of the [Tiptap Suite](https://tiptap.dev/).
+Tiptap 编辑器是一个无头的、框架无关的富文本编辑器，可通过扩展进行自定义和扩展。其无头本质意味着它没有预设的用户界面，提供完全的设计自由度（如需快速入门，请参见下方链接的[UI 模板](#示例codesandbox和ui模板)）。Tiptap 基于高度可靠的 [ProseMirror](https://github.com/ProseMirror/prosemirror) 库构建。
 
-[![Build Status](https://github.com/ueberdosis/tiptap/actions/workflows/build.yml/badge.svg)](https://github.com/ueberdosis/tiptap/actions/workflows/build.yml)
-[![Version](https://img.shields.io/npm/v/@tiptap/core.svg?label=version)](https://www.npmjs.com/package/@tiptap/core)
-[![Downloads](https://img.shields.io/npm/dm/@tiptap/core.svg)](https://npmcharts.com/compare/@tiptap/core?minimal=true)
-[![License](https://img.shields.io/npm/l/@tiptap/core.svg)](https://www.npmjs.com/package/@tiptap/core)
-[![Chat](https://img.shields.io/badge/chat-on%20discord-7289da.svg?sanitize=true)](https://discord.gg/WtJ49jGshW)
-[![Sponsor](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub)](https://github.com/sponsors/ueberdosis)
+Tiptap 编辑器与开源协作后端 [Hocuspocus](https://github.com/ueberdosis/hocuspocus) 相辅相成。编辑器和 Hocuspocus 共同构成了 [Tiptap Suite](https://tiptap.dev/) 的基础。
 
-### How does the Tiptap Editor work?
+[![构建状态](https://github.com/ueberdosis/tiptap/actions/workflows/build.yml/badge.svg)](https://github.com/ueberdosis/tiptap/actions/workflows/build.yml)
+[![发版](https://img.shields.io/npm/v/@tiptap/core.svg?label=version)](https://www.npmjs.com/package/@tiptap/core)
+[![下载](https://img.shields.io/npm/dm/@tiptap/core.svg)](https://npmcharts.com/compare/@tiptap/core?minimal=true)
+[![许可证](https://img.shields.io/npm/l/@tiptap/core.svg)](https://www.npmjs.com/package/@tiptap/core)
+[![聊天](https://img.shields.io/badge/chat-on%20discord-7289da.svg?sanitize=true)](https://discord.gg/WtJ49jGshW)
+[![赞助](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub)](https://github.com/sponsors/ueberdosis)
 
-- **Headless Framework:** Tiptap does not rely on a user interface. So there is no need for class overrides or code hacks. If you do need an example UI feel free to browse our [UI templates](#examples-codesandbox-and-ui-templates) linked below.
-- **Framework-agnostic:** The Tiptap Editor is designed to work across different frontend frameworks. This means whether you're using Vue, React, or plain JavaScript, Tiptap integrates  without compatibility issues.
-- **Extension based:** Extensions in Tiptap allow for a tailored editing experience, from simple text styling to advanced features like drag-and-drop block editing. You have the option to choose from over 100 extensions available in the [documentation](https://tiptap.dev/docs/editor/extensions) and [community](https://github.com/ueberdosis/awesome-tiptap/#community-extensions) to enhance your editor's functionality.
-- **Customize your UX:** The editor was built to give you control to define your own [extensions](https://tiptap.dev/docs/editor/guide/custom-extensions) and [nodes](https://tiptap.dev/docs/editor/api/nodes).
+### Tiptap 编辑器如何工作？
 
+- **无头框架：** Tiptap 不依赖于用户界面。因此无需类覆盖或代码黑客。如果您需要 UI 示例，可以浏览下方链接的[UI 模板](#示例codesandbox和ui模板)。
+- **框架无关：** Tiptap 编辑器设计为可跨不同前端框架工作。这意味着无论您使用 Vue、React 还是纯 JavaScript，Tiptap 都能无缝集成，没有兼容性问题。
+- **基于扩展：** Tiptap 中的扩展允许定制编辑体验，从简单的文本样式到高级功能如拖放块编辑。您可以从[文档](https://tiptap.dev/docs/editor/extensions)和[社区](https://github.com/ueberdosis/awesome-tiptap/#community-extensions)中提供的 100 多个扩展中进行选择，以增强编辑器的功能。
+- **自定义用户体验：** 编辑器的构建旨在让您控制定义自己的[扩展](https://tiptap.dev/docs/editor/guide/custom-extensions)和[节点](https://tiptap.dev/docs/editor/api/nodes)。
 
-### Editor Pro Extensions
-The **Pro Extensions** are a set of advanced functionalities that enhance the capabilities of the Tiptap Editor. They are additional features that can be integrated into the base editor to provide more sophisticated editing options.
+### 编辑器专业扩展
 
-Key functionalities include collaborative editing, which allows multiple users to edit documents simultaneously, drag-and-drop file management for easier handling of documents and media, and unique node ID assignment. Review the docs right [here](https://tiptap.dev/docs/editor/extensions).
+**专业扩展**是一组增强 Tiptap 编辑器功能的高级功能。它们是可以集成到基础编辑器中的附加功能，提供更复杂的编辑选项。
 
-Pro Extensions are free with a [Tiptap account](https://cloud.tiptap.dev/pro-extensions). Once signed up, review the guide in your account.
+核心功能包括协作编辑（允许多用户同时编辑文档）、拖放文件管理（便于处理文档和媒体）以及唯一节点 ID 分配。查看[这里](https://tiptap.dev/docs/editor/extensions)的文档了解详情。
 
-### Make your editor collaborative
-Interested in collaborative editing? Check out our open-source package [Hocuspocus](https://github.com/ueberdosis/hocuspocus) - a collaboration backend built around the CRDT power of [Yjs](https://github.com/yjs/yjs). Hocuspocus serves as the backbone for the [Tiptap Suite](https://tiptap.dev/).
+专业扩展对拥有 [Tiptap 账户](https://cloud.tiptap.dev/pro-extensions)的用户免费。注册后，请查看您账户中的指南。
 
-## Documentation
-For more detailed information, make sure to check out our [documentation](https://tiptap.dev/docs/editor/installation). If you encounter any problems or have suggestions for our system, please open an issue.
+### 使您的编辑器支持协作
 
-### Examples, CodeSandbox and UI Templates
-Have a look at the [examples to see Tiptap in action](https://tiptap.dev/examples) or review and fork our codesandboxes.
-- [Basic example of the Tiptap editor.](https://codesandbox.io/p/devbox/editor-9x9dkd?embed=1&file=%2Fsrc%2FApp.js)
-- [Collaboration ready Tiptap CodeSandbox](https://codesandbox.io/p/devbox/collaboration-4stk94)
-- React notion-like block editor template: [Demo](https://templates.tiptap.dev/)
+对协作编辑感兴趣？查看我们的开源包 [Hocuspocus](https://github.com/ueberdosis/hocuspocus) - 一个围绕 [Yjs](https://github.com/yjs/yjs) 的 CRDT 能力构建的协作后端。Hocuspocus 是 [Tiptap Suite](https://tiptap.dev/) 的基础。
 
-## About Tiptap
-Tiptap is a collection of developer components based on open-source technology, forming the basis of our advanced, paid features. It includes the open-source editor component, collaboration features, Content AI, and Tiptap Cloud. We are developing open-source products that also shape our paid features. We're committed to improving both, ensuring quality and reliability in every update.
+## 文档
 
-For more details, visit the Tiptap [documentation](https://tiptap.dev/docs/editor/introduction) or [website](https://tiptap.dev/).
+欲了解更详细的信息，请查看我们的[文档](https://tiptap.dev/docs/editor/installation)。如果您遇到任何问题或对我们的系统有建议，请提出 issue。
 
-### Community
-For help, discussion about best practices, or any other conversation that would benefit from being searchable:
+### 示例、CodeSandbox 和 UI 模板
 
-[Discuss Tiptap on GitHub](https://github.com/ueberdosis/tiptap/discussions)
+查看[示例以了解 Tiptap 的实际效果](https://tiptap.dev/examples)或查看并 fork 我们的 codesandbox。
 
-### Sponsors 💖
+- [Tiptap 编辑器的基本示例](https://codesandbox.io/p/devbox/editor-9x9dkd?embed=1&file=%2Fsrc%2FApp.js)
+- [支持协作的 Tiptap CodeSandbox](https://codesandbox.io/p/devbox/collaboration-4stk94)
+- React 类 Notion 块编辑器模板：[演示](https://templates.tiptap.dev/)
+
+## 关于 Tiptap
+
+Tiptap 是一系列基于开源技术的开发者组件集合，是我们高级付费功能的基础。它包括开源编辑器组件、协作功能、内容 AI 和 Tiptap Cloud。我们正在开发开源产品，这些产品也塑造了我们的付费功能。我们致力于改进两者，确保每次更新的质量和可靠性。
+
+有关更多详细信息，请访问 Tiptap [文档](https://tiptap.dev/docs/editor/introduction)或[网站](https://tiptap.dev/)。
+
+### 社区
+
+如需帮助、讨论最佳实践或任何其他有利于搜索的对话：
+
+[在 GitHub 上讨论 Tiptap](https://github.com/ueberdosis/tiptap/discussions)
+
+### 赞助商 💖
+
 <table>
   <tr>
     <td align="center">
@@ -99,23 +107,26 @@ For help, discussion about best practices, or any other conversation that would 
 
 </table>
 
-[iFixit](https://www.ifixit.com/), [ApostropheCMS](https://apostrophecms.com/), [Novadiscovery](http://www.novadiscovery.com/), [Omics Data Automation](https://www.omicsautomation.com), [Flow Mobile](https://www.flowmobile.app/), [DocIQ](https://www.dociq.io/) and [hundreds of awesome individuals](https://github.com/sponsors/ueberdosis).
+[iFixit](https://www.ifixit.com/)、[ApostropheCMS](https://apostrophecms.com/)、[Novadiscovery](http://www.novadiscovery.com/)、[Omics Data Automation](https://www.omicsautomation.com)、[Flow Mobile](https://www.flowmobile.app/)、[DocIQ](https://www.dociq.io/) 和[数百位优秀的个人](https://github.com/sponsors/ueberdosis)。
 
-### Contributing
-Feel like adding some magic of your own to Tiptap Editor Core? We welcome contributions! Please see our [CONTRIBUTING](CONTRIBUTING.md) guidelines for how to get started.
+### 贡献
 
-### Contributors
-[Sam Willis](https://github.com/samwillis),
-[Brian Hung](https://github.com/BrianHung),
-[Dirk Holtwick](https://github.com/holtwick),
-[Sam Duvall](https://github.com/SamDuvall),
-[Christoph Flathmann](https://github.com/Chrissi2812),
-[Erick Wilder](https://github.com/erickwilder),
-[Marius Tolzmann](https://github.com/mariux),
-[jjangga0214](https://github.com/jjangga0214),
-[Maya Nedeljkovich](https://github.com/mayacoda),
-[Ryan Bliss](https://github.com/ryanbliss),
-[Gregor](https://github.com/gambolputty) and [many more](../../contributors).
+想为 Tiptap 编辑器核心添加一些自己的魔法？我们欢迎贡献！请查看我们的 [CONTRIBUTING](CONTRIBUTING.md) 指南了解如何开始。
 
-## License
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+### 贡献者
+
+[Sam Willis](https://github.com/samwillis)、
+[Brian Hung](https://github.com/BrianHung)、
+[Dirk Holtwick](https://github.com/holtwick)、
+[Sam Duvall](https://github.com/SamDuvall)、
+[Christoph Flathmann](https://github.com/Chrissi2812)、
+[Erick Wilder](https://github.com/erickwilder)、
+[Marius Tolzmann](https://github.com/mariux)、
+[jjangga0214](https://github.com/jjangga0214)、
+[Maya Nedeljkovich](https://github.com/mayacoda)、
+[Ryan Bliss](https://github.com/ryanbliss)、
+[Gregor](https://github.com/gambolputty) 和[更多贡献者](../../contributors)。
+
+## 许可证
+
+MIT 许可证 (MIT)。请查看[许可证文件](LICENSE.md)获取更多信息。

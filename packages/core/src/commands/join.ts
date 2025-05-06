@@ -11,32 +11,31 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     joinUp: {
       /**
-       * Join the selected block or, if there is a text selection, the closest ancestor block of the selection that can be joined, with the sibling above it.
+       * 将选中的块或选中的块的祖先块与上面的兄弟块合并。
        * @example editor.commands.joinUp()
        */
       joinUp: () => ReturnType
     }
     joinDown: {
       /**
-       * Join the selected block, or the closest ancestor of the selection that can be joined, with the sibling after it.
+       * 将选中的块或选中的块的祖先块与下面的兄弟块合并。
        * @example editor.commands.joinDown()
        */
       joinDown: () => ReturnType
     }
     joinBackward: {
       /**
-       * If the selection is empty and at the start of a textblock, try to reduce the distance between that block and the one before it—if there's a block directly before it that can be joined, join them.
-       * If not, try to move the selected block closer to the next one in the document structure by lifting it out of its
-       * parent or moving it into a parent of the previous block. Will use the view for accurate (bidi-aware) start-of-textblock detection if given.
+       * 如果选择为空且在文本块的开头，则尝试减少该块与前一个块之间的距离—如果前面有一个可以直接合并的块，则合并它们。
+       * 如果没有，则尝试通过将选中的块从其父块中提升出来或移动到前一个块的父块中，使选中的块更接近下一个块。
+       * 如果给定，则使用视图进行准确的（双向感知）文本块开始检测。
        * @example editor.commands.joinBackward()
        */
       joinBackward: () => ReturnType
     }
     joinForward: {
       /**
-       * If the selection is empty and the cursor is at the end of a textblock, try to reduce or remove the boundary between that block and the one after it,
-       * either by joining them or by moving the other block closer to this one in the tree structure.
-       * Will use the view for accurate start-of-textblock detection if given.
+       * 如果选择为空且光标在文本块的末尾，则尝试减少或删除该块与下一个块之间的边界—要么通过合并它们，要么通过在树结构中将另一个块更靠近这个块。
+       * 如果给定，则使用视图进行准确的文本块开始检测。
        * @example editor.commands.joinForward()
        */
       joinForward: () => ReturnType

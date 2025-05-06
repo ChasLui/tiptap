@@ -60,8 +60,8 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     keyboardShortcut: {
       /**
-       * Trigger a keyboard shortcut.
-       * @param name The name of the keyboard shortcut.
+       * 触发键盘快捷键。
+       * @param name 键盘快捷键的名称。
        * @example editor.commands.keyboardShortcut('Mod-b')
        */
       keyboardShortcut: (name: string) => ReturnType,

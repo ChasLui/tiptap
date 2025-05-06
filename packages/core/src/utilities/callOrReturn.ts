@@ -2,11 +2,11 @@ import { MaybeReturnType } from '../types.js'
 import { isFunction } from './isFunction.js'
 
 /**
- * Optionally calls `value` as a function.
- * Otherwise it is returned directly.
- * @param value Function or any value.
- * @param context Optional context to bind to function.
- * @param props Optional props to pass to function.
+ * 可选地调用 `value` 作为函数。
+ * 否则它直接返回。
+ * @param value 函数或任何值。
+ * @param context 可选上下文绑定到函数。
+ * @param props 可选参数传递给函数。
  */
 export function callOrReturn<T>(value: T, context: any = undefined, ...props: any[]): MaybeReturnType<T> {
   if (isFunction(value)) {

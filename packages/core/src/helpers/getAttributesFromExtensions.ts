@@ -10,8 +10,8 @@ import { getExtensionField } from './getExtensionField.js'
 import { splitExtensions } from './splitExtensions.js'
 
 /**
- * Get a list of all extension attributes defined in `addAttribute` and `addGlobalAttribute`.
- * @param extensions List of extensions
+ * 获取在 `addAttribute` 和 `addGlobalAttribute` 中定义的所有扩展属性。
+ * @param extensions 扩展列表
  */
 export function getAttributesFromExtensions(extensions: Extensions): ExtensionAttribute[] {
   const extensionAttributes: ExtensionAttribute[] = []

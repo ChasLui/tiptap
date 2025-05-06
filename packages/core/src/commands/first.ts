@@ -4,8 +4,8 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     first: {
       /**
-       * Runs one command after the other and stops at the first which returns true.
-       * @param commands The commands to run.
+       * 依次运行一个命令，并在第一个返回 true 的命令停止。
+       * @param commands 要运行的命令。
        * @example editor.commands.first([command1, command2])
        */
       first: (commands: Command[] | ((props: CommandProps) => Command[])) => ReturnType,

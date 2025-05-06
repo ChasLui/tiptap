@@ -8,46 +8,46 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     insertContentAt: {
       /**
-       * Insert a node or string of HTML at a specific position.
+       * 在特定位置插入一个节点或 HTML 字符串。
        * @example editor.commands.insertContentAt(0, '<h1>Example</h1>')
        */
       insertContentAt: (
         /**
-         * The position to insert the content at.
+         * 要插入内容的位置。
          */
         position: number | Range,
 
         /**
-         * The ProseMirror content to insert.
+         * 要插入的 ProseMirror 内容。
          */
         value: Content | ProseMirrorNode | Fragment,
 
         /**
-         * Optional options
+         * 可选选项。
          */
         options?: {
           /**
-           * Options for parsing the content.
+           * 解析内容的选项。
            */
           parseOptions?: ParseOptions
 
           /**
-           * Whether to update the selection after inserting the content.
+           * 是否在插入内容后更新选择。
            */
           updateSelection?: boolean
 
           /**
-           * Whether to apply input rules after inserting the content.
+           * 是否在插入内容后应用输入规则。
            */
           applyInputRules?: boolean
 
           /**
-           * Whether to apply paste rules after inserting the content.
+           * 是否在插入内容后应用粘贴规则。
            */
           applyPasteRules?: boolean
 
           /**
-           * Whether to throw an error if the content is invalid.
+           * 是否在内容无效时抛出错误。
            */
           errorOnInvalidContent?: boolean
         },

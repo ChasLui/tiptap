@@ -106,9 +106,9 @@ function run(config: {
   const $from = view.state.doc.resolve(from)
 
   if (
-    // check for code node
+    // 检查代码节点
     $from.parent.type.spec.code
-    // check for code mark
+    // 检查代码标记
     || !!($from.nodeBefore || $from.nodeAfter)?.marks.find(mark => mark.type.spec.code)
   ) {
     return false
@@ -153,13 +153,13 @@ function run(config: {
       can,
     })
 
-    // stop if there are no changes
+    // 如果没有更改，则停止
     if (handler === null || !tr.steps.length) {
       return
     }
 
-    // store transform as meta data
-    // so we can undo input rules within the `undoInputRules` command
+    // 将转换存储为元数据
+    // 以便我们可以在 `undoInputRules` 命令中撤消输入规则
     tr.setMeta(plugin, {
       transform: tr,
       from,
@@ -175,9 +175,8 @@ function run(config: {
 }
 
 /**
- * Create an input rules plugin. When enabled, it will cause text
- * input that matches any of the given rules to trigger the rule’s
- * action.
+ * 创建一个输入规则插件。当启用时，它将导致输入的文本
+ * 匹配任何给定的规则时触发规则的操作。
  */
 export function inputRulesPlugin(props: { editor: Editor; rules: InputRule[] }): Plugin {
   const { editor, rules } = props
@@ -193,7 +192,7 @@ export function inputRulesPlugin(props: { editor: Editor; rules: InputRule[] }):
           return stored
         }
 
-        // if InputRule is triggered by insertContent()
+        // 如果 InputRule 由 insertContent() 触发
         const simulatedInputMeta = tr.getMeta('applyInputRules') as
           | undefined
           | {
@@ -263,8 +262,8 @@ export function inputRulesPlugin(props: { editor: Editor; rules: InputRule[] }):
         },
       },
 
-      // add support for input rules to trigger on enter
-      // this is useful for example for code blocks
+      // 添加支持在按下 Enter 时触发输入规则
+      // 这对于代码块等非常有用
       handleKeyDown(view, event) {
         if (event.key !== 'Enter') {
           return false

@@ -3,10 +3,10 @@ import { Node as ProseMirrorNode, ResolvedPos } from '@tiptap/pm/model'
 import { Predicate } from '../types.js'
 
 /**
- * Finds the closest parent node to a resolved position that matches a predicate.
- * @param $pos The resolved position to search from
- * @param predicate The predicate to match
- * @returns The closest parent node to the resolved position that matches the predicate
+ * 查找最接近给定位置的父节点，该节点匹配给定的谓词。
+ * @param $pos 要从中搜索的解析位置
+ * @param predicate 要匹配的谓词
+ * @returns 最接近给定位置的父节点，该节点匹配给定的谓词
  * @example ```js
  * findParentNodeClosestToPos($from, node => node.type.name === 'paragraph')
  * ```

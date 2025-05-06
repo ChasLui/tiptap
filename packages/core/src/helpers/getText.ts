@@ -4,10 +4,10 @@ import { TextSerializer } from '../types.js'
 import { getTextBetween } from './getTextBetween.js'
 
 /**
- * Gets the text of a Prosemirror node
- * @param node The Prosemirror node
- * @param options Options for the text serializer & block separator
- * @returns The text of the node
+ * 获取 Prosemirror 节点的文本
+ * @param node Prosemirror 节点
+ * @param options 文本序列化器和块分隔符的选项
+ * @returns 节点的文本
  * @example ```js
  * const text = getText(node, { blockSeparator: '\n' })
  * ```

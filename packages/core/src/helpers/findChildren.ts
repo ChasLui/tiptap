@@ -3,10 +3,10 @@ import { Node as ProseMirrorNode } from '@tiptap/pm/model'
 import { NodeWithPos, Predicate } from '../types.js'
 
 /**
- * Find children inside a Prosemirror node that match a predicate.
- * @param node The Prosemirror node to search in
- * @param predicate The predicate to match
- * @returns An array of nodes with their positions
+ * 查找匹配给定谓词的 Prosemirror 节点。
+ * @param node 要搜索的 Prosemirror 节点
+ * @param predicate 要匹配的谓词
+ * @returns 一个包含节点及其位置的数组
  */
 export function findChildren(node: ProseMirrorNode, predicate: Predicate): NodeWithPos[] {
   const nodesWithPos: NodeWithPos[] = []

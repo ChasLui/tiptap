@@ -28,7 +28,7 @@ export type PasteRuleFinder =
   | ((text: string, event?: ClipboardEvent | null) => PasteRuleMatch[] | null | undefined);
 
 /**
- * Paste rules are used to react to pasted content.
+ * 粘贴规则用于响应粘贴的内容。
  * @see https://tiptap.dev/docs/editor/extensions/custom-extensions/extend-existing#paste-rules
  */
 export class PasteRule {
@@ -176,9 +176,8 @@ const createClipboardPasteEvent = (text: string) => {
 }
 
 /**
- * Create an paste rules plugin. When enabled, it will cause pasted
- * text that matches any of the given rules to trigger the rule’s
- * action.
+ * 创建一个粘贴规则插件。当启用时，它将导致粘贴的
+ * 文本与任何给定的规则匹配时触发规则的操作。
  */
 export function pasteRulesPlugin(props: { editor: Editor; rules: PasteRule[] }): Plugin[] {
   const { editor, rules } = props
@@ -239,7 +238,7 @@ export function pasteRulesPlugin(props: { editor: Editor; rules: PasteRule[] }):
 
   const plugins = rules.map(rule => {
     return new Plugin({
-      // we register a global drag handler to track the current drag source element
+      // 我们注册一个全局拖动处理程序来跟踪当前的拖动源元素
       view(view) {
         const handleDragstart = (event: DragEvent) => {
           dragSourceElement = view.dom.parentElement?.contains(event.target as Element)
@@ -278,7 +277,7 @@ export function pasteRulesPlugin(props: { editor: Editor; rules: PasteRule[] }):
               const dragFromOtherEditor = tiptapDragFromOtherEditor
 
               if (dragFromOtherEditor) {
-                // setTimeout to avoid the wrong content after drop, timeout arg can't be empty or 0
+                // settimeout 要避免掉落后的错误内容，超时ARG不能为空或0
                 setTimeout(() => {
                   const selection = dragFromOtherEditor.state.selection
 
@@ -308,7 +307,7 @@ export function pasteRulesPlugin(props: { editor: Editor; rules: PasteRule[] }):
         const isPaste = transaction.getMeta('uiEvent') === 'paste' && !isPastedFromProseMirror
         const isDrop = transaction.getMeta('uiEvent') === 'drop' && !isDroppedFromProseMirror
 
-        // if PasteRule is triggered by insertContent()
+        // 如果 PasteRule 由 insertContent() 触发
         const simulatedPasteMeta = transaction.getMeta('applyPasteRules') as
           | undefined
           | { from: number; text: string | ProseMirrorNode | Fragment }
@@ -318,7 +317,7 @@ export function pasteRulesPlugin(props: { editor: Editor; rules: PasteRule[] }):
           return
         }
 
-        // Handle simulated paste
+        // 处理模拟粘贴
         if (isSimulatedPaste) {
           let { text } = simulatedPasteMeta
 
@@ -342,11 +341,11 @@ export function pasteRulesPlugin(props: { editor: Editor; rules: PasteRule[] }):
           })
         }
 
-        // handle actual paste/drop
+        // 处理实际粘贴/掉落
         const from = oldState.doc.content.findDiffStart(state.doc.content)
         const to = oldState.doc.content.findDiffEnd(state.doc.content)
 
-        // stop if there is no changed range
+        // 如果范围内没有更改，则停止
         if (!isNumber(from) || !to || from === to.b) {
           return
         }

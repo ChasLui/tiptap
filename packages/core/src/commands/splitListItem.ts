@@ -12,9 +12,9 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     splitListItem: {
       /**
-       * Splits one list item into two list items.
-       * @param typeOrName The type or name of the node.
-       * @param overrideAttrs The attributes to ensure on the new node.
+       * 将一个列表项分成两个列表项。
+       * @param typeOrName 节点的类型或名称。
+       * @param overrideAttrs 要在新节点上确保的属性。
        * @example editor.commands.splitListItem('listItem')
        */
       splitListItem: (typeOrName: string | NodeType, overrideAttrs?: Record<string, any>) => ReturnType
@@ -45,9 +45,7 @@ export const splitListItem: RawCommands['splitListItem'] = (typeOrName, override
   const extensionAttributes = editor.extensionManager.attributes
 
   if ($from.parent.content.size === 0 && $from.node(-1).childCount === $from.indexAfter(-1)) {
-    // In an empty block. If this is a nested list, the wrapping
-    // list item should be split. Otherwise, bail out and let next
-    // command handle lifting.
+    // 在一个空块中。如果这是一个嵌套列表，包装列表项应该被分割。否则，退出并让下一个命令处理提升。
     if (
       $from.depth === 2
         || $from.node(-3).type !== type
@@ -61,8 +59,7 @@ export const splitListItem: RawCommands['splitListItem'] = (typeOrName, override
       // eslint-disable-next-line
         const depthBefore = $from.index(-1) ? 1 : $from.index(-2) ? 2 : 3
 
-      // Build a fragment containing empty versions of the structure
-      // from the outer list item to the parent node of the cursor
+      // 构建一个包含从外部列表项到光标父节点的结构的空版本片段
       for (let d = $from.depth - depthBefore; d >= $from.depth - 3; d -= 1) {
         wrap = Fragment.from($from.node(d).copy(wrap))
       }
@@ -70,7 +67,7 @@ export const splitListItem: RawCommands['splitListItem'] = (typeOrName, override
       // eslint-disable-next-line
         const depthAfter = $from.indexAfter(-1) < $from.node(-2).childCount ? 1 : $from.indexAfter(-2) < $from.node(-3).childCount ? 2 : 3
 
-      // Add a second list item with an empty default start node
+      // 添加一个具有空默认开始节点的第二个列表项
       const newNextTypeAttributes = {
         ...getSplittedAttributes(
           extensionAttributes,

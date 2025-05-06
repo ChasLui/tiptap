@@ -6,7 +6,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     joinTextblockForward: {
       /**
-       * A more limited form of joinForward that only tries to join the current textblock to the one after it, if the cursor is at the end of a textblock.
+       * 一种更有限的 joinForward 形式，仅在光标处于文本块的末尾时尝试将当前文本块加入到下一个文本块中。
        */
       joinTextblockForward: () => ReturnType
     }

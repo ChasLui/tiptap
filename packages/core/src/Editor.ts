@@ -60,7 +60,7 @@ export class Editor extends EventEmitter<EditorEvents> {
   public isFocused = false
 
   /**
-   * The editor is considered initialized after the `create` event has been emitted.
+   * 在 `create` 事件被触发后，编辑器被认为是初始化的。
    */
   public isInitialized = false
 
@@ -127,35 +127,35 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Returns the editor storage.
+   * 返回编辑器存储。
    */
   public get storage(): Record<string, any> {
     return this.extensionStorage
   }
 
   /**
-   * An object of all registered commands.
+   * 一个包含所有注册命令的对象。
    */
   public get commands(): SingleCommands {
     return this.commandManager.commands
   }
 
   /**
-   * Create a command chain to call multiple commands at once.
+   * 创建一个命令链，用于一次调用多个命令。
    */
   public chain(): ChainedCommands {
     return this.commandManager.chain()
   }
 
   /**
-   * Check if a command or a command chain can be executed. Without executing it.
+   * 检查一个命令或命令链是否可以执行。不执行它。
    */
   public can(): CanCommands {
     return this.commandManager.can()
   }
 
   /**
-   * Inject CSS styles.
+   * 注入 CSS 样式。
    */
   private injectCSS(): void {
     if (this.options.injectCSS && document) {
@@ -164,9 +164,9 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Update editor options.
+   * 更新编辑器选项。
    *
-   * @param options A list of options
+   * @param options 一个选项列表
    */
   public setOptions(options: Partial<EditorOptions> = {}): void {
     this.options = {
@@ -186,7 +186,7 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Update editable state of the editor.
+   * 更新编辑器的可编辑状态。
    */
   public setEditable(editable: boolean, emitUpdate = true): void {
     this.setOptions({ editable })
@@ -197,28 +197,28 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Returns whether the editor is editable.
+   * 返回编辑器是否可编辑。
    */
   public get isEditable(): boolean {
-    // since plugins are applied after creating the view
-    // `editable` is always `true` for one tick.
-    // that’s why we also have to check for `options.editable`
+    // 由于插件在创建视图后应用，
+    // `editable` 在创建视图后始终为 `true` 一瞬间。
+    // 这就是为什么我们也必须检查 `options.editable`
     return this.options.editable && this.view && this.view.editable
   }
 
   /**
-   * Returns the editor state.
+   * 返回编辑器状态。
    */
   public get state(): EditorState {
     return this.view.state
   }
 
   /**
-   * Register a ProseMirror plugin.
+   * 注册一个 ProseMirror 插件。
    *
-   * @param plugin A ProseMirror plugin
-   * @param handlePlugins Control how to merge the plugin into the existing plugins.
-   * @returns The new editor state
+   * @param plugin 一个 ProseMirror 插件
+   * @param handlePlugins 控制如何将插件合并到现有插件中。
+   * @returns 新的编辑器状态
    */
   public registerPlugin(
     plugin: Plugin,
@@ -236,10 +236,10 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Unregister a ProseMirror plugin.
+   * 注销一个 ProseMirror 插件。
    *
-   * @param nameOrPluginKeyToRemove The plugins name
-   * @returns The new editor state or undefined if the editor is destroyed
+   * @param nameOrPluginKeyToRemove 插件的名称
+   * @returns 新的编辑器状态或 undefined 如果编辑器被销毁
    */
   public unregisterPlugin(nameOrPluginKeyToRemove: string | PluginKey | (string | PluginKey)[]): EditorState | undefined {
     if (this.isDestroyed) {
@@ -272,7 +272,7 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Creates an extension manager.
+   * 创建一个扩展管理器。
    */
   private createExtensionManager(): void {
 
@@ -301,7 +301,7 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Creates an command manager.
+   * 创建一个命令管理器。
    */
   private createCommandManager(): void {
     this.commandManager = new CommandManager({
@@ -310,14 +310,14 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Creates a ProseMirror schema.
+   * 创建一个 ProseMirror 模式。
    */
   private createSchema(): void {
     this.schema = this.extensionManager.schema
   }
 
   /**
-   * Creates a ProseMirror view.
+   * 创建一个 ProseMirror 视图。
    */
   private createView(): void {
     let doc: ProseMirrorNode
@@ -331,7 +331,7 @@ export class Editor extends EventEmitter<EditorEvents> {
       )
     } catch (e) {
       if (!(e instanceof Error) || !['[tiptap error]: Invalid JSON content', '[tiptap error]: Invalid HTML content'].includes(e.message)) {
-        // Not the content error we were expecting
+        // 不是我们期望的内容错误
         throw e
       }
       this.emit('contentError', {
@@ -341,15 +341,15 @@ export class Editor extends EventEmitter<EditorEvents> {
           if (this.storage.collaboration) {
             this.storage.collaboration.isDisabled = true
           }
-          // To avoid syncing back invalid content, reinitialize the extensions without the collaboration extension
+          // 为了避免同步回无效内容，重新初始化扩展，不包含协作扩展
           this.options.extensions = this.options.extensions.filter(extension => extension.name !== 'collaboration')
 
-          // Restart the initialization process by recreating the extension manager with the new set of extensions
+          // 通过重新创建扩展管理器来重新启动初始化过程，使用新的扩展集
           this.createExtensionManager()
         },
       })
 
-      // Content is invalid, but attempt to create it anyway, stripping out the invalid parts
+      // 内容无效，但尝试创建它，剥离无效的部分
       doc = createDocument(
         this.options.content,
         this.schema,
@@ -362,7 +362,7 @@ export class Editor extends EventEmitter<EditorEvents> {
     this.view = new EditorView(this.options.element, {
       ...this.options.editorProps,
       attributes: {
-        // add `role="textbox"` to the editor element
+        // 添加 `role="textbox"` 到编辑器元素
         role: 'textbox',
         ...this.options.editorProps?.attributes,
       },
@@ -373,8 +373,8 @@ export class Editor extends EventEmitter<EditorEvents> {
       }),
     })
 
-    // `editor.view` is not yet available at this time.
-    // Therefore we will add all plugins and node views directly afterwards.
+    // `editor.view` 在这个时间点还不可用。
+    // 因此我们将在稍后直接添加所有插件和节点视图。
     const newState = this.state.reconfigure({
       plugins: this.extensionManager.plugins,
     })
@@ -384,8 +384,8 @@ export class Editor extends EventEmitter<EditorEvents> {
     this.createNodeViews()
     this.prependClass()
 
-    // Let’s store the editor instance in the DOM element.
-    // So we’ll have access to it for tests.
+    // 让我们在 DOM 元素中存储编辑器实例。
+    // 这样我们就可以在测试中访问它。
     // @ts-ignore
     const dom = this.view.dom as TiptapEditorHTMLElement
 
@@ -393,7 +393,7 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Creates all node views.
+   * 创建所有节点视图。
    */
   public createNodeViews(): void {
     if (this.view.isDestroyed) {
@@ -406,7 +406,7 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Prepend class name to element.
+   * 在元素上添加类名。
    */
   public prependClass(): void {
     this.view.dom.className = `tiptap ${this.view.dom.className}`
@@ -429,13 +429,13 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * The callback over which to send transactions (state updates) produced by the view.
+   * 发送交易（状态更新）的回调。
    *
-   * @param transaction An editor state transaction
+   * @param transaction 一个编辑器状态事务
    */
   private dispatchTransaction(transaction: Transaction): void {
-    // if the editor / the view of the editor was destroyed
-    // the transaction should not be dispatched as there is no view anymore.
+    // 如果编辑器 / 编辑器的视图被销毁
+    // 事务不应被分派，因为不再有视图。
     if (this.view.isDestroyed) {
       return
     }
@@ -503,17 +503,17 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Get attributes of the currently selected node or mark.
+   * 获取当前选中的节点或标记的属性。
    */
   public getAttributes(nameOrType: string | NodeType | MarkType): Record<string, any> {
     return getAttributes(this.state, nameOrType)
   }
 
   /**
-   * Returns if the currently selected node or mark is active.
+   * 返回当前选中的节点或标记是否处于活动状态。
    *
-   * @param name Name of the node or mark
-   * @param attributes Attributes of the node or mark
+   * @param name 节点或标记的名称
+   * @param attributes 节点或标记的属性
    */
   public isActive(name: string, attributes?: {}): boolean
   public isActive(attributes: {}): boolean
@@ -526,21 +526,21 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Get the document as JSON.
+   * 获取文档作为 JSON。
    */
   public getJSON(): JSONContent {
     return this.state.doc.toJSON()
   }
 
   /**
-   * Get the document as HTML.
+   * 获取文档作为 HTML。
    */
   public getHTML(): string {
     return getHTMLFromFragment(this.state.doc.content, this.schema)
   }
 
   /**
-   * Get the document as text.
+   * 获取文档作为文本。
    */
   public getText(options?: {
     blockSeparator?: string
@@ -558,33 +558,33 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Check if there is no content.
+   * 检查是否没有内容。
    */
   public get isEmpty(): boolean {
     return isNodeEmpty(this.state.doc)
   }
 
   /**
-   * Get the number of characters for the current document.
+   * 获取当前文档的字符数。
    *
    * @deprecated
    */
   public getCharacterCount(): number {
     console.warn(
-      '[tiptap warn]: "editor.getCharacterCount()" is deprecated. Please use "editor.storage.characterCount.characters()" instead.',
+      '[tiptap warn]: "editor.getCharacterCount()" 已弃用。请使用 "editor.storage.characterCount.characters()" 代替。',
     )
 
     return this.state.doc.content.size - 2
   }
 
   /**
-   * Destroy the editor.
+   * 销毁编辑器。
    */
   public destroy(): void {
     this.emit('destroy')
 
     if (this.view) {
-      // Cleanup our reference to prevent circular references which caused memory leaks
+      // 清理我们的引用，以防止循环引用，这会导致内存泄漏
       // @ts-ignore
       const dom = this.view.dom as TiptapEditorHTMLElement
 
@@ -598,7 +598,7 @@ export class Editor extends EventEmitter<EditorEvents> {
   }
 
   /**
-   * Check if the editor is already destroyed.
+   * 检查编辑器是否已销毁。
    */
   public get isDestroyed(): boolean {
     // @ts-ignore

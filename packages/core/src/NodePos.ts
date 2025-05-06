@@ -53,7 +53,7 @@ export class NodePos {
 
     if (this.isBlock) {
       if (this.content.size === 0) {
-        console.error(`You can’t set content on a block node. Tried to set content on ${this.name} at ${this.pos}`)
+        console.error(`你不能在块节点上设置内容。尝试在 ${this.name} 处设置内容 ${this.pos}`)
         return
       }
 
@@ -207,11 +207,11 @@ export class NodePos {
     const attrKeys = Object.keys(attributes)
 
     /**
-     * Finds all children recursively that match the selector and attributes
-     * If firstItemOnly is true, it will return the first item found
+     * 递归查找所有匹配选择器和属性的子节点
+     * 如果 firstItemOnly 为 true，它将返回找到的第一个项目
      */
     this.children.forEach(childPos => {
-      // If we already found a node and we only want the first item, we dont need to keep going
+      // 如果我们已经找到一个节点并且我们只想第一个项目，我们不需要继续
       if (firstItemOnly && nodes.length > 0) {
         return
       }
@@ -224,7 +224,7 @@ export class NodePos {
         }
       }
 
-      // If we already found a node and we only want the first item, we can stop here and skip the recursion
+      // 如果我们已经找到一个节点并且我们只想第一个项目，我们可以在这里停止并跳过递归
       if (firstItemOnly && nodes.length > 0) {
         return
       }

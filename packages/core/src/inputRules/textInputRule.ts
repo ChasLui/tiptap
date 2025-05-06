@@ -1,8 +1,7 @@
 import { InputRule, InputRuleFinder } from '../InputRule.js'
 
 /**
- * Build an input rule that replaces text when the
- * matched text is typed into it.
+ * 构建一个输入规则，当匹配的文本输入到它时替换文本。
  * @see https://tiptap.dev/docs/editor/extensions/custom-extensions/extend-existing#input-rules
  */
 export function textInputRule(config: {

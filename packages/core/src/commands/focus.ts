@@ -8,20 +8,20 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     focus: {
       /**
-       * Focus the editor at the given position.
-       * @param position The position to focus at.
-       * @param options.scrollIntoView Scroll the focused position into view after focusing
+       * 聚焦到给定的位置。
+       * @param position 要聚焦的位置。
+       * @param options.scrollIntoView 聚焦后将焦点位置滚动到视图中。
        * @example editor.commands.focus()
        * @example editor.commands.focus(32, { scrollIntoView: false })
        */
       focus: (
         /**
-         * The position to focus at.
+         * 要聚焦的位置。
          */
         position?: FocusPosition,
 
         /**
-         * Optional options
+         * 可选选项。
          * @default { scrollIntoView: true }
          */
         options?: {

@@ -6,11 +6,11 @@ import { getText } from './getText.js'
 import { getTextSerializersFromSchema } from './getTextSerializersFromSchema.js'
 
 /**
- * Generate raw text from a JSONContent
- * @param doc The JSONContent to generate text from
- * @param extensions The extensions to use for the schema
- * @param options Options for the text generation f.e. blockSeparator or textSerializers
- * @returns The generated text
+ * 从 JSONContent 生成原始文本
+ * @param doc 要从中生成文本的 JSONContent
+ * @param extensions 要用于架构的扩展
+ * @param options 文本生成的选项，例如 blockSeparator 或 textSerializers
+ * @returns 生成的文本
  */
 export function generateText(
   doc: JSONContent,

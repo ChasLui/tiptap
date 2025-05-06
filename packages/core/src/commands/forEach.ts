@@ -4,7 +4,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     forEach: {
       /**
-       * Loop through an array of items.
+       * 遍历一个数组。
        */
       forEach: <T>(
         items: T[],

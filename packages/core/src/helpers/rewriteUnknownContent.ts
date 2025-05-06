@@ -4,7 +4,7 @@ import type { JSONContent } from '../types.js'
 
 type RewriteUnknownContentOptions = {
   /**
-   * If true, unknown nodes will be treated as paragraphs
+   * 如果为 true，未知节点将被视为段落
    * @default true
    */
   fallbackToParagraph?: boolean;
@@ -12,17 +12,17 @@ type RewriteUnknownContentOptions = {
 
 type RewrittenContent = {
   /**
-   * The original JSON content that was rewritten
+   * 被重写的原始 JSON 内容
    */
   original: JSONContent;
   /**
-   * The name of the node or mark that was unsupported
+   * 未支持的节点或标记的名称
    */
   unsupported: string;
 }[];
 
 /**
- * The actual implementation of the rewriteUnknownContent function
+ * 重写未知节点和标记的实际实现
  */
 function rewriteUnknownContentInner({
   json,
@@ -38,11 +38,11 @@ function rewriteUnknownContentInner({
   rewrittenContent?: RewrittenContent;
 }): {
   /**
-   * The cleaned JSON content
+   * 清理后的 JSON 内容
    */
   json: JSONContent | null;
   /**
-   * The array of nodes and marks that were rewritten
+   * 被重写的节点和标记的数组
    */
   rewrittenContent: RewrittenContent;
 } {
@@ -58,7 +58,7 @@ function rewriteUnknownContentInner({
         original: JSON.parse(JSON.stringify(mark)),
         unsupported: name,
       })
-      // Just ignore any unknown marks
+      // 忽略任何未知的标记
       return false
     })
   }
@@ -84,7 +84,7 @@ function rewriteUnknownContentInner({
     })
 
     if (json.content && Array.isArray(json.content) && (options?.fallbackToParagraph !== false)) {
-      // Just treat it like a paragraph and hope for the best
+      // 像段落一样处理它，希望一切顺利
       json.type = 'paragraph'
 
       return {
@@ -93,7 +93,7 @@ function rewriteUnknownContentInner({
       }
     }
 
-    // or just omit it entirely
+    // 或者完全省略它
     return {
       json: null,
       rewrittenContent,
@@ -104,37 +104,37 @@ function rewriteUnknownContentInner({
 }
 
 /**
- * Rewrite unknown nodes and marks within JSON content
- * Allowing for user within the editor
+ * 重写 JSON 内容中的未知节点和标记
+ * 允许用户在编辑器中使用未支持的节点和标记
  */
 export function rewriteUnknownContent(
   /**
-   * The JSON content to clean of unknown nodes and marks
+   * 要清理的 JSON 内容
    */
   json: JSONContent,
   /**
-   * The schema to use for validation
+   * 用于验证的架构
    */
   schema: Schema,
   /**
-   * Options for the cleaning process
+   * 清理过程的选项
    */
   options?: RewriteUnknownContentOptions,
 ): {
   /**
-   * The cleaned JSON content
+   * 清理后的 JSON 内容
    */
   json: JSONContent | null;
   /**
-   * The array of nodes and marks that were rewritten
+   * 被重写的节点和标记的数组
    */
   rewrittenContent: {
     /**
-     * The original JSON content that was rewritten
+     * 被重写的原始 JSON 内容
      */
     original: JSONContent;
     /**
-     * The name of the node or mark that was unsupported
+     * 未支持的节点或标记的名称
      */
     unsupported: string;
   }[];

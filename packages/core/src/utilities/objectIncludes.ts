@@ -1,9 +1,9 @@
 import { isRegExp } from './isRegExp.js'
 
 /**
- * Check if object1 includes object2
- * @param object1 Object
- * @param object2 Object
+ * 检查 object1 是否包含 object2
+ * @param object1 对象
+ * @param object2 对象
  */
 export function objectIncludes(
   object1: Record<string, any>,

@@ -8,7 +8,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     selectTextblockStart: {
       /**
-       * Moves the cursor to the start of current text block.
+       * 将光标移动到当前文本块的开头。
        * @example editor.commands.selectTextblockStart()
        */
       selectTextblockStart: () => ReturnType

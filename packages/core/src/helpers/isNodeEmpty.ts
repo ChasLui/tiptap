@@ -1,7 +1,7 @@
 import { Node as ProseMirrorNode } from '@tiptap/pm/model'
 
 /**
- * Returns true if the given prosemirror node is empty.
+ * 如果给定的 prosemirror 节点为空，则返回 true。
  */
 export function isNodeEmpty(
   node: ProseMirrorNode,
@@ -10,18 +10,18 @@ export function isNodeEmpty(
     ignoreWhitespace = false,
   }: {
     /**
-     * When true (default), it will also check if all children are empty.
+     * 当为 true（默认）时，它也会检查所有子节点是否为空。
      */
     checkChildren?: boolean;
     /**
-     * When true, it will ignore whitespace when checking for emptiness.
+     * 当为 true 时，它会在检查空性时忽略空白。
      */
     ignoreWhitespace?: boolean;
   } = {},
 ): boolean {
   if (ignoreWhitespace) {
     if (node.type.name === 'hardBreak') {
-      // Hard breaks are considered empty
+      // 硬断行被认为是空的
       return true
     }
     if (node.isText) {
@@ -46,7 +46,7 @@ export function isNodeEmpty(
 
     node.content.forEach(childNode => {
       if (isContentEmpty === false) {
-        // Exit early for perf
+        // 提前退出以提高性能
         return
       }
 

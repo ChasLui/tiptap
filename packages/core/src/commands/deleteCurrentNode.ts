@@ -4,7 +4,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     deleteCurrentNode: {
       /**
-       * Delete the node that currently has the selection anchor.
+       * 删除当前具有选择锚点的节点。
        * @example editor.commands.deleteCurrentNode()
        */
       deleteCurrentNode: () => ReturnType,
@@ -16,7 +16,7 @@ export const deleteCurrentNode: RawCommands['deleteCurrentNode'] = () => ({ tr, 
   const { selection } = tr
   const currentNode = selection.$anchor.node()
 
-  // if there is content inside the current node, break out of this command
+  // 如果当前节点内有内容，则退出此命令
   if (currentNode.content.size > 0) {
     return false
   }

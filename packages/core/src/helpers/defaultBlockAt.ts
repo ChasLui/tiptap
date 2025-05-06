@@ -1,9 +1,9 @@
 import { ContentMatch, NodeType } from '@tiptap/pm/model'
 
 /**
- * Gets the default block type at a given match
- * @param match The content match to get the default block type from
- * @returns The default block type or null
+ * 获取给定匹配的默认块类型。
+ * @param match 要从中获取默认块类型的内容匹配
+ * @returns 默认块类型或 null
  */
 export function defaultBlockAt(match: ContentMatch): NodeType | null {
   for (let i = 0; i < match.edgeCount; i += 1) {

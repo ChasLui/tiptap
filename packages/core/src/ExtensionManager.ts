@@ -37,10 +37,9 @@ export class ExtensionManager {
   }
 
   /**
-   * Returns a flattened and sorted extension list while
-   * also checking for duplicated extensions and warns the user.
-   * @param extensions An array of Tiptap extensions
-   * @returns An flattened and sorted array of Tiptap extensions
+   * 返回一个扁平化和排序的扩展列表，同时检查重复的扩展并警告用户。
+   * @param extensions 一个 Tiptap 扩展的数组
+   * @returns 一个扁平化和排序的 Tiptap 扩展数组
    */
   static resolve(extensions: Extensions): Extensions {
     const resolvedExtensions = ExtensionManager.sort(ExtensionManager.flatten(extensions))
@@ -58,9 +57,9 @@ export class ExtensionManager {
   }
 
   /**
-   * Create a flattened array of extensions by traversing the `addExtensions` field.
-   * @param extensions An array of Tiptap extensions
-   * @returns A flattened array of Tiptap extensions
+   * 通过遍历 `addExtensions` 字段创建一个扁平化的扩展数组。
+   * @param extensions 一个 Tiptap 扩展的数组
+   * @returns 一个扁平化的 Tiptap 扩展数组
    */
   static flatten(extensions: Extensions): Extensions {
     return (
@@ -84,15 +83,15 @@ export class ExtensionManager {
 
           return extension
         })
-        // `Infinity` will break TypeScript so we set a number that is probably high enough
+        // `Infinity` 会破坏 TypeScript，所以我们设置一个足够高的数字
         .flat(10)
     )
   }
 
   /**
-   * Sort extensions by priority.
-   * @param extensions An array of Tiptap extensions
-   * @returns A sorted array of Tiptap extensions by priority
+   * 按优先级排序扩展。
+   * @param extensions 一个 Tiptap 扩展的数组
+   * @returns 一个按优先级排序的 Tiptap 扩展数组
    */
   static sort(extensions: Extensions): Extensions {
     const defaultPriority = 100
@@ -114,8 +113,8 @@ export class ExtensionManager {
   }
 
   /**
-   * Get all commands from the extensions.
-   * @returns An object with all commands where the key is the command name and the value is the command function
+   * 获取所有扩展的命令。
+   * @returns 一个包含所有命令的对象，其中键是命令名称，值是命令函数
    */
   get commands(): RawCommands {
     return this.extensions.reduce((commands, extension) => {
@@ -145,17 +144,16 @@ export class ExtensionManager {
   }
 
   /**
-   * Get all registered Prosemirror plugins from the extensions.
-   * @returns An array of Prosemirror plugins
+   * 获取所有注册的 Prosemirror 插件。
+   * @returns 一个 Prosemirror 插件的数组
    */
   get plugins(): Plugin[] {
     const { editor } = this
 
-    // With ProseMirror, first plugins within an array are executed first.
-    // In Tiptap, we provide the ability to override plugins,
-    // so it feels more natural to run plugins at the end of an array first.
-    // That’s why we have to reverse the `extensions` array and sort again
-    // based on the `priority` option.
+    // 在 ProseMirror 中，数组中的第一个插件首先执行。
+    // 在 Tiptap 中，我们提供了覆盖插件的能力，
+    // 所以感觉更自然的是先运行数组末尾的插件。
+    // 这就是为什么我们要反转 `extensions` 数组并再次按 `priority` 选项排序。
     const extensions = ExtensionManager.sort([...this.extensions].reverse())
 
     const inputRules: InputRule[] = []
@@ -181,7 +179,7 @@ export class ExtensionManager {
 
         let defaultBindings: Record<string, () => boolean> = {}
 
-        // bind exit handling
+        // 绑定退出处理
         if (extension.type === 'mark' && getExtensionField<AnyConfig['exitable']>(extension, 'exitable', context)) {
           defaultBindings.ArrowRight = () => Mark.handleExit({ editor, mark: extension as Mark })
         }
@@ -250,16 +248,16 @@ export class ExtensionManager {
   }
 
   /**
-   * Get all attributes from the extensions.
-   * @returns An array of attributes
+   * 获取所有扩展的属性。
+   * @returns 一个属性的数组
    */
   get attributes() {
     return getAttributesFromExtensions(this.extensions)
   }
 
   /**
-   * Get all node views from the extensions.
-   * @returns An object with all node views where the key is the node name and the value is the node view function
+   * 获取所有扩展的节点视图。
+   * @returns 一个包含所有节点视图的对象，其中键是节点名称，值是节点视图函数
    */
   get nodeViews(): Record<string, NodeViewConstructor> {
     const { editor } = this
@@ -318,12 +316,11 @@ export class ExtensionManager {
   }
 
   /**
-   * Go through all extensions, create extension storages & setup marks
-   * & bind editor event listener.
+   * 遍历所有扩展，创建扩展存储并设置标记，并绑定编辑器事件监听器。
    */
   private setupExtensions() {
     this.extensions.forEach(extension => {
-      // store extension storage in editor
+      // 在编辑器中存储扩展存储
       this.editor.extensionStorage[extension.name] = extension.storage
 
       const context = {

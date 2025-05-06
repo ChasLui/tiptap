@@ -7,35 +7,36 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     setContent: {
       /**
-       * Replace the whole document with new content.
-       * @param content The new content.
-       * @param emitUpdate Whether to emit an update event.
-       * @param parseOptions Options for parsing the content.
+       * 用新内容替换整个文档。
+       * @param content 新内容。
+       * @param emitUpdate 是否发出更新事件。
+       * @param parseOptions 解析内容的选项。
        * @example editor.commands.setContent('<p>Example text</p>')
        */
       setContent: (
         /**
-         * The new content.
+         * 新内容。
          */
         content: Content | Fragment | ProseMirrorNode,
 
         /**
-         * Whether to emit an update event.
+         * 是否发出更新事件。
          * @default false
          */
         emitUpdate?: boolean,
 
         /**
-         * Options for parsing the content.
+         * 解析内容的选项。
          * @default {}
          */
         parseOptions?: ParseOptions,
+
         /**
-         * Options for `setContent`.
+         * `setContent` 的选项。
          */
         options?: {
           /**
-           * Whether to throw an error if the content is invalid.
+           * 如果内容无效，是否抛出错误。
            */
           errorOnInvalidContent?: boolean;
         }
@@ -49,8 +50,8 @@ export const setContent: RawCommands['setContent'] = (content, emitUpdate = fals
 }) => {
   const { doc } = tr
 
-  // This is to keep backward compatibility with the previous behavior
-  // TODO remove this in the next major version
+  // 这是为了保持与以前行为的向后兼容性
+  // TODO 在下一个主要版本中删除此代码
   if (parseOptions.preserveWhitespace !== 'full') {
     const document = createDocument(content, editor.schema, parseOptions, {
       errorOnInvalidContent: options.errorOnInvalidContent ?? editor.options.enableContentCheck,

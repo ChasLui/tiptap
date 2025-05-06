@@ -8,7 +8,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     selectTextblockEnd: {
       /**
-       * Moves the cursor to the end of current text block.
+       * 将光标移动到当前文本块的末尾。
        * @example editor.commands.selectTextblockEnd()
        */
       selectTextblockEnd: () => ReturnType

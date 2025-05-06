@@ -6,7 +6,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     liftEmptyBlock: {
       /**
-       * If the cursor is in an empty textblock that can be lifted, lift the block.
+       * 如果光标位于可以提升的空文本块中，则提升该块。
        * @example editor.commands.liftEmptyBlock()
        */
       liftEmptyBlock: () => ReturnType,

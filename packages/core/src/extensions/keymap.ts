@@ -14,7 +14,7 @@ export const Keymap = Extension.create({
     const handleBackspace = () => this.editor.commands.first(({ commands }) => [
       () => commands.undoInputRule(),
 
-      // maybe convert first text block node to default node
+      // 可能将第一个文本块节点转换为默认节点
       () => commands.command(({ tr }) => {
         const { selection, doc } = tr
         const { empty, $anchor } = selection
@@ -33,7 +33,7 @@ export const Keymap = Extension.create({
           || !parent.type.isTextblock
           || parent.textContent.length
           || !isAtStart
-          || (isAtStart && $anchor.parent.type.name === 'paragraph') // prevent clearNodes when no nodes to clear, otherwise history stack is appended
+          || (isAtStart && $anchor.parent.type.name === 'paragraph') // 当没有要清除的节点时防止 clearNodes，否则历史堆栈会被附加
         ) {
           return false
         }
@@ -96,11 +96,10 @@ export const Keymap = Extension.create({
 
   addProseMirrorPlugins() {
     return [
-      // With this plugin we check if the whole document was selected and deleted.
-      // In this case we will additionally call `clearNodes()` to convert e.g. a heading
-      // to a paragraph if necessary.
-      // This is an alternative to ProseMirror's `AllSelection`, which doesn’t work well
-      // with many other commands.
+      // 使用此插件，我们检查是否选择了整个文档并删除了它。
+      // 在这种情况下，我们还将调用 `clearNodes()` 以转换例如一个标题
+      // 如果需要，将其转换为段落。
+      // 这是 ProseMirror 的 `AllSelection` 的替代方案，它与其他命令配合得不好。
       new Plugin({
         key: new PluginKey('clearDocument'),
         appendTransaction: (transactions, oldState, newState) => {

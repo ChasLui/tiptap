@@ -4,7 +4,7 @@ export function getMarkType(nameOrType: string | MarkType, schema: Schema): Mark
   if (typeof nameOrType === 'string') {
     if (!schema.marks[nameOrType]) {
       throw Error(
-        `There is no mark type named '${nameOrType}'. Maybe you forgot to add the extension?`,
+        `不存在名为： '${nameOrType}' 的标记类型。也许你忘记添加扩展了？`,
       )
     }
 

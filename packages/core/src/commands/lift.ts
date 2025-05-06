@@ -9,9 +9,9 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     lift: {
       /**
-       * Removes an existing wrap if possible lifting the node out of it
-       * @param typeOrName The type or name of the node.
-       * @param attributes The attributes of the node.
+       * 如果可能，则删除现有的包装并提升节点。
+       * @param typeOrName 节点的类型或名称。
+       * @param attributes 节点的属性。
        * @example editor.commands.lift('paragraph')
        * @example editor.commands.lift('heading', { level: 1 })
        */

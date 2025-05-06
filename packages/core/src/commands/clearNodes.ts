@@ -6,7 +6,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     clearNodes: {
       /**
-       * Normalize nodes to a simple paragraph.
+       * 将节点规范化为一个简单的段落。
        * @example editor.commands.clearNodes()
        */
       clearNodes: () => ReturnType,

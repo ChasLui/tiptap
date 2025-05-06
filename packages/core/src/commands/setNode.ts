@@ -8,9 +8,9 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     setNode: {
       /**
-       * Replace a given range with a node.
-       * @param typeOrName The type or name of the node
-       * @param attributes The attributes of the node
+       * 用一个节点替换给定的范围。
+       * @param typeOrName 节点的类型或名称。
+       * @param attributes 节点的属性。
        * @example editor.commands.setNode('paragraph')
        */
       setNode: (typeOrName: string | NodeType, attributes?: Record<string, any>) => ReturnType
@@ -24,20 +24,20 @@ export const setNode: RawCommands['setNode'] = (typeOrName, attributes = {}) => 
   let attributesToCopy: Record<string, any> | undefined
 
   if (state.selection.$anchor.sameParent(state.selection.$head)) {
-    // only copy attributes if the selection is pointing to a node of the same type
+    // 仅在选择器指向相同类型的节点时复制属性
     attributesToCopy = state.selection.$anchor.parent.attrs
   }
 
-  // TODO: use a fallback like insertContent?
+  // TODO：使用像插入符号的回退？
   if (!type.isTextblock) {
-    console.warn('[tiptap warn]: Currently "setNode()" only supports text block nodes.')
+    console.warn('[tiptap warn]: 目前 "setNode()" 仅支持文本块节点。')
 
     return false
   }
 
   return (
     chain()
-    // try to convert node to default node if needed
+      // 如果需要，尝试将节点转换为默认节点
       .command(({ commands }) => {
         const canSetBlock = setBlockType(type, { ...attributesToCopy, ...attributes })(state)
 

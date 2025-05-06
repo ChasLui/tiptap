@@ -1,54 +1,46 @@
-# Contributing
+# 贡献指南
 
-Contributions are **welcome** and will be fully **credited**.
+我们**欢迎**并**感谢**所有贡献。
 
-Please read and understand the [contribution guide](https://www.tiptap.dev/overview/contributing/) before creating an issue or pull request.
+在创建 issue 或 pull request 之前，请仔细阅读并理解[贡献指南](https://www.tiptap.dev/overview/contributing/)。
 
-## Etiquette
+## 行为准则
 
-This project is open source, and as such, the maintainers give their free time to build and maintain the source code
-held within. They make the code freely available in the hope that it will be of use to other developers. It would be
-extremely unfair for them to suffer abuse or anger for their hard work.
+本项目是开源的，维护者自愿投入时间构建和维护源代码。他们免费提供代码是希望这些代码能对其他开发者有所帮助。如果维护者因辛勤工作而遭受辱骂或攻击，这是极其不公平的。
 
-Please be considerate towards maintainers when raising issues or presenting pull requests. Let's show the
-world that developers are civilized and selfless people.
+在提交 issue 或 pull request 时，请对维护者保持尊重。让我们向世界展示开发者是文明无私的群体。
 
-It's the duty of the maintainer to ensure that all submissions to the project are of sufficient
-quality to benefit the project. Many developers have different skillsets, strengths, and weaknesses. Respect the maintainer's decision, and do not be upset or abusive if your submission is not used.
+维护者有责任确保所有提交都符合项目质量标准。开发者们各有不同的技能组合、优势和不足。请尊重维护者的决定，如果您的提交未被采纳，请勿因此沮丧或出言不逊。
 
-## Viability
+## 可行性
 
-When requesting or submitting new features, first consider whether it might be useful to others. Open
-source projects are used by many developers, who may have entirely different needs to your own. Think about
-whether or not your feature is likely to be used by other users of the project.
+当请求或提交新功能时，请首先考虑该功能是否对他人有用。开源项目会被众多开发者使用，他们的需求可能与您完全不同。请评估您提议的功能是否可能被其他用户使用。
 
-## Procedure
+## 流程规范
 
-Before filing an issue:
+提交 issue 前：
 
-- Attempt to replicate the problem, to ensure that it wasn't a coincidental incident.
-- Check to make sure your feature suggestion isn't already present within the project.
-- Check the pull requests tab to ensure that the bug doesn't have a fix in progress.
-- Check the pull requests tab to ensure that the feature isn't already in progress.
+- 尝试复现问题，确保不是偶发事件
+- 检查您提议的功能是否已存在
+- 查看 pull requests 确保该问题没有正在修复中
+- 查看 pull requests 确保该功能没有正在开发中
 
-Before submitting a pull request:
+提交 pull request 前：
 
-- Check the codebase to ensure that your feature doesn't already exist.
-- Check the pull requests to ensure that another person hasn't already submitted the feature or fix.
+- 检查代码库确认功能尚未存在
+- 查看 pull requests 确保没有重复提交
 
-Before committing:
+提交代码前：
 
-- Make sure to run the tests and linter before committing your changes.
-- If you are making changes to one of the packages, make sure to **always** include a [changeset](https://github.com/changesets/changesets) in your PR describing **what changed** with a **description** of the change. Those are responsible for changelog creation
+- 请务必运行测试和 linter
+- 如果修改了某个包，请务必在 PR 中包含[变更集](https://github.com/changesets/changesets)，描述**变更内容**和**修改说明**（用于自动生成更新日志）
 
-## Requirements
+## 要求
 
-If the project maintainer has any additional requirements, you will find them listed here.
+以下是维护者的附加要求：
 
-- **Document any change in behaviour** - Make sure the `README.md` and any other relevant documentation are kept up-to-date.
+- **记录所有行为变更** - 确保更新 `README.md` 和相关文档
+- **一个 PR 对应一个功能** - 多个功能请分开发送
+- **保持提交历史清晰** - 每个 commit 应有明确意义，开发过程中的中间 commit 请使用[压缩提交](https://www.git-scm.com/book/zh/v2/Git-工具-重写历史#_squashing)整理后再提交
 
-- **One pull request per feature** - If you want to do more than one thing, send multiple pull requests.
-
-- **Send coherent history** - Make sure each individual commit in your pull request is meaningful. If you had to make multiple intermediate commits while developing, please [squash them](https://www.git-scm.com/book/en/v2/Git-Tools-Rewriting-History#Changing-Multiple-Commit-Messages) before submitting.
-
-**Happy coding**!
+**祝编码愉快**！

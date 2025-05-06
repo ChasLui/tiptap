@@ -6,7 +6,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     newlineInCode: {
       /**
-       * Add a newline character in code.
+       * 在代码中添加一个换行符。
        * @example editor.commands.newlineInCode()
        */
       newlineInCode: () => ReturnType

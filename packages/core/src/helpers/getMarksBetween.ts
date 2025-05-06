@@ -6,7 +6,7 @@ import { getMarkRange } from './getMarkRange.js'
 export function getMarksBetween(from: number, to: number, doc: ProseMirrorNode): MarkRange[] {
   const marks: MarkRange[] = []
 
-  // get all inclusive marks on empty selection
+  // 获取空选择中的所有包含的标记
   if (from === to) {
     doc
       .resolve(from)

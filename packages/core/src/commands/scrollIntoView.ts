@@ -4,7 +4,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     scrollIntoView: {
       /**
-       * Scroll the selection into view.
+       * 将选中的内容滚动到视图中。
        * @example editor.commands.scrollIntoView()
        */
       scrollIntoView: () => ReturnType,

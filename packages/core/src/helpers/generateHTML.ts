@@ -5,10 +5,10 @@ import { getHTMLFromFragment } from './getHTMLFromFragment.js'
 import { getSchema } from './getSchema.js'
 
 /**
- * Generate HTML from a JSONContent
- * @param doc The JSONContent to generate HTML from
- * @param extensions The extensions to use for the schema
- * @returns The generated HTML
+ * 从 JSONContent 生成 HTML
+ * @param doc 要从中生成 HTML 的 JSONContent
+ * @param extensions 要用于架构的扩展
+ * @returns 生成的 HTML
  */
 export function generateHTML(doc: JSONContent, extensions: Extensions): string {
   const schema = getSchema(extensions)

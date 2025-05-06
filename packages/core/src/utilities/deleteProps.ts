@@ -1,7 +1,7 @@
 /**
- * Remove a property or an array of properties from an object
- * @param obj Object
- * @param key Key to remove
+ * 从对象中删除一个属性或一个属性数组。
+ * @param obj 对象
+ * @param key 要删除的键
  */
 export function deleteProps(obj: Record<string, any>, propOrProps: string | string[]): Record<string, any> {
   const props = typeof propOrProps === 'string'

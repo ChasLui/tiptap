@@ -9,20 +9,20 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     extendMarkRange: {
       /**
-       * Extends the text selection to the current mark by type or name.
-       * @param typeOrName The type or name of the mark.
-       * @param attributes The attributes of the mark.
+       * 通过类型或名称扩展文本选择到当前标记。
+       * @param typeOrName 标记的类型或名称。
+       * @param attributes 标记的属性。
        * @example editor.commands.extendMarkRange('bold')
        * @example editor.commands.extendMarkRange('mention', { userId: "1" })
        */
       extendMarkRange: (
         /**
-         * The type or name of the mark.
+         * 标记的类型或名称。
          */
         typeOrName: string | MarkType,
 
         /**
-         * The attributes of the mark.
+         * 标记的属性。
          */
         attributes?: Record<string, any>,
       ) => ReturnType

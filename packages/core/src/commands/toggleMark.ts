@@ -8,26 +8,26 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     toggleMark: {
       /**
-       * Toggle a mark on and off.
-       * @param typeOrName The mark type or name.
-       * @param attributes The attributes of the mark.
-       * @param options.extendEmptyMarkRange Removes the mark even across the current selection. Defaults to `false`.
+       * 切换一个标记的开和关。
+       * @param typeOrName 标记的类型或名称。
+       * @param attributes 标记的属性。
+       * @param options.extendEmptyMarkRange 在当前选择范围内删除标记。默认值为 `false`。
        * @example editor.commands.toggleMark('bold')
        */
       toggleMark: (
         /**
-         * The mark type or name.
+         * 标记的类型或名称。
          */
         typeOrName: string | MarkType,
 
         /**
-         * The attributes of the mark.
+         * 标记的属性。
          */
         attributes?: Record<string, any>,
 
         options?: {
           /**
-           * Removes the mark even across the current selection. Defaults to `false`.
+           * 在当前选择范围内删除标记。默认值为 `false`。
            */
           extendEmptyMarkRange?: boolean
         },

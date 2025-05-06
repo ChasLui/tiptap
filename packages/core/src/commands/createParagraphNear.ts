@@ -6,7 +6,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     createParagraphNear: {
       /**
-       * Create a paragraph nearby.
+       * 在附近创建一个段落。
        * @example editor.commands.createParagraphNear()
        */
       createParagraphNear: () => ReturnType

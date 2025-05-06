@@ -1,10 +1,10 @@
 import { Schema } from '@tiptap/pm/model'
 
 /**
- * Get the type of a schema item by its name.
- * @param name The name of the schema item
- * @param schema The Prosemiror schema to search in
- * @returns The type of the schema item (`node` or `mark`), or null if it doesn't exist
+ * 获取架构项的类型。
+ * @param name 架构项的名称
+ * @param schema 要搜索的 Prosemiror 架构
+ * @returns 架构项的类型（`node` 或 `mark`），如果它不存在则返回 null
  */
 export function getSchemaTypeNameByName(name: string, schema: Schema): 'node' | 'mark' | null {
   if (schema.nodes[name]) {

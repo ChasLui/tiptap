@@ -8,8 +8,8 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     sinkListItem: {
       /**
-       * Sink the list item down into an inner list.
-       * @param typeOrName The type or name of the node.
+       * 将列表项下沉到内部列表中。
+       * @param typeOrName 节点的类型或名称。
        * @example editor.commands.sinkListItem('listItem')
        */
       sinkListItem: (typeOrName: string | NodeType) => ReturnType

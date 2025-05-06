@@ -19,8 +19,8 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     splitBlock: {
       /**
-       * Forks a new node from an existing node.
-       * @param options.keepMarks Keep marks from the previous node.
+       * 从现有节点分叉一个新节点。
+       * @param options.keepMarks 保持上一个节点的标记。
        * @example editor.commands.splitBlock()
        * @example editor.commands.splitBlock({ keepMarks: true })
        */

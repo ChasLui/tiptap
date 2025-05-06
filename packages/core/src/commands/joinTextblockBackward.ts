@@ -6,7 +6,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     joinTextblockBackward: {
       /**
-       * A more limited form of joinBackward that only tries to join the current textblock to the one before it, if the cursor is at the start of a textblock.
+       * 一种更有限的 joinBackward 形式，仅在光标处于文本块的开头时尝试将当前文本块加入到之前的文本块中。
        */
       joinTextblockBackward: () => ReturnType
     }

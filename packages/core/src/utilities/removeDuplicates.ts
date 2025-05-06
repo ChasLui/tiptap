@@ -1,6 +1,6 @@
 /**
- * Removes duplicated values within an array.
- * Supports numbers, strings and objects.
+ * 从数组中删除重复的值。
+ * 支持数字、字符串和对象。
  */
 export function removeDuplicates<T>(array: T[], by = JSON.stringify): T[] {
   const seen: Record<any, any> = {}

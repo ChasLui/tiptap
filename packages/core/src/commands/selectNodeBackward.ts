@@ -6,7 +6,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     selectNodeBackward: {
       /**
-       * Select a node backward.
+       * 向后选择一个节点。
        * @example editor.commands.selectNodeBackward()
        */
       selectNodeBackward: () => ReturnType

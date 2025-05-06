@@ -7,8 +7,8 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     setNodeSelection: {
       /**
-       * Creates a NodeSelection.
-       * @param position - Position of the node.
+       * 创建一个 NodeSelection。
+       * @param position 节点的位置。
        * @example editor.commands.setNodeSelection(10)
        */
       setNodeSelection: (position: number) => ReturnType

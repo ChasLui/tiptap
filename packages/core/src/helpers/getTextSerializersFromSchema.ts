@@ -3,9 +3,9 @@ import { Schema } from '@tiptap/pm/model'
 import { TextSerializer } from '../types.js'
 
 /**
- * Find text serializers `toText` in a Prosemirror schema
- * @param schema The Prosemirror schema to search in
- * @returns A record of text serializers by node name
+ * 在 Prosemirror Schema中查找文本序列化器 `toText`
+ * @param schema 要搜索的 Prosemirror Schema
+ * @returns 一个按节点名称记录的文本序列化器
  */
 export function getTextSerializersFromSchema(schema: Schema): Record<string, TextSerializer> {
   return Object.fromEntries(

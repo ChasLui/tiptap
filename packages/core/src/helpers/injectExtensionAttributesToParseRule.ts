@@ -4,10 +4,10 @@ import { ExtensionAttribute } from '../types.js'
 import { fromString } from '../utilities/fromString.js'
 
 /**
- * This function merges extension attributes into parserule attributes (`attrs` or `getAttrs`).
- * Cancels when `getAttrs` returned `false`.
+ * 此函数将扩展属性合并到解析规则属性（`attrs` 或 `getAttrs`）中。
+ * 当 `getAttrs` 返回 `false` 时取消。
  * @param parseRule ProseMirror ParseRule
- * @param extensionAttributes List of attributes to inject
+ * @param extensionAttributes 要注入的属性列表
  */
 export function injectExtensionAttributesToParseRule(
   parseRule: ParseRule,

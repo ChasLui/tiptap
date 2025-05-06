@@ -5,8 +5,7 @@ import { ExtendedRegExpMatchArray, JSONContent } from '../types.js'
 import { callOrReturn } from '../utilities/index.js'
 
 /**
- * Build an paste rule that adds a node when the
- * matched text is pasted into it.
+ * 构建一个粘贴规则，当匹配的文本粘贴到它时添加一个节点。
  * @see https://tiptap.dev/docs/editor/extensions/custom-extensions/extend-existing#paste-rules
  */
 export function nodePasteRule(config: {

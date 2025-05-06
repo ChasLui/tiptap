@@ -4,7 +4,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     blur: {
       /**
-       * Removes focus from the editor.
+       * 从编辑器中移除焦点。
        * @example editor.commands.blur()
        */
       blur: () => ReturnType,
@@ -17,8 +17,8 @@ export const blur: RawCommands['blur'] = () => ({ editor, view }) => {
     if (!editor.isDestroyed) {
       (view.dom as HTMLElement).blur()
 
-      // Browsers should remove the caret on blur but safari does not.
-      // See: https://github.com/ueberdosis/tiptap/issues/2405
+      // 浏览器应该在失去焦点时删除光标，但 Safari 不这样做。
+      // 见: https://github.com/ueberdosis/tiptap/issues/2405
       window?.getSelection()?.removeAllRanges()
     }
   })

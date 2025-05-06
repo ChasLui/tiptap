@@ -5,10 +5,9 @@ import { ExtendedRegExpMatchArray } from '../types.js'
 import { callOrReturn } from '../utilities/callOrReturn.js'
 
 /**
- * Build an input rule that changes the type of a textblock when the
- * matched text is typed into it. When using a regular expresion you’ll
- * probably want the regexp to start with `^`, so that the pattern can
- * only occur at the start of a textblock.
+ * 构建一个输入规则，当匹配的文本输入到它时更改文本块的类型。
+ * 当使用正则表达式时，你可能想在正则表达式开始时使用 `^`，
+ * 这样模式只能出现在文本块的开始处。
  * @see https://tiptap.dev/docs/editor/extensions/custom-extensions/extend-existing#input-rules
  */
 export function textblockTypeInputRule(config: {

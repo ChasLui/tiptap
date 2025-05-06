@@ -27,23 +27,22 @@ declare module '@tiptap/core' {
     [key: string]: any
 
     /**
-     * The extension name - this must be unique.
-     * It will be used to identify the extension.
+     * 扩展名称 -这必须是唯一的。
+     * 它将用于识别扩展名。
      *
      * @example 'myExtension'
      */
     name: string
 
     /**
-     * The priority of your extension. The higher, the earlier it will be called
-     * and will take precedence over other extensions with a lower priority.
+     * 扩展的优先级。越早，它将被调用，并且优先于其他优先级的扩展名优先。
      * @default 100
      * @example 101
      */
     priority?: number
 
     /**
-     * The default options for this extension.
+     * 此扩展的默认选项。
      * @example
      * defaultOptions: {
      *   myOption: 'foo',
@@ -53,7 +52,7 @@ declare module '@tiptap/core' {
     defaultOptions?: Options
 
     /**
-     * This method will add options to this extension
+     * 此方法将向此扩展添加选项。
      * @see https://tiptap.dev/guide/custom-extensions#settings
      * @example
      * addOptions() {
@@ -68,7 +67,7 @@ declare module '@tiptap/core' {
     }) => Options
 
     /**
-     * The default storage this extension can save data to.
+     * 此扩展可以保存数据的默认存储。
      * @see https://tiptap.dev/guide/custom-extensions#storage
      * @example
      * defaultStorage: {
@@ -83,7 +82,7 @@ declare module '@tiptap/core' {
     }) => Storage
 
     /**
-     * This function adds globalAttributes to specific nodes.
+     * 此函数向特定节点添加全局属性。
      * @see https://tiptap.dev/guide/custom-extensions#global-attributes
      * @example
      * addGlobalAttributes() {
@@ -117,7 +116,7 @@ declare module '@tiptap/core' {
     }) => GlobalAttributes
 
     /**
-     * This function adds commands to the editor
+     * 此函数向编辑器添加命令。
      * @see https://tiptap.dev/guide/custom-extensions#keyboard-shortcuts
      * @example
      * addCommands() {
@@ -136,7 +135,7 @@ declare module '@tiptap/core' {
     }) => Partial<RawCommands>
 
     /**
-     * This function registers keyboard shortcuts.
+     * 此函数注册键盘快捷键。
      * @see https://tiptap.dev/guide/custom-extensions#keyboard-shortcuts
      * @example
      * addKeyboardShortcuts() {
@@ -157,7 +156,7 @@ declare module '@tiptap/core' {
     }
 
     /**
-     * This function adds input rules to the editor.
+     * 此函数向编辑器添加输入规则。
      * @see https://tiptap.dev/guide/custom-extensions#input-rules
      * @example
      * addInputRules() {
@@ -179,7 +178,7 @@ declare module '@tiptap/core' {
     }) => InputRule[]
 
     /**
-     * This function adds paste rules to the editor.
+     * 此函数向编辑器添加粘贴规则。
      * @see https://tiptap.dev/guide/custom-extensions#paste-rules
      * @example
      * addPasteRules() {
@@ -201,7 +200,7 @@ declare module '@tiptap/core' {
     }) => PasteRule[]
 
     /**
-     * This function adds Prosemirror plugins to the editor
+     * 此函数向编辑器添加 Prosemirror 插件。
      * @see https://tiptap.dev/guide/custom-extensions#prosemirror-plugins
      * @example
      * addProseMirrorPlugins() {
@@ -220,8 +219,7 @@ declare module '@tiptap/core' {
     }) => Plugin[]
 
     /**
-     * This function adds additional extensions to the editor. This is useful for
-     * building extension kits.
+     * 此函数向编辑器添加其他扩展。这对于构建扩展套件非常有用。
      * @example
      * addExtensions() {
      *   return [
@@ -239,7 +237,7 @@ declare module '@tiptap/core' {
     }) => Extensions
 
     /**
-     * This function extends the schema of the node.
+     * 此函数扩展节点的模式。
      * @example
      * extendNodeSchema() {
      *   return {
@@ -261,7 +259,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * This function extends the schema of the mark.
+     * 此函数扩展标记的模式。
      * @example
      * extendMarkSchema() {
      *   return {
@@ -283,7 +281,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The editor is not ready yet.
+     * 编辑器尚未准备好。
      */
     onBeforeCreate?:
       | ((this: {
@@ -297,7 +295,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The editor is ready.
+     * 编辑器已准备就绪。
      */
     onCreate?:
       | ((this: {
@@ -311,7 +309,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The content has changed.
+     * 内容已更改。
      */
     onUpdate?:
       | ((this: {
@@ -325,7 +323,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The selection has changed.
+     * 选择已更改。
      */
     onSelectionUpdate?:
       | ((this: {
@@ -339,7 +337,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The editor state has changed.
+     * 编辑器状态已更改。
      */
     onTransaction?:
       | ((
@@ -359,7 +357,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The editor is focused.
+     * 编辑器已聚焦。
      */
     onFocus?:
       | ((
@@ -378,7 +376,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The editor isn’t focused anymore.
+     * 编辑器不再聚焦。
      */
     onBlur?:
       | ((
@@ -397,7 +395,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The editor is destroyed.
+     * 编辑器已销毁。
      */
     onDestroy?:
       | ((this: {
@@ -411,12 +409,12 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * Keep mark after split node
+     * 在拆分节点后保持标记。
      */
     keepOnSplit?: boolean | (() => boolean)
 
     /**
-     * Inclusive
+     * 包含
      */
     inclusive?:
       | MarkSpec['inclusive']
@@ -429,7 +427,7 @@ declare module '@tiptap/core' {
         }) => MarkSpec['inclusive'])
 
     /**
-     * Excludes
+     * 排除
      */
     excludes?:
       | MarkSpec['excludes']
@@ -442,12 +440,12 @@ declare module '@tiptap/core' {
         }) => MarkSpec['excludes'])
 
     /**
-     * Marks this Mark as exitable
+     * 将此标记标记为可退出。
      */
     exitable?: boolean | (() => boolean)
 
     /**
-     * Group
+     * 组
      */
     group?:
       | MarkSpec['group']
@@ -460,7 +458,7 @@ declare module '@tiptap/core' {
         }) => MarkSpec['group'])
 
     /**
-     * Spanning
+     * 跨度
      */
     spanning?:
       | MarkSpec['spanning']
@@ -473,7 +471,7 @@ declare module '@tiptap/core' {
         }) => MarkSpec['spanning'])
 
     /**
-     * Code
+     * 代码
      */
     code?:
       | boolean
@@ -486,7 +484,7 @@ declare module '@tiptap/core' {
         }) => boolean)
 
     /**
-     * Parse HTML
+     * 解析 HTML
      */
     parseHTML?: (this: {
       name: string
@@ -497,7 +495,7 @@ declare module '@tiptap/core' {
     }) => MarkSpec['parseDOM']
 
     /**
-     * Render HTML
+     * 渲染 HTML
      */
     renderHTML?:
       | ((
@@ -516,7 +514,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * Attributes
+     * 属性
      */
     addAttributes?: (this: {
       name: string
@@ -530,7 +528,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * The Mark class is used to create custom mark extensions.
+ * 标记类用于创建自定义标记扩展。
  * @see https://tiptap.dev/api/extensions#create-a-new-extension
  */
 export class Mark<Options = any, Storage = any> {
@@ -589,8 +587,8 @@ export class Mark<Options = any, Storage = any> {
   }
 
   configure(options: Partial<Options> = {}) {
-    // return a new instance so we can use the same extension
-    // with different calls of `configure`
+    // 返回一个新实例，以便我们可以使用相同的扩展
+    // 使用不同的调用 `configure`
     const extension = this.extend<Options, Storage>({
       ...this.config,
       addOptions: () => {
@@ -598,9 +596,9 @@ export class Mark<Options = any, Storage = any> {
       },
     })
 
-    // Always preserve the current name
+    // 始终保留当前名称
     extension.name = this.name
-    // Set the parent to be our parent
+    // 将父级设置为我们的父级
     extension.parent = this.parent
 
     return extension

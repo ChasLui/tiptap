@@ -3,12 +3,12 @@ import { Node as ProseMirrorNode } from '@tiptap/pm/model'
 import { Range, TextSerializer } from '../types.js'
 
 /**
- * Gets the text between two positions in a Prosemirror node
- * and serializes it using the given text serializers and block separator (see getText)
- * @param startNode The Prosemirror node to start from
- * @param range The range of the text to get
- * @param options Options for the text serializer & block separator
- * @returns The text between the two positions
+ * 获取两个位置之间的文本
+ * 并使用给定的文本序列化器和块分隔符（见 getText）序列化它
+ * @param startNode 要从哪个 Prosemirror 节点开始
+ * @param range 要获取的文本范围
+ * @param options 文本序列化器和块分隔符的选项
+ * @returns 两个位置之间的文本
  */
 export function getTextBetween(
   startNode: ProseMirrorNode,

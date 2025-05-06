@@ -10,9 +10,9 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     resetAttributes: {
       /**
-       * Resets some node attributes to the default value.
-       * @param typeOrName The type or name of the node.
-       * @param attributes The attributes of the node to reset.
+       * 重置一些节点的属性到默认值。
+       * @param typeOrName 节点的类型或名称。
+       * @param attributes 要重置的节点的属性。
        * @example editor.commands.resetAttributes('heading', 'level')
        */
       resetAttributes: (

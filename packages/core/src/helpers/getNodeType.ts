@@ -4,7 +4,7 @@ export function getNodeType(nameOrType: string | NodeType, schema: Schema): Node
   if (typeof nameOrType === 'string') {
     if (!schema.nodes[nameOrType]) {
       throw Error(
-        `There is no node type named '${nameOrType}'. Maybe you forgot to add the extension?`,
+        `不存在名为：'${nameOrType}' 的节点类型。也许你忘记添加扩展了？`,
       )
     }
 

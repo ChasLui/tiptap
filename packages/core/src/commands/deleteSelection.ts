@@ -6,7 +6,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     deleteSelection: {
       /**
-       * Delete the selection, if there is one.
+       * 如果存在选择，则删除选择。
        * @example editor.commands.deleteSelection()
        */
       deleteSelection: () => ReturnType

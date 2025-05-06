@@ -4,7 +4,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     undoInputRule: {
       /**
-       * Undo an input rule.
+       * 撤销一个输入规则。
        * @example editor.commands.undoInputRule()
        */
       undoInputRule: () => ReturnType,

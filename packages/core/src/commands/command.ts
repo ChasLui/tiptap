@@ -4,8 +4,8 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     command: {
       /**
-       * Define a command inline.
-       * @param fn The command function.
+       * 内联定义一个命令。
+       * @param fn 命令函数。
        * @example
        * editor.commands.command(({ tr, state }) => {
        *   ...

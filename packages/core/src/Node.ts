@@ -24,27 +24,26 @@ import { mergeDeep } from './utilities/mergeDeep.js'
 
 declare module '@tiptap/core' {
   interface NodeConfig<Options = any, Storage = any> {
-    // @ts-ignore - this is a dynamic key
+    // @ts-ignore - 这是一个动态密钥
     [key: string]: any
 
     /**
-     * The extension name - this must be unique.
-     * It will be used to identify the extension.
+     * 扩展名称 - 这必须是唯一的。
+     * 它将用于识别扩展。
      *
      * @example 'myExtension'
      */
     name: string
 
     /**
-     * The priority of your extension. The higher, the earlier it will be called
-     * and will take precedence over other extensions with a lower priority.
+     * 扩展的优先级。越高，它将被调用，并且优先于其他优先级的扩展名优先。
      * @default 100
      * @example 101
      */
     priority?: number
 
     /**
-     * The default options for this extension.
+     * 此扩展的默认选项。
      * @example
      * defaultOptions: {
      *   myOption: 'foo',
@@ -54,7 +53,7 @@ declare module '@tiptap/core' {
     defaultOptions?: Options
 
     /**
-     * This method will add options to this extension
+     * 此方法将向此扩展添加选项。
      * @see https://tiptap.dev/guide/custom-extensions#settings
      * @example
      * addOptions() {
@@ -69,7 +68,7 @@ declare module '@tiptap/core' {
     }) => Options
 
     /**
-     * The default storage this extension can save data to.
+     * 此扩展可以保存数据的默认存储。
      * @see https://tiptap.dev/guide/custom-extensions#storage
      * @example
      * defaultStorage: {
@@ -84,7 +83,7 @@ declare module '@tiptap/core' {
     }) => Storage
 
     /**
-     * This function adds globalAttributes to specific nodes.
+     * 此函数向特定节点添加全局属性。
      * @see https://tiptap.dev/guide/custom-extensions#global-attributes
      * @example
      * addGlobalAttributes() {
@@ -118,7 +117,7 @@ declare module '@tiptap/core' {
     }) => GlobalAttributes
 
     /**
-     * This function adds commands to the editor
+     * 此函数向编辑器添加命令。
      * @see https://tiptap.dev/guide/custom-extensions#keyboard-shortcuts
      * @example
      * addCommands() {
@@ -137,7 +136,7 @@ declare module '@tiptap/core' {
     }) => Partial<RawCommands>
 
     /**
-     * This function registers keyboard shortcuts.
+     * 此函数注册键盘快捷键。
      * @see https://tiptap.dev/guide/custom-extensions#keyboard-shortcuts
      * @example
      * addKeyboardShortcuts() {
@@ -158,7 +157,7 @@ declare module '@tiptap/core' {
     }
 
     /**
-     * This function adds input rules to the editor.
+     * 此函数向编辑器添加输入规则。
      * @see https://tiptap.dev/guide/custom-extensions#input-rules
      * @example
      * addInputRules() {
@@ -180,7 +179,7 @@ declare module '@tiptap/core' {
     }) => InputRule[]
 
     /**
-     * This function adds paste rules to the editor.
+     * 此函数向编辑器添加粘贴规则。
      * @see https://tiptap.dev/guide/custom-extensions#paste-rules
      * @example
      * addPasteRules() {
@@ -202,7 +201,7 @@ declare module '@tiptap/core' {
     }) => PasteRule[]
 
     /**
-     * This function adds Prosemirror plugins to the editor
+     * 此函数向编辑器添加 Prosemirror 插件。
      * @see https://tiptap.dev/guide/custom-extensions#prosemirror-plugins
      * @example
      * addProseMirrorPlugins() {
@@ -221,8 +220,7 @@ declare module '@tiptap/core' {
     }) => Plugin[]
 
     /**
-     * This function adds additional extensions to the editor. This is useful for
-     * building extension kits.
+     * 此函数向编辑器添加其他扩展。这对于构建扩展套件非常有用。
      * @example
      * addExtensions() {
      *   return [
@@ -240,7 +238,7 @@ declare module '@tiptap/core' {
     }) => Extensions
 
     /**
-     * This function extends the schema of the node.
+     * 此函数扩展节点的模式。
      * @example
      * extendNodeSchema() {
      *   return {
@@ -262,7 +260,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * This function extends the schema of the mark.
+     * 此函数扩展标记的模式。
      * @example
      * extendMarkSchema() {
      *   return {
@@ -285,7 +283,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The editor is not ready yet.
+     * 编辑器尚未准备好。
      */
     onBeforeCreate?:
       | ((this: {
@@ -299,7 +297,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The editor is ready.
+     * 编辑器已准备就绪。
      */
     onCreate?:
       | ((this: {
@@ -313,7 +311,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The content has changed.
+     * 内容已更改。
      */
     onUpdate?:
       | ((this: {
@@ -327,7 +325,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The selection has changed.
+     * 选择已更改。
      */
     onSelectionUpdate?:
       | ((this: {
@@ -341,7 +339,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The editor state has changed.
+     * 编辑器状态已更改。
      */
     onTransaction?:
       | ((
@@ -361,7 +359,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The editor is focused.
+     * 编辑器已聚焦。
      */
     onFocus?:
       | ((
@@ -380,7 +378,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The editor isn’t focused anymore.
+     * 编辑器不再聚焦。
      */
     onBlur?:
       | ((
@@ -399,7 +397,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * The editor is destroyed.
+     * 编辑器已销毁。
      */
     onDestroy?:
       | ((this: {
@@ -413,7 +411,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * Node View
+     * 节点视图
      */
     addNodeView?:
       | ((this: {
@@ -427,18 +425,17 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * Defines if this node should be a top level node (doc)
+     * 定义此节点是否应为顶级节点（doc）
      * @default false
      * @example true
      */
     topNode?: boolean
 
     /**
-     * The content expression for this node, as described in the [schema
-     * guide](/docs/guide/#schema.content_expressions). When not given,
-     * the node does not allow any content.
+     * 此节点的内容表达式，如 [schema](/docs/guide/#schema.content_expressions) 中所述。
+     * 当没有给出时，节点不允许任何内容。
      *
-     * You can read more about it on the Prosemirror documentation here
+     * 你可以在 Prosemirror 文档中了解更多关于它的信息
      * @see https://prosemirror.net/docs/guide/#schema.content_expressions
      * @default undefined
      * @example content: 'block+'
@@ -455,11 +452,8 @@ declare module '@tiptap/core' {
         }) => NodeSpec['content'])
 
     /**
-     * The marks that are allowed inside of this node. May be a
-     * space-separated string referring to mark names or groups, `"_"`
-     * to explicitly allow all marks, or `""` to disallow marks. When
-     * not given, nodes with inline content default to allowing all
-     * marks, other nodes default to not allowing marks.
+     * 此节点中允许的标记。可以是空格分隔的字符串，引用标记名称或组，`"_"`
+     * 明确允许所有标记，或 `""` 禁止标记。当没有给出时，具有内联内容的节点默认允许所有标记，其他节点默认不允许标记。
      *
      * @example marks: 'strong em'
      */
@@ -474,16 +468,13 @@ declare module '@tiptap/core' {
         }) => NodeSpec['marks'])
 
     /**
-     * The group or space-separated groups to which this node belongs,
-     * which can be referred to in the content expressions for the
-     * schema.
+     * 此节点所属的组或空格分隔的组，可以在内容表达式中引用，
+     * 在 schema 中。
      *
-     * By default Tiptap uses the groups 'block' and 'inline' for nodes. You
-     * can also use custom groups if you want to group specific nodes together
-     * and handle them in your schema.
+     * 默认情况下，Tiptap 使用组 'block' 和 'inline' 为节点。你也可以使用自定义组来将特定节点组合在一起，并处理它们在您的 schema 中。
      * @example group: 'block'
      * @example group: 'inline'
-     * @example group: 'customBlock' // this uses a custom group
+     * @example group: 'customBlock' // 这使用了一个自定义组
      */
     group?:
       | NodeSpec['group']
@@ -496,7 +487,7 @@ declare module '@tiptap/core' {
         }) => NodeSpec['group'])
 
     /**
-     * Should be set to true for inline nodes. (Implied for text nodes.)
+     * 应设置为 true 以表示此节点为内联节点。（隐含为文本节点。）
      */
     inline?:
       | NodeSpec['inline']
@@ -509,9 +500,7 @@ declare module '@tiptap/core' {
         }) => NodeSpec['inline'])
 
     /**
-     * Can be set to true to indicate that, though this isn't a [leaf
-     * node](https://prosemirror.net/docs/ref/#model.NodeType.isLeaf), it doesn't have directly editable
-     * content and should be treated as a single unit in the view.
+     * 可以设置为 true 以表示，尽管这不是 [叶子节点](https://prosemirror.net/docs/ref/#model.NodeType.isLeaf)，但它没有直接可编辑的内容，并且应该在视图中被视为一个单元。
      *
      * @example atom: true
      */
@@ -526,9 +515,7 @@ declare module '@tiptap/core' {
         }) => NodeSpec['atom'])
 
     /**
-     * Controls whether nodes of this type can be selected as a [node
-     * selection](https://prosemirror.net/docs/ref/#state.NodeSelection). Defaults to true for non-text
-     * nodes.
+     * 控制此类型节点是否可以作为 [节点选择](https://prosemirror.net/docs/ref/#state.NodeSelection) 选择。默认情况下，非文本节点为 true。
      *
      * @default true
      * @example selectable: false
@@ -544,8 +531,7 @@ declare module '@tiptap/core' {
         }) => NodeSpec['selectable'])
 
     /**
-     * Determines whether nodes of this type can be dragged without
-     * being selected. Defaults to false.
+     * 确定是否可以拖动此类型节点而不选择它。默认情况下为 false。
      *
      * @default: false
      * @example: draggable: true
@@ -561,8 +547,7 @@ declare module '@tiptap/core' {
         }) => NodeSpec['draggable'])
 
     /**
-     * Can be used to indicate that this node contains code, which
-     * causes some commands to behave differently.
+     * 可以用来表示此节点包含代码，这会导致某些命令的行为有所不同。
      */
     code?:
       | NodeSpec['code']
@@ -575,15 +560,9 @@ declare module '@tiptap/core' {
         }) => NodeSpec['code'])
 
     /**
-     * Controls way whitespace in this a node is parsed. The default is
-     * `"normal"`, which causes the [DOM parser](https://prosemirror.net/docs/ref/#model.DOMParser) to
-     * collapse whitespace in normal mode, and normalize it (replacing
-     * newlines and such with spaces) otherwise. `"pre"` causes the
-     * parser to preserve spaces inside the node. When this option isn't
-     * given, but [`code`](https://prosemirror.net/docs/ref/#model.NodeSpec.code) is true, `whitespace`
-     * will default to `"pre"`. Note that this option doesn't influence
-     * the way the node is rendered—that should be handled by `toDOM`
-     * and/or styling.
+     * 控制此节点中的空格如何解析。默认值为 `"normal"`，这会导致 [DOM 解析器](https://prosemirror.net/docs/ref/#model.DOMParser) 在正常模式下崩溃空格，并将其标准化（用空格替换新行等），否则。 `"pre"` 导致解析器保留节点内的空格。
+     * 当此选项未给出，但 [`code`](https://prosemirror.net/docs/ref/#model.NodeSpec.code) 为 true，`whitespace` 将默认为 `"pre"`。
+     * 请注意，此选项不会影响节点的渲染方式——应通过 `toDOM` 和/或样式处理。
      */
     whitespace?:
       | NodeSpec['whitespace']
@@ -596,13 +575,12 @@ declare module '@tiptap/core' {
         }) => NodeSpec['whitespace'])
 
     /**
-     * Allows a **single** node to be set as linebreak equivalent (e.g. hardBreak).
-     * When converting between block types that have whitespace set to "pre"
-     * and don't support the linebreak node (e.g. codeBlock) and other block types
-     * that do support the linebreak node (e.g. paragraphs) - this node will be used
-     * as the linebreak instead of stripping the newline.
+     * 允许将 **单个** 节点设置为行分隔符（例如 `hardBreak`）。
+     * 当在具有 `"pre"` 设置为空格的块类型之间转换时，
+     * 不支持行分隔符节点（例如 `codeBlock`）和其他支持行分隔符节点（例如 `paragraphs`）的块类型时，
+     * 此节点将用于行分隔符，而不是删除换行符。
      *
-     * See [linebreakReplacement](https://prosemirror.net/docs/ref/#model.NodeSpec.linebreakReplacement).
+     * 请参阅 [linebreakReplacement](https://prosemirror.net/docs/ref/#model.NodeSpec.linebreakReplacement)。
      */
     linebreakReplacement?:
       | NodeSpec['linebreakReplacement']
@@ -615,9 +593,7 @@ declare module '@tiptap/core' {
         }) => NodeSpec['linebreakReplacement'])
 
     /**
-     * When enabled, enables both
-     * [`definingAsContext`](https://prosemirror.net/docs/ref/#model.NodeSpec.definingAsContext) and
-     * [`definingForContent`](https://prosemirror.net/docs/ref/#model.NodeSpec.definingForContent).
+     * 启用时，同时启用 [`definingAsContext`](https://prosemirror.net/docs/ref/#model.NodeSpec.definingAsContext) 和 [`definingForContent`](https://prosemirror.net/docs/ref/#model.NodeSpec.definingForContent)。
      *
      * @default false
      * @example isolating: true
@@ -633,10 +609,9 @@ declare module '@tiptap/core' {
         }) => NodeSpec['defining'])
 
     /**
-     * When enabled (default is false), the sides of nodes of this type
-     * count as boundaries that regular editing operations, like
-     * backspacing or lifting, won't cross. An example of a node that
-     * should probably have this enabled is a table cell.
+     * 启用时（默认值为 false），此类型节点的两侧
+     * 作为边界，常规编辑操作（如退格或提升）不会跨越。
+     * 一个应该可能启用此选项的节点示例是表格单元格。
      */
     isolating?:
       | NodeSpec['isolating']
@@ -649,12 +624,10 @@ declare module '@tiptap/core' {
         }) => NodeSpec['isolating'])
 
     /**
-     * Associates DOM parser information with this node, which can be
-     * used by [`DOMParser.fromSchema`](https://prosemirror.net/docs/ref/#model.DOMParser^fromSchema) to
-     * automatically derive a parser. The `node` field in the rules is
-     * implied (the name of this node will be filled in automatically).
-     * If you supply your own parser, you do not need to also specify
-     * parsing rules in your schema.
+     * 将 DOM 解析器信息与此节点关联，可以
+     * 由 [`DOMParser.fromSchema`](https://prosemirror.net/docs/ref/#model.DOMParser^fromSchema) 自动推导出解析器。
+     * 在规则中的 `node` 字段是隐含的（此节点的名称将自动填充）。
+     * 如果你提供自己的解析器，你不需要也在你的 schema 中指定解析规则。
      *
      * @example parseHTML: [{ tag: 'div', attrs: { 'data-id': 'my-block' } }]
      */
@@ -667,22 +640,17 @@ declare module '@tiptap/core' {
     }) => NodeSpec['parseDOM']
 
     /**
-     * A description of a DOM structure. Can be either a string, which is
-     * interpreted as a text node, a DOM node, which is interpreted as
-     * itself, a `{dom, contentDOM}` object, or an array.
+     * 描述一个 DOM 结构。可以是字符串，解释为文本节点，DOM 节点，解释为它本身，`{dom, contentDOM}` 对象，或数组。
      *
-     * An array describes a DOM element. The first value in the array
-     * should be a string—the name of the DOM element, optionally prefixed
-     * by a namespace URL and a space. If the second element is plain
-     * object, it is interpreted as a set of attributes for the element.
-     * Any elements after that (including the 2nd if it's not an attribute
-     * object) are interpreted as children of the DOM elements, and must
-     * either be valid `DOMOutputSpec` values, or the number zero.
+     * 数组描述一个 DOM 元素。数组中的第一个值应该是一个字符串——DOM 元素的名称，可选地以命名空间 URL 和空格为前缀。如果第二个元素是普通对象，则解释为元素的属性集。
+     * 任何后续元素（包括第二个元素如果不是属性）都被解释为 DOM 元素的子元素，并且必须是有效的 `DOMOutputSpec` 值，或者零。
      *
-     * The number zero (pronounced “hole”) is used to indicate the place
-     * where a node's child nodes should be inserted. If it occurs in an
-     * output spec, it should be the only child element in its parent
-     * node.
+     * 零（发音为“洞”）用于指示节点子节点的插入位置。如果它在输出规范中出现，它应该是其父元素中的唯一子元素。
+     *
+     * 数组描述一个 DOM 元素。数组中的第一个值应该是一个字符串——DOM 元素的名称，可选地以命名空间 URL 和空格为前缀。如果第二个元素是普通对象，则解释为元素的属性集。
+     * 任何后续元素（包括第二个元素如果不是属性）都被解释为 DOM 元素的子元素，并且必须是有效的 `DOMOutputSpec` 值，或者零。
+     *
+     * 零（发音为“洞”）用于指示节点子节点的插入位置。如果它在输出规范中出现，它应该是其父元素中的唯一子元素。
      *
      * @example toDOM: ['div[data-id="my-block"]', { class: 'my-block' }, 0]
      */
@@ -703,7 +671,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * renders the node as text
+     * 将节点渲染为文本
      * @example renderText: () => 'foo
      */
     renderText?:
@@ -725,7 +693,7 @@ declare module '@tiptap/core' {
       | null
 
     /**
-     * Add attributes to the node
+     * 向节点添加属性
      * @example addAttributes: () => ({ class: 'foo' })
      */
     addAttributes?: (this: {
@@ -740,7 +708,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * The Node class is used to create custom node extensions.
+ * 节点类用于创建自定义节点扩展。
  * @see https://tiptap.dev/api/extensions#create-a-new-extension
  */
 export class Node<Options = any, Storage = any> {
@@ -799,8 +767,8 @@ export class Node<Options = any, Storage = any> {
   }
 
   configure(options: Partial<Options> = {}) {
-    // return a new instance so we can use the same extension
-    // with different calls of `configure`
+    // 返回一个新实例，以便我们可以使用相同的扩展
+    // 使用不同的调用 `configure`
     const extension = this.extend<Options, Storage>({
       ...this.config,
       addOptions: () => {
@@ -808,9 +776,9 @@ export class Node<Options = any, Storage = any> {
       },
     })
 
-    // Always preserve the current name
+    // 始终保留当前名称
     extension.name = this.name
-    // Set the parent to be our parent
+    // 将父级设置为我们的父级
     extension.parent = this.parent
 
     return extension

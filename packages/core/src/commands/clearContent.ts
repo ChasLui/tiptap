@@ -4,8 +4,8 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     clearContent: {
       /**
-       * Clear the whole document.
-       * @param emitUpdate Whether to emit an update event.
+       * 清除整个文档。
+       * @param emitUpdate 是否发出更新事件。
        * @example editor.commands.clearContent()
        */
       clearContent: (emitUpdate?: boolean) => ReturnType,

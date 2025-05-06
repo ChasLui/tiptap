@@ -6,7 +6,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     selectParentNode: {
       /**
-       * Select the parent node.
+       * 选择父节点。
        * @example editor.commands.selectParentNode()
        */
       selectParentNode: () => ReturnType

@@ -61,11 +61,11 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     toggleList: {
       /**
-       * Toggle between different list types.
-       * @param listTypeOrName The type or name of the list.
-       * @param itemTypeOrName The type or name of the list item.
-       * @param keepMarks Keep marks when toggling.
-       * @param attributes Attributes for the new list.
+       * 在不同的列表类型之间切换。
+       * @param listTypeOrName 列表的类型或名称。
+       * @param itemTypeOrName 列表项的类型或名称。
+       * @param keepMarks 切换时保持标记。
+       * @param attributes 新列表的属性。
        * @example editor.commands.toggleList('bulletList', 'listItem')
        */
       toggleList: (listTypeOrName: string | NodeType, itemTypeOrName: string | NodeType, keepMarks?: boolean, attributes?: Record<string, any>) => ReturnType;
@@ -117,7 +117,7 @@ export const toggleList: RawCommands['toggleList'] = (listTypeOrName, itemTypeOr
   if (!keepMarks || !marks || !dispatch) {
 
     return chain()
-      // try to convert node to default node if needed
+      // 如果需要，尝试将节点转换为默认节点
       .command(() => {
         const canWrapInList = can().wrapInList(listType, attributes)
 
@@ -135,7 +135,7 @@ export const toggleList: RawCommands['toggleList'] = (listTypeOrName, itemTypeOr
 
   return (
     chain()
-    // try to convert node to default node if needed
+      // 如果需要，尝试将节点转换为默认节点
       .command(() => {
         const canWrapInList = can().wrapInList(listType, attributes)
 

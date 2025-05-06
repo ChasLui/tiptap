@@ -1,11 +1,11 @@
 import { AnyExtension, MaybeThisParameterType, RemoveThis } from '../types.js'
 
 /**
- * Returns a field from an extension
- * @param extension The Tiptap extension
- * @param field The field, for example `renderHTML` or `priority`
- * @param context The context object that should be passed as `this` into the function
- * @returns The field value
+ * 从扩展返回一个字段
+ * @param extension 一个 Tiptap 扩展
+ * @param field 一个字段，例如 `renderHTML` 或 `priority`
+ * @param context 应该作为 `this` 传递给函数的上下文对象
+ * @returns 字段值
  */
 export function getExtensionField<T = any>(
   extension: AnyExtension,

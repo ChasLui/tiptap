@@ -6,7 +6,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     joinItemForward: {
       /**
-       * Join two items Forwards.
+       * 将两个项目向前合并。
        * @example editor.commands.joinItemForward()
        */
       joinItemForward: () => ReturnType

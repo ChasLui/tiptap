@@ -5,24 +5,23 @@ import { ExtendedRegExpMatchArray } from '../types.js'
 import { callOrReturn } from '../utilities/callOrReturn.js'
 
 /**
- * Build an input rule that adds a node when the
- * matched text is typed into it.
+ * 构建一个输入规则，当匹配的文本输入到它时添加一个节点。
  * @see https://tiptap.dev/docs/editor/extensions/custom-extensions/extend-existing#input-rules
  */
 export function nodeInputRule(config: {
   /**
-   * The regex to match.
+   * 要匹配的正则表达式。
    */
   find: InputRuleFinder
 
   /**
-   * The node type to add.
+   * 要添加的节点类型。
    */
   type: NodeType
 
   /**
-   * A function that returns the attributes for the node
-   * can also be an object of attributes
+   * 一个返回节点属性的函数
+   * 也可以是一个属性对象
    */
   getAttributes?:
     | Record<string, any>
@@ -50,12 +49,12 @@ export function nodeInputRule(config: {
           end = matchStart + match[1].length
         }
 
-        // insert last typed character
+        // 插入最后一个输入的字符
         const lastChar = match[0][match[0].length - 1]
 
         tr.insertText(lastChar, start + match[0].length - 1)
 
-        // insert node from input rule
+        // 从输入规则插入节点
         tr.replaceWith(matchStart, end, newNode)
       } else if (match[0]) {
         const insertionStart = config.type.isInline ? start : start - 1

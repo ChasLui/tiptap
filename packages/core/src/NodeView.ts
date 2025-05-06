@@ -7,7 +7,7 @@ import { isAndroid } from './utilities/isAndroid.js'
 import { isiOS } from './utilities/isiOS.js'
 
 /**
- * Node views are used to customize the rendered DOM structure of a node.
+ * 节点视图用于自定义节点的渲染 DOM 结构。
  * @see https://tiptap.dev/guide/node-views
  */
 export class NodeView<
@@ -72,8 +72,8 @@ export class NodeView<
     const { view } = this.editor
     const target = event.target as HTMLElement
 
-    // get the drag handle element
-    // `closest` is not available for text nodes so we may have to use its parent
+    // 获取拖动手柄元素
+    // `closest` 不适用于文本节点，所以我们可能需要使用它的父元素
     const dragHandle = target.nodeType === 3
       ? target.parentElement?.closest('[data-drag-handle]')
       : target.closest('[data-drag-handle]')
@@ -85,12 +85,12 @@ export class NodeView<
     let x = 0
     let y = 0
 
-    // calculate offset for drag element if we use a different drag handle element
+    // 如果我们在使用不同的拖动手柄元素，则计算偏移量
     if (this.dom !== dragHandle) {
       const domBox = this.dom.getBoundingClientRect()
       const handleBox = dragHandle.getBoundingClientRect()
 
-      // In React, we have to go through nativeEvent to reach offsetX/offsetY.
+      // 在 React 中，我们必须通过 nativeEvent 到达 offsetX/offsetY。
       const offsetX = event.offsetX ?? (event as any).nativeEvent?.offsetX
       const offsetY = event.offsetY ?? (event as any).nativeEvent?.offsetY
 
@@ -107,8 +107,8 @@ export class NodeView<
     if (typeof pos !== 'number') {
       return
     }
-    // we need to tell ProseMirror that we want to move the whole node
-    // so we create a NodeSelection
+    // 我们需要告诉 ProseMirror 我们想要移动整个节点
+    // 所以我们创建一个 NodeSelection
     const selection = NodeSelection.create(view.state.doc, pos)
     const transaction = view.state.tr.setSelection(selection)
 
@@ -127,7 +127,7 @@ export class NodeView<
     const target = event.target as HTMLElement
     const isInElement = this.dom.contains(target) && !this.contentDOM?.contains(target)
 
-    // any event from child nodes should be handled by ProseMirror
+    // 任何来自子节点的事件都应该由 ProseMirror 处理
     if (!isInElement) {
       return false
     }
@@ -136,7 +136,7 @@ export class NodeView<
     const isDropEvent = event.type === 'drop'
     const isInput = ['INPUT', 'BUTTON', 'SELECT', 'TEXTAREA'].includes(target.tagName) || target.isContentEditable
 
-    // any input event within node views should be ignored by ProseMirror
+    // 任何来自节点视图的输入事件都应该被 ProseMirror 忽略
     if (isInput && !isDropEvent && !isDragEvent) {
       return true
     }
@@ -150,9 +150,9 @@ export class NodeView<
     const isCutEvent = event.type === 'cut'
     const isClickEvent = event.type === 'mousedown'
 
-    // ProseMirror tries to drag selectable nodes
-    // even if `draggable` is set to `false`
-    // this fix prevents that
+    // ProseMirror 尝试拖动可选择节点
+    // 即使 `draggable` 设置为 `false`
+    // 这个修复可以防止这种情况
     if (!isDraggable && isSelectable && isDragEvent && event.target === this.dom) {
       event.preventDefault()
     }
@@ -162,7 +162,7 @@ export class NodeView<
       return false
     }
 
-    // we have to store that dragging started
+    // 我们必须存储拖动已经开始
     if (isDraggable && isEditable && !isDragging && isClickEvent) {
       const dragHandle = target.closest('[data-drag-handle]')
       const isValidDragHandle = dragHandle && (this.dom === dragHandle || this.dom.contains(dragHandle))
@@ -196,7 +196,7 @@ export class NodeView<
       }
     }
 
-    // these events are handled by prosemirror
+    // 这些事件由 ProseMirror 处理
     if (
       isDragging
       || isDropEvent
@@ -212,9 +212,9 @@ export class NodeView<
   }
 
   /**
-   * Called when a DOM [mutation](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) or a selection change happens within the view.
-   * @return `false` if the editor should re-read the selection or re-parse the range around the mutation
-   * @return `true` if it can safely be ignored.
+   * 当 DOM [mutation](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) 或选择更改发生在视图中时调用。
+   * @return `false` 如果编辑器应该重新读取选择或重新解析周围的突变
+   * @return `true` 如果可以安全地忽略。
    */
   ignoreMutation(mutation: ViewMutationRecord) {
     if (!this.dom || !this.contentDOM) {
@@ -225,22 +225,22 @@ export class NodeView<
       return this.options.ignoreMutation({ mutation })
     }
 
-    // a leaf/atom node is like a black box for ProseMirror
-    // and should be fully handled by the node view
+    // 一个叶子/原子节点对于 ProseMirror 来说就像一个黑盒子
+    // 应该完全由节点视图处理
     if (this.node.isLeaf || this.node.isAtom) {
       return true
     }
 
-    // ProseMirror should handle any selections
+    // ProseMirror 应该处理任何选择
     if (mutation.type === 'selection') {
       return false
     }
 
-    // try to prevent a bug on iOS and Android that will break node views on enter
-    // this is because ProseMirror can’t preventDispatch on enter
-    // this will lead to a re-render of the node view on enter
-    // see: https://github.com/ueberdosis/tiptap/issues/1214
-    // see: https://github.com/ueberdosis/tiptap/issues/2534
+    // 尝试防止 iOS 和 Android 上的一个错误，该错误会在按下 Enter 时破坏节点视图
+    // 这是因为 ProseMirror 无法阻止按下 Enter
+    // 这将导致在按下 Enter 时重新渲染节点视图
+    // 见：https://github.com/ueberdosis/tiptap/issues/1214
+    // 见：https://github.com/ueberdosis/tiptap/issues/2534
     if (
       this.dom.contains(mutation.target)
       && mutation.type === 'childList'
@@ -252,20 +252,20 @@ export class NodeView<
         ...Array.from(mutation.removedNodes),
       ] as HTMLElement[]
 
-      // we’ll check if every changed node is contentEditable
-      // to make sure it’s probably mutated by ProseMirror
+      // 我们将检查每个更改的节点是否是 contentEditable
+      // 确保它可能是由 ProseMirror 修改的
       if (changedNodes.every(node => node.isContentEditable)) {
         return false
       }
     }
 
-    // we will allow mutation contentDOM with attributes
-    // so we can for example adding classes within our node view
+    // 我们将允许 contentDOM 使用属性进行修改
+    // 因此我们可以例如在节点视图中添加类
     if (this.contentDOM === mutation.target && mutation.type === 'attributes') {
       return true
     }
 
-    // ProseMirror should handle any changes within contentDOM
+    // ProseMirror 应该处理 contentDOM 中的任何更改
     if (this.contentDOM.contains(mutation.target)) {
       return false
     }
@@ -274,7 +274,7 @@ export class NodeView<
   }
 
   /**
-   * Update the attributes of the prosemirror node.
+   * 更新 ProseMirror 节点的属性。
    */
   updateAttributes(attributes: Record<string, any>): void {
     this.editor.commands.command(({ tr }) => {
@@ -294,7 +294,7 @@ export class NodeView<
   }
 
   /**
-   * Delete the node.
+   * 删除节点。
    */
   deleteNode(): void {
     const from = this.getPos()

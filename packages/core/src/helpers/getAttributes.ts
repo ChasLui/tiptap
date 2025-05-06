@@ -6,10 +6,10 @@ import { getNodeAttributes } from './getNodeAttributes.js'
 import { getSchemaTypeNameByName } from './getSchemaTypeNameByName.js'
 
 /**
- * Get node or mark attributes by type or name on the current editor state
- * @param state The current editor state
- * @param typeOrName The node or mark type or name
- * @returns The attributes of the node or mark or an empty object
+ * 获取当前编辑器状态中按类型或名称获取节点或标记属性
+ * @param state 当前编辑器状态
+ * @param typeOrName 节点或标记类型或名称
+ * @returns 节点的属性或标记的属性或空对象
  */
 export function getAttributes(
   state: EditorState,

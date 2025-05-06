@@ -1,9 +1,9 @@
 import { EditorState, Transaction } from '@tiptap/pm/state'
 
 /**
- * Takes a Transaction & Editor State and turns it into a chainable state object
- * @param config The transaction and state to create the chainable state from
- * @returns A chainable Editor state object
+ * 接受 Transaction 和 Editor State 并将其转换为可链式状态对象
+ * @param config 要从中创建可链式状态对象的事务和状态
+ * @returns 一个可链式 Editor 状态对象
  */
 export function createChainableState(config: {
   transaction: Transaction

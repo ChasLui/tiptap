@@ -12,19 +12,19 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     updateAttributes: {
       /**
-       * Update attributes of a node or mark.
-       * @param typeOrName The type or name of the node or mark.
-       * @param attributes The attributes of the node or mark.
+       * 更新节点或标记的属性。
+       * @param typeOrName 节点或标记的类型或名称。
+       * @param attributes 节点或标记的属性。
        * @example editor.commands.updateAttributes('mention', { userId: "2" })
        */
       updateAttributes: (
         /**
-         * The type or name of the node or mark.
+         * 节点或标记的类型或名称。
          */
         typeOrName: string | NodeType | MarkType,
 
         /**
-         * The attributes of the node or mark.
+         * 节点或标记的属性。
          */
         attributes: Record<string, any>,
       ) => ReturnType

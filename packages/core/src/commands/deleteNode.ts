@@ -7,8 +7,8 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     deleteNode: {
       /**
-       * Delete a node with a given type or name.
-       * @param typeOrName The type or name of the node.
+       * 删除具有给定类型或名称的节点。
+       * @param typeOrName 节点的类型或名称。
        * @example editor.commands.deleteNode('paragraph')
        */
       deleteNode: (typeOrName: string | NodeType) => ReturnType,

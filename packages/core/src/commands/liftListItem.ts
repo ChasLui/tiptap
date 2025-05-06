@@ -8,8 +8,8 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     liftListItem: {
       /**
-       * Create a command to lift the list item around the selection up into a wrapping list.
-       * @param typeOrName The type or name of the node.
+       * 创建一个命令，将选中的列表项提升到包装列表中。
+       * @param typeOrName 节点的类型或名称。
        * @example editor.commands.liftListItem('listItem')
        */
       liftListItem: (typeOrName: string | NodeType) => ReturnType
