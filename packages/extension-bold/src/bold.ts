@@ -7,7 +7,7 @@ import {
 
 export interface BoldOptions {
   /**
-   * HTML attributes to add to the bold element.
+   * HTML 属性添加到粗体元素。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -18,15 +18,15 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     bold: {
       /**
-       * Set a bold mark
+       * 设置一个粗体标记
        */
       setBold: () => ReturnType,
       /**
-       * Toggle a bold mark
+       * 切换一个粗体标记
        */
       toggleBold: () => ReturnType,
       /**
-       * Unset a bold mark
+       * 取消设置一个粗体标记
        */
       unsetBold: () => ReturnType,
     }
@@ -34,27 +34,27 @@ declare module '@tiptap/core' {
 }
 
 /**
- * Matches bold text via `**` as input.
+ * 通过 `**` 作为输入匹配粗体文本。
  */
 export const starInputRegex = /(?:^|\s)(\*\*(?!\s+\*\*)((?:[^*]+))\*\*(?!\s+\*\*))$/
 
 /**
- * Matches bold text via `**` while pasting.
+ * 粘贴时通过`**'匹配大胆的文本。
  */
 export const starPasteRegex = /(?:^|\s)(\*\*(?!\s+\*\*)((?:[^*]+))\*\*(?!\s+\*\*))/g
 
 /**
- * Matches bold text via `__` as input.
+ * 通过 `__` 作为输入匹配粗体文本。
  */
 export const underscoreInputRegex = /(?:^|\s)(__(?!\s+__)((?:[^_]+))__(?!\s+__))$/
 
 /**
- * Matches bold text via `__` while pasting.
+ * 粘贴时通过 `__` 匹配粗体文本。
  */
 export const underscorePasteRegex = /(?:^|\s)(__(?!\s+__)((?:[^_]+))__(?!\s+__))/g
 
 /**
- * This extension allows you to mark text as bold.
+ * 此扩展允许您将文本标记为粗体。
  * @see https://tiptap.dev/api/marks/bold
  */
 export const Bold = Mark.create<BoldOptions>({

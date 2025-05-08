@@ -6,90 +6,90 @@ import { findSuggestionMatch as defaultFindSuggestionMatch } from './findSuggest
 
 export interface SuggestionOptions<I = any, TSelected = any> {
   /**
-   * The plugin key for the suggestion plugin.
+   * 建议插件的插件键。
    * @default 'suggestion'
    * @example 'mention'
    */
   pluginKey?: PluginKey
 
   /**
-   * The editor instance.
+   * 编辑器实例。
    * @default null
    */
   editor: Editor
 
   /**
-   * The character that triggers the suggestion.
+   * 触发建议的字符。
    * @default '@'
    * @example '#'
    */
   char?: string
 
   /**
-   * Allow spaces in the suggestion query. Not compatible with `allowToIncludeChar`. Will be disabled if `allowToIncludeChar` is set to `true`.
+   * 允许在建议查询中使用空格。不兼容 `allowToIncludeChar`。如果 `allowToIncludeChar` 设置为 `true`，则将禁用。
    * @default false
    * @example true
   */
   allowSpaces?: boolean
 
   /**
-   * Allow the character to be included in the suggestion query. Not compatible with `allowSpaces`.
+   * 允许字符包含在建议查询中。不兼容 `allowSpaces`。
    * @default false
    */
   allowToIncludeChar?: boolean
 
   /**
-   * Allow prefixes in the suggestion query.
+   * 允许在建议查询中使用前缀。
    * @default [' ']
    * @example [' ', '@']
    */
   allowedPrefixes?: string[] | null
 
   /**
-   * Only match suggestions at the start of the line.
+   * 仅在行首匹配建议。
    * @default false
    * @example true
    */
   startOfLine?: boolean
 
   /**
-   * The tag name of the decoration node.
+   * 装饰节点的标签名称。
    * @default 'span'
    * @example 'div'
    */
   decorationTag?: string
 
   /**
-   * The class name of the decoration node.
+   * 装饰节点的类名。
    * @default 'suggestion'
    * @example 'mention'
    */
   decorationClass?: string
 
   /**
-   * A function that is called when a suggestion is selected.
-   * @param props The props object.
-   * @param props.editor The editor instance.
-   * @param props.range The range of the suggestion.
-   * @param props.props The props of the selected suggestion.
+   * 一个函数，当建议被选中时被调用。
+   * @param props 属性对象。
+   * @param props.editor 编辑器实例。
+   * @param props.range 建议的范围。
+   * @param props.props 选中的建议的属性。
    * @returns void
    * @example ({ editor, range, props }) => { props.command(props.props) }
    */
   command?: (props: { editor: Editor; range: Range; props: TSelected }) => void
 
   /**
-   * A function that returns the suggestion items in form of an array.
-   * @param props The props object.
-   * @param props.editor The editor instance.
-   * @param props.query The current suggestion query.
-   * @returns An array of suggestion items.
+   * 一个函数，返回一个包含建议项的数组。
+   * @param props 属性对象。
+   * @param props.editor 编辑器实例。
+   * @param props.query 当前建议查询。
+   * @returns 建议项的数组。
    * @example ({ editor, query }) => [{ id: 1, label: 'John Doe' }]
    */
   items?: (props: { query: string; editor: Editor }) => I[] | Promise<I[]>
 
   /**
-   * The render function for the suggestion.
-   * @returns An object with render functions.
+   * 建议的渲染函数。
+   * @returns 一个包含渲染函数的对象。
    */
   render?: () => {
     onBeforeStart?: (props: SuggestionProps<I, TSelected>) => void;
@@ -101,8 +101,8 @@ export interface SuggestionOptions<I = any, TSelected = any> {
   }
 
   /**
-   * A function that returns a boolean to indicate if the suggestion should be active.
-   * @param props The props object.
+   * 一个函数，返回一个布尔值以指示是否应激活建议。
+   * @param props 属性对象。
    * @returns {boolean}
    */
   allow?: (props: { editor: Editor; state: EditorState; range: Range, isActive?: boolean }) => boolean
@@ -111,45 +111,45 @@ export interface SuggestionOptions<I = any, TSelected = any> {
 
 export interface SuggestionProps<I = any, TSelected = any> {
   /**
-   * The editor instance.
+   * 编辑器实例。
    */
   editor: Editor
 
   /**
-   * The range of the suggestion.
+   * 建议的范围。
    */
   range: Range
 
   /**
-   * The current suggestion query.
+   * 当前建议查询。
    */
   query: string
 
   /**
-   * The current suggestion text.
+   * 当前建议文本。
    */
   text: string
 
   /**
-   * The suggestion items array.
+   * 建议项的数组。
    */
   items: I[]
 
   /**
-   * A function that is called when a suggestion is selected.
-   * @param props The props object.
+   * 一个函数，当建议被选中时被调用。
+   * @param props 属性对象。
    * @returns void
    */
   command: (props: TSelected) => void
 
   /**
-   * The decoration node HTML element
+   * 装饰节点的 HTML 元素。
    * @default null
    */
   decorationNode: Element | null
 
   /**
-   * The function that returns the client rect
+   * 一个函数，返回一个包含客户端矩形的对象。
    * @default null
    * @example () => new DOMRect(0, 0, 0, 0)
    */
@@ -165,7 +165,7 @@ export interface SuggestionKeyDownProps {
 export const SuggestionPluginKey = new PluginKey('suggestion')
 
 /**
- * This utility allows you to create suggestions.
+ * 此实用程序允许您创建建议。
  * @see https://tiptap.dev/api/utilities/suggestion
  */
 export function Suggestion<I = any, TSelected = any>({
@@ -196,7 +196,7 @@ export function Suggestion<I = any, TSelected = any>({
           const prev = this.key?.getState(prevState)
           const next = this.key?.getState(view.state)
 
-          // See how the state changed
+          // 查看状态如何变化
           const moved = prev.active && next.active && prev.range.from !== next.range.from
           const started = !prev.active && next.active
           const stopped = prev.active && !next.active
@@ -206,7 +206,7 @@ export function Suggestion<I = any, TSelected = any>({
           const handleChange = changed || moved
           const handleExit = stopped || (moved && changed)
 
-          // Cancel when suggestion isn't active
+          // 当建议不活跃时取消
           if (!handleStart && !handleChange && !handleExit) {
             return
           }
@@ -230,12 +230,12 @@ export function Suggestion<I = any, TSelected = any>({
               })
             },
             decorationNode,
-            // virtual node for popper.js or tippy.js
-            // this can be used for building popups without a DOM node
+            // 虚拟节点用于 popper.js 或 tippy.js
+            // 这可以用于在不使用 DOM 节点的情况下构建弹出窗口
             clientRect: decorationNode
               ? () => {
-                // because of `items` can be asynchrounous we’ll search for the current decoration node
-                  const { decorationId } = this.key?.getState(editor.state) // eslint-disable-line
+                // 因为 `items` 可以是异步的，我们将搜索当前的装饰节点
+                const { decorationId } = this.key?.getState(editor.state) // eslint-disable-line
                 const currentDecorationNode = view.dom.querySelector(
                   `[data-decoration-id="${decorationId}"]`,
                 )
@@ -284,7 +284,7 @@ export function Suggestion<I = any, TSelected = any>({
     },
 
     state: {
-      // Initialize the plugin's internal state.
+      // 初始化插件的内部状态。
       init() {
         const state: {
           active: boolean
@@ -307,7 +307,7 @@ export function Suggestion<I = any, TSelected = any>({
         return state
       },
 
-      // Apply changes to the plugin state from a view transaction.
+      // 从视图事务应用插件状态的变化。
       apply(transaction, prev, _oldState, state) {
         const { isEditable } = editor
         const { composing } = editor.view
@@ -317,16 +317,16 @@ export function Suggestion<I = any, TSelected = any>({
 
         next.composing = composing
 
-        // We can only be suggesting if the view is editable, and:
-        //   * there is no selection, or
-        //   * a composition is active (see: https://github.com/ueberdosis/tiptap/issues/1449)
+        // 只有在视图可编辑时才能建议，并且：
+        //   * 没有选择，或者
+        //   * 一个组合正在活动（见：https://github.com/ueberdosis/tiptap/issues/1449）
         if (isEditable && (empty || editor.view.composing)) {
-          // Reset active state if we just left the previous suggestion range
+          // 如果我们刚刚离开之前的建议范围，重置活动状态
           if ((from < prev.range.from || from > prev.range.to) && !composing && !prev.composing) {
             next.active = false
           }
 
-          // Try to match against where our cursor currently is
+          // 尝试匹配我们当前光标所在的位置
           const match = findSuggestionMatch({
             char,
             allowSpaces,
@@ -337,7 +337,7 @@ export function Suggestion<I = any, TSelected = any>({
           })
           const decorationId = `id_${Math.floor(Math.random() * 0xffffffff)}`
 
-          // If we found a match, update the current state to show it
+          // 如果我们找到一个匹配，更新当前状态以显示它
           if (match && allow({
             editor, state, range: match.range, isActive: prev.active,
           })) {
@@ -353,7 +353,7 @@ export function Suggestion<I = any, TSelected = any>({
           next.active = false
         }
 
-        // Make sure to empty the range if suggestion is inactive
+        // 确保在建议不活跃时清空范围
         if (!next.active) {
           next.decorationId = null
           next.range = { from: 0, to: 0 }
@@ -366,7 +366,7 @@ export function Suggestion<I = any, TSelected = any>({
     },
 
     props: {
-      // Call the keydown hook if suggestion is active.
+      // 如果建议处于活动状态，则调用 keydown 钩子。
       handleKeyDown(view, event) {
         const { active, range } = plugin.getState(view.state)
 
@@ -377,7 +377,7 @@ export function Suggestion<I = any, TSelected = any>({
         return renderer?.onKeyDown?.({ view, event, range }) || false
       },
 
-      // Setup decorator on the currently active suggestion.
+      // 在当前活动的建议上设置装饰器。
       decorations(state) {
         const { active, range, decorationId } = plugin.getState(state)
 

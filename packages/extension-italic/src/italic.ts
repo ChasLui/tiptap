@@ -7,7 +7,7 @@ import {
 
 export interface ItalicOptions {
   /**
-   * HTML attributes to add to the italic element.
+   * 要添加到斜体元素的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
   */
@@ -18,17 +18,17 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     italic: {
       /**
-       * Set an italic mark
+       * 设置一个斜体标记
        * @example editor.commands.setItalic()
        */
       setItalic: () => ReturnType,
       /**
-       * Toggle an italic mark
+       * 切换一个斜体标记
        * @example editor.commands.toggleItalic()
        */
       toggleItalic: () => ReturnType,
       /**
-       * Unset an italic mark
+       * 取消一个斜体标记
        * @example editor.commands.unsetItalic()
        */
       unsetItalic: () => ReturnType,
@@ -37,27 +37,27 @@ declare module '@tiptap/core' {
 }
 
 /**
- * Matches an italic to a *italic* on input.
+ * 匹配一个斜体到 *italic* 在输入。
  */
 export const starInputRegex = /(?:^|\s)(\*(?!\s+\*)((?:[^*]+))\*(?!\s+\*))$/
 
 /**
- * Matches an italic to a *italic* on paste.
+ * 匹配一个斜体到 *italic* 在粘贴。
  */
 export const starPasteRegex = /(?:^|\s)(\*(?!\s+\*)((?:[^*]+))\*(?!\s+\*))/g
 
 /**
- * Matches an italic to a _italic_ on input.
+ * 匹配一个斜体到 _italic_ 在输入。
  */
 export const underscoreInputRegex = /(?:^|\s)(_(?!\s+_)((?:[^_]+))_(?!\s+_))$/
 
 /**
- * Matches an italic to a _italic_ on paste.
+ * 匹配一个斜体到 _italic_ 在粘贴。
  */
 export const underscorePasteRegex = /(?:^|\s)(_(?!\s+_)((?:[^_]+))_(?!\s+_))/g
 
 /**
- * This extension allows you to create italic text.
+ * 此扩展允许您创建斜体文本。
  * @see https://www.tiptap.dev/api/marks/italic
  */
 export const Italic = Mark.create<ItalicOptions>({

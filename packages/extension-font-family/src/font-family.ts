@@ -4,7 +4,7 @@ import { Extension } from '@tiptap/core'
 
 export type FontFamilyOptions = {
   /**
-   * A list of node names where the font family can be applied.
+   * 一个节点名称列表，其中可以应用字体系列。
    * @default ['textStyle']
    * @example ['heading', 'paragraph']
    */
@@ -15,13 +15,13 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     fontFamily: {
       /**
-       * Set the font family
-       * @param fontFamily The font family
+       * 设置字体系列
+       * @param fontFamily 字体系列
        * @example editor.commands.setFontFamily('Arial')
        */
       setFontFamily: (fontFamily: string) => ReturnType,
       /**
-       * Unset the font family
+       * 取消设置字体系列
        * @example editor.commands.unsetFontFamily()
        */
       unsetFontFamily: () => ReturnType,
@@ -30,7 +30,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to set a font family for text.
+ * 此扩展允许您为文本设置字体系列。
  * @see https://www.tiptap.dev/api/extensions/font-family
  */
 export const FontFamily = Extension.create<FontFamilyOptions>({

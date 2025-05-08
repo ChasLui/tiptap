@@ -2,7 +2,7 @@ import { mergeAttributes, Node } from '@tiptap/core'
 
 export interface TableRowOptions {
   /**
-   * The HTML attributes for a table row node.
+   * 表行节点的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -10,7 +10,7 @@ export interface TableRowOptions {
 }
 
 /**
- * This extension allows you to create table rows.
+ * 此扩展允许您创建表行。
  * @see https://www.tiptap.dev/api/nodes/table-row
  */
 export const TableRow = Node.create<TableRowOptions>({

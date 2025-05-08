@@ -6,58 +6,56 @@ import Suggestion, { SuggestionOptions } from '@tiptap/suggestion'
 // See `addAttributes` below
 export interface MentionNodeAttrs {
   /**
-   * The identifier for the selected item that was mentioned, stored as a `data-id`
-   * attribute.
+   * 选中的项目被提及的标识符，存储为 `data-id` 属性。
    */
   id: string | null;
   /**
-   * The label to be rendered by the editor as the displayed text for this mentioned
-   * item, if provided. Stored as a `data-label` attribute. See `renderLabel`.
+   * 由编辑器渲染的显示文本，如果提供。存储为 `data-label` 属性。请参阅 `renderLabel`。
    */
   label?: string | null;
 }
 
 export type MentionOptions<SuggestionItem = any, Attrs extends Record<string, any> = MentionNodeAttrs> = {
   /**
-   * The HTML attributes for a mention node.
+   * 提及节点的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
   HTMLAttributes: Record<string, any>
 
   /**
-   * A function to render the label of a mention.
-   * @deprecated use renderText and renderHTML instead
-   * @param props The render props
-   * @returns The label
+   * 一个函数来渲染提及的标签。
+   * @deprecated 使用 renderText 和 renderHTML 代替
+   * @param props 渲染 props
+   * @returns 标签
    * @example ({ options, node }) => `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`
    */
   renderLabel?: (props: { options: MentionOptions<SuggestionItem, Attrs>; node: ProseMirrorNode }) => string
 
   /**
-   * A function to render the text of a mention.
-   * @param props The render props
-   * @returns The text
+   * 一个函数来渲染提及的文本。
+   * @param props 渲染 props
+   * @returns 文本
    * @example ({ options, node }) => `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`
    */
   renderText: (props: { options: MentionOptions<SuggestionItem, Attrs>; node: ProseMirrorNode }) => string
 
   /**
-   * A function to render the HTML of a mention.
-   * @param props The render props
-   * @returns The HTML as a ProseMirror DOM Output Spec
+   * 一个函数来渲染提及的 HTML。
+   * @param props 渲染 props
+   * @returns 作为 ProseMirror DOM Output Spec 的 HTML
    * @example ({ options, node }) => ['span', { 'data-type': 'mention' }, `${options.suggestion.char}${node.attrs.label ?? node.attrs.id}`]
    */
   renderHTML: (props: { options: MentionOptions<SuggestionItem, Attrs>; node: ProseMirrorNode }) => DOMOutputSpec
 
   /**
-   * Whether to delete the trigger character with backspace.
+   * 是否使用退格键删除触发字符。
    * @default false
    */
   deleteTriggerWithBackspace: boolean
 
   /**
-   * The suggestion options.
+   * 建议选项。
    * @default {}
    * @example { char: '@', pluginKey: MentionPluginKey, command: ({ editor, range, props }) => { ... } }
    */
@@ -65,13 +63,13 @@ export type MentionOptions<SuggestionItem = any, Attrs extends Record<string, an
 }
 
 /**
- * The plugin key for the mention plugin.
+ * 提及插件的插件键。
  * @default 'mention'
  */
 export const MentionPluginKey = new PluginKey('mention')
 
 /**
- * This extension allows you to insert mentions into the editor.
+ * 此扩展允许您将提及插入到编辑器中。
  * @see https://www.tiptap.dev/api/extensions/mention
  */
 export const Mention = Node.create<MentionOptions>({
@@ -121,7 +119,7 @@ export const Mention = Node.create<MentionOptions>({
             ])
             .run()
 
-          // get reference to `window` object from editor element, to support cross-frame JS usage
+          // 从编辑器元素获取 `window` 对象的引用，以支持跨框架 JS 使用
           editor.view.dom.ownerDocument.defaultView?.getSelection()?.collapseToEnd()
         },
         allow: ({ state, range }) => {

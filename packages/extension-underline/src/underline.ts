@@ -2,7 +2,7 @@ import { Mark, mergeAttributes } from '@tiptap/core'
 
 export interface UnderlineOptions {
   /**
-   * HTML attributes to add to the underline element.
+   * HTML属性要添加到下划线元素。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -13,17 +13,17 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     underline: {
       /**
-       * Set an underline mark
+       * 设置下划线标记
        * @example editor.commands.setUnderline()
        */
       setUnderline: () => ReturnType,
       /**
-       * Toggle an underline mark
+       * 切换下划线标记
        * @example editor.commands.toggleUnderline()
        */
       toggleUnderline: () => ReturnType,
       /**
-       * Unset an underline mark
+       * 取消下划线标记
        * @example editor.commands.unsetUnderline()
        */
       unsetUnderline: () => ReturnType,
@@ -32,7 +32,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to create underline text.
+ * 此扩展允许您创建下划线文本。
  * @see https://www.tiptap.dev/api/marks/underline
  */
 export const Underline = Mark.create<UnderlineOptions>({

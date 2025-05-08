@@ -5,7 +5,7 @@ import { getColStyleDeclaration } from './utilities/colStyle.js'
 
 export function updateColumns(
   node: ProseMirrorNode,
-  colgroup: HTMLTableColElement, // <colgroup> has the same prototype as <col>
+  colgroup: HTMLTableColElement, // <colgroup> 与 <col> 具有相同的原型
   table: HTMLTableElement,
   cellMinWidth: number,
   overrideCol?: number,

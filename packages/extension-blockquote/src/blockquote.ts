@@ -2,7 +2,7 @@ import { mergeAttributes, Node, wrappingInputRule } from '@tiptap/core'
 
 export interface BlockquoteOptions {
   /**
-   * HTML attributes to add to the blockquote element
+   * HTML 属性添加到块引用元素。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -13,15 +13,15 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     blockQuote: {
       /**
-       * Set a blockquote node
+       * 设置一个块引用节点
        */
       setBlockquote: () => ReturnType,
       /**
-       * Toggle a blockquote node
+       * 切换一个块引用节点
        */
       toggleBlockquote: () => ReturnType,
       /**
-       * Unset a blockquote node
+       * 取消设置一个块引用节点
        */
       unsetBlockquote: () => ReturnType,
     }
@@ -29,12 +29,12 @@ declare module '@tiptap/core' {
 }
 
 /**
- * Matches a blockquote to a `>` as input.
+ * 通过 `>` 作为输入匹配一个块引用。
  */
 export const inputRegex = /^\s*>\s$/
 
 /**
- * This extension allows you to create blockquotes.
+ * 此扩展允许您创建块引用。
  * @see https://tiptap.dev/api/nodes/blockquote
  */
 export const Blockquote = Node.create<BlockquoteOptions>({

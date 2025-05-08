@@ -2,7 +2,7 @@ import { mergeAttributes, Node } from '@tiptap/core'
 
 export interface TableCellOptions {
   /**
-   * The HTML attributes for a table cell node.
+   * 表单元格节点的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -10,7 +10,7 @@ export interface TableCellOptions {
 }
 
 /**
- * This extension allows you to create table cells.
+ * 此扩展允许您创建表单元格。
  * @see https://www.tiptap.dev/api/nodes/table-cell
  */
 export const TableCell = Node.create<TableCellOptions>({

@@ -8,33 +8,33 @@ import tippy, { Instance, Props } from 'tippy.js'
 
 export interface FloatingMenuPluginProps {
   /**
-   * The plugin key for the floating menu.
+   * 浮动菜单的插件键。
    * @default 'floatingMenu'
    */
   pluginKey: PluginKey | string
 
   /**
-   * The editor instance.
+   * 编辑器实例。
    * @default null
    */
   editor: Editor
 
   /**
-   * The DOM element that contains your menu.
+   * 包含您的菜单的 DOM 元素。
    * @default null
    */
   element: HTMLElement
 
   /**
-   * The options for the tippy instance.
+   * tippy 实例的选项。
    * @default {}
    * @see https://atomiks.github.io/tippyjs/v6/all-props/
    */
   tippyOptions?: Partial<Props>
 
   /**
-   * A function that determines whether the menu should be shown or not.
-   * If this function returns `false`, the menu will be hidden, otherwise it will be shown.
+   * 一个函数，用于确定菜单是否应该显示。
+   * 如果此函数返回 `false`，菜单将被隐藏，否则将显示。
    * @default null
    */
   shouldShow?:
@@ -49,7 +49,7 @@ export interface FloatingMenuPluginProps {
 
 export type FloatingMenuViewProps = FloatingMenuPluginProps & {
   /**
-   * The editor view.
+   * 编辑器视图。
    */
   view: EditorView
 }
@@ -106,7 +106,7 @@ export class FloatingMenuView {
     this.editor.on('focus', this.focusHandler)
     this.editor.on('blur', this.blurHandler)
     this.tippyOptions = tippyOptions
-    // Detaches menu content from its current parent
+    // 将菜单内容与其当前父级分离
     this.element.remove()
     this.element.style.visibility = 'visible'
   }
@@ -116,7 +116,7 @@ export class FloatingMenuView {
   }
 
   focusHandler = () => {
-    // we use `setTimeout` to make sure `selection` is already updated
+    // 我们使用 `setTimeout` 来确保 `selection` 已经更新
     setTimeout(() => this.update(this.editor.view))
   }
 
@@ -163,7 +163,7 @@ export class FloatingMenuView {
       ...this.tippyOptions,
     })
 
-    // maybe we have to hide tippy on its own blur event as well
+    // 也许我们也必须隐藏 tippy 的 own blur 事件
     if (this.tippy.popper.firstChild) {
       (this.tippy.popper.firstChild as HTMLElement).addEventListener('blur', this.tippyBlurHandler)
     }

@@ -2,7 +2,7 @@ import { mergeAttributes, Node } from '@tiptap/core'
 
 export interface TableHeaderOptions {
   /**
-   * The HTML attributes for a table header node.
+   * 表头节点的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -10,7 +10,7 @@ export interface TableHeaderOptions {
 }
 
 /**
- * This extension allows you to create table headers.
+ * 此扩展允许您创建表头。
  * @see https://www.tiptap.dev/api/nodes/table-header
  */
 export const TableHeader = Node.create<TableHeaderOptions>({

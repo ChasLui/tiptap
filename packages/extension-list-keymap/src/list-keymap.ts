@@ -4,7 +4,7 @@ import { handleBackspace, handleDelete } from './listHelpers/index.js'
 
 export type ListKeymapOptions = {
   /**
-   * An array of list types. This is used for item and wrapper list matching.
+   * 一个列表类型的数组。这用于项目和包装器列表匹配。
    * @default []
    * @example [{ itemName: 'listItem', wrapperNames: ['bulletList', 'orderedList'] }]
    */
@@ -15,10 +15,9 @@ export type ListKeymapOptions = {
 }
 
 /**
- * This extension registers custom keymaps to change the behaviour of the backspace and delete keys.
- * By default Prosemirror keyhandling will always lift or sink items so paragraphs are joined into
- * the adjacent or previous list item. This extension will prevent this behaviour and instead will
- * try to join paragraphs from two list items into a single list item.
+ * 此扩展注册自定义快捷键以更改退格键和删除键的行为。
+ * 默认情况下，Prosemirror 键处理总是提升或下沉项目，所以段落被加入到相邻或前一个列表项中。
+ * 此扩展将防止这种行为，并尝试将两个列表项中的段落加入到一个列表项中。
  * @see https://www.tiptap.dev/api/extensions/list-keymap
  */
 export const ListKeymap = Extension.create<ListKeymapOptions>({

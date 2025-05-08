@@ -10,14 +10,14 @@ import { Plugin, PluginKey } from '@tiptap/pm/state'
 import { MultiToken, tokenize } from 'linkifyjs'
 
 /**
- * Check if the provided tokens form a valid link structure, which can either be a single link token
- * or a link token surrounded by parentheses or square brackets.
+ * 检查提供的令牌是否形成有效的链接结构，可以是单个链接令牌
+ * 或括号或方括号包围的链接令牌。
  *
- * This ensures that only complete and valid text is hyperlinked, preventing cases where a valid
- * top-level domain (TLD) is immediately followed by an invalid character, like a number. For
- * example, with the `find` method from Linkify, entering `example.com1` would result in
- * `example.com` being linked and the trailing `1` left as plain text. By using the `tokenize`
- * method, we can perform more comprehensive validation on the input text.
+ * 这确保了只有完整的和有效的文本被超链接，防止了这样的情况，
+ * 一个有效的顶级域（TLD）立即跟随一个无效的字符，如一个数字。例如，
+ * 使用 Linkify 的 `find` 方法输入 `example.com1` 将导致
+ * `example.com` 被链接，而尾随的 `1` 作为纯文本保留。通过使用 `tokenize`
+ * 方法，我们可以对输入文本进行更全面的验证。
  */
 function isValidLinkStructure(tokens: Array<ReturnType<MultiToken['toObject']>>) {
   if (tokens.length === 1) {
@@ -39,27 +39,26 @@ type AutolinkOptions = {
 }
 
 /**
- * This plugin allows you to automatically add links to your editor.
- * @param options The plugin options
- * @returns The plugin instance
+ * 此插件允许您自动将链接添加到您的编辑器中。
+ * @param options 插件选项
+ * @returns 插件实例
  */
 export function autolink(options: AutolinkOptions): Plugin {
   return new Plugin({
     key: new PluginKey('autolink'),
     appendTransaction: (transactions, oldState, newState) => {
       /**
-       * Does the transaction change the document?
+       * 事务是否更改了文档？
        */
       const docChanges = transactions.some(transaction => transaction.docChanged) && !oldState.doc.eq(newState.doc)
 
       /**
-       * Prevent autolink if the transaction is not a document change or if the transaction has the meta `preventAutolink`.
+       * 如果事务不是文档更改，或者事务有 `preventAutolink` 的元数据，则阻止自动链接。
        */
       const preventAutolink = transactions.some(transaction => transaction.getMeta('preventAutolink'))
 
       /**
-       * Prevent autolink if the transaction is not a document change
-       * or if the transaction has the meta `preventAutolink`.
+       * 如果事务不是文档更改，或者事务有 `preventAutolink` 的元数据，则阻止自动链接。
        */
       if (!docChanges || preventAutolink) {
         return
@@ -70,7 +69,7 @@ export function autolink(options: AutolinkOptions): Plugin {
       const changes = getChangedRanges(transform)
 
       changes.forEach(({ newRange }) => {
-        // Now let’s see if we can add new links.
+        // 现在让我们看看我们是否可以添加新的链接。
         const nodesInChangedRanges = findChildrenInRange(
           newState.doc,
           newRange,
@@ -81,7 +80,7 @@ export function autolink(options: AutolinkOptions): Plugin {
         let textBeforeWhitespace: string | undefined
 
         if (nodesInChangedRanges.length > 1) {
-          // Grab the first node within the changed ranges (ex. the first of two paragraphs when hitting enter).
+          // 抓取在更改范围内（例如，当按下回车键时，两个段落中的第一个）的第一个节点。
           textBlock = nodesInChangedRanges[0]
           textBeforeWhitespace = newState.doc.textBetween(
             textBlock.pos,
@@ -91,7 +90,7 @@ export function autolink(options: AutolinkOptions): Plugin {
           )
         } else if (
           nodesInChangedRanges.length
-          // We want to make sure to include the block seperator argument to treat hard breaks like spaces.
+          // 我们想确保包含块分隔符参数以将硬断行视为空格。
           && newState.doc.textBetween(newRange.from, newRange.to, ' ', ' ').endsWith(' ')
         ) {
           textBlock = nodesInChangedRanges[0]
@@ -125,13 +124,13 @@ export function autolink(options: AutolinkOptions): Plugin {
 
           linksBeforeSpace
             .filter(link => link.isLink)
-            // Calculate link position.
+            // 计算链接位置。
             .map(link => ({
               ...link,
               from: lastWordAndBlockOffset + link.start + 1,
               to: lastWordAndBlockOffset + link.end + 1,
             }))
-            // ignore link inside code mark
+            // 忽略代码标记中的链接
             .filter(link => {
               if (!newState.schema.marks.code) {
                 return true
@@ -143,11 +142,11 @@ export function autolink(options: AutolinkOptions): Plugin {
                 newState.schema.marks.code,
               )
             })
-            // validate link
+            // 验证链接
             .filter(link => options.validate(link.value))
-            // check whether should autolink
+            // 检查是否应自动链接
             .filter(link => options.shouldAutoLink(link.value))
-            // Add link mark.
+            // 添加链接标记。
             .forEach(link => {
               if (getMarksBetween(link.from, link.to, newState.doc).some(item => item.mark.type === options.type)) {
                 return

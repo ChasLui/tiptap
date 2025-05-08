@@ -3,7 +3,7 @@ import type { StyleParseRule } from '@tiptap/pm/model'
 
 export interface SuperscriptExtensionOptions {
   /**
-   * HTML attributes to add to the superscript element.
+   * HTML 属性添加到上标元素。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -14,18 +14,18 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     superscript: {
       /**
-       * Set a superscript mark
+       * 设置一个上标标记
        * @example editor.commands.setSuperscript()
        */
       setSuperscript: () => ReturnType,
       /**
-       * Toggle a superscript mark
+       * 切换一个上标标记
        * @example editor.commands.toggleSuperscript()
        */
       toggleSuperscript: () => ReturnType,
       /**
-       * Unset a superscript mark
-       *  @example editor.commands.unsetSuperscript()
+       * 取消一个上标标记
+       * @example editor.commands.unsetSuperscript()
        */
       unsetSuperscript: () => ReturnType,
     }
@@ -33,7 +33,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to create superscript text.
+ * 此扩展允许您创建上标文本。
  * @see https://www.tiptap.dev/api/marks/superscript
  */
 export const Superscript = Mark.create<SuperscriptExtensionOptions>({
@@ -53,12 +53,12 @@ export const Superscript = Mark.create<SuperscriptExtensionOptions>({
       {
         style: 'vertical-align',
         getAttrs(value) {
-          // Don’t match this rule if the vertical align isn’t super.
+          // 如果垂直对齐不是 super，则不匹配此规则。
           if (value !== 'super') {
             return false
           }
 
-          // If it falls through we’ll match, and this mark will be applied.
+          // 如果它通过了，我们将匹配，并且这个标记将被应用。
           return null
         },
       } as StyleParseRule,

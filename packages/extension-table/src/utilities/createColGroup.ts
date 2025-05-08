@@ -9,13 +9,13 @@ export type ColGroup = {
 } | Record<string, never>;
 
 /**
- * Creates a colgroup element for a table node in ProseMirror.
+ * 为 ProseMirror 中的表格节点创建一个 colgroup 元素。
  *
- * @param node - The ProseMirror node representing the table.
- * @param cellMinWidth - The minimum width of a cell in the table.
- * @param overrideCol - (Optional) The index of the column to override the width of.
- * @param overrideValue - (Optional) The width value to use for the overridden column.
- * @returns An object containing the colgroup element, the total width of the table, and the minimum width of the table.
+ * @param node - 表示表格的 ProseMirror 节点。
+ * @param cellMinWidth - 表格中单元格的最小宽度。
+ * @param overrideCol - (可选) 要覆盖宽度的列的索引。
+ * @param overrideValue - (可选) 要用于覆盖列的宽度值。
+ * @returns 一个包含 colgroup 元素、表格的总宽度和表格的最小宽度的对象。
  */
 export function createColGroup(
   node: ProseMirrorNode,

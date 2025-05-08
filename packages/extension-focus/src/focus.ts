@@ -4,17 +4,17 @@ import { Decoration, DecorationSet } from '@tiptap/pm/view'
 
 export interface FocusOptions {
   /**
-   * The class name that should be added to the focused node.
+   * 应该添加到聚焦节点的类名。
    * @default 'has-focus'
    * @example 'is-focused'
    */
   className: string
 
   /**
-   * The mode by which the focused node is determined.
-   * - All: All nodes are marked as focused.
-   * - Deepest: Only the deepest node is marked as focused.
-   * - Shallowest: Only the shallowest node is marked as focused.
+   * 确定聚焦节点的模式。
+   * - All: 所有节点都被标记为聚焦。
+   * - Deepest: 只有最深的节点被标记为聚焦。
+   * - Shallowest: 只有最浅的节点被标记为聚焦。
    *
    * @default 'all'
    * @example 'deepest'
@@ -24,7 +24,7 @@ export interface FocusOptions {
 }
 
 /**
- * This extension allows you to add a class to the focused node.
+ * 此扩展允许您为聚焦节点添加一个类。
  * @see https://www.tiptap.dev/api/extensions/focus
  */
 export const FocusClasses = Extension.create<FocusOptions>({
@@ -51,7 +51,7 @@ export const FocusClasses = Extension.create<FocusOptions>({
               return DecorationSet.create(doc, [])
             }
 
-            // Maximum Levels
+            // 最大级别
             let maxLevels = 0
 
             if (this.options.mode === 'deepest') {
@@ -70,7 +70,7 @@ export const FocusClasses = Extension.create<FocusOptions>({
               })
             }
 
-            // Loop through current
+            // 遍历当前级别
             let currentLevel = 0
 
             doc.descendants((node, pos) => {

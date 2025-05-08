@@ -4,154 +4,154 @@ import { getEmbedUrlFromYoutubeUrl, isValidYoutubeUrl, YOUTUBE_REGEX_GLOBAL } fr
 
 export interface YoutubeOptions {
   /**
-   * Controls if the paste handler for youtube videos should be added.
+   * 控制是否应添加 youtube 视频粘贴处理程序。
    * @default true
    * @example false
    */
   addPasteHandler: boolean;
 
   /**
-   * Controls if the youtube video should be allowed to go fullscreen.
+   * 控制是否应允许 youtube 视频全屏。
    * @default true
    * @example false
    */
   allowFullscreen: boolean;
 
   /**
-   * Controls if the youtube video should autoplay.
+   * 控制是否应自动播放 youtube 视频。
    * @default false
    * @example true
    */
   autoplay: boolean;
 
   /**
-   * The language of the captions shown in the youtube video.
+   * youtube 视频中显示的标题语言。
    * @default undefined
    * @example 'en'
    */
   ccLanguage?: string;
 
   /**
-   * Controls if the captions should be shown in the youtube video.
+   * 控制是否应在 youtube 视频中显示字幕。
    * @default undefined
    * @example true
    */
   ccLoadPolicy?: boolean;
 
   /**
-   * Controls if the controls should be shown in the youtube video.
+   * 控制是否应在 youtube 视频中显示控件。
    * @default true
    * @example false
    */
   controls: boolean;
 
   /**
-   * Controls if the keyboard controls should be disabled in the youtube video.
+   * 控制是否应在 youtube 视频中禁用键盘控件。
    * @default false
    * @example true
    */
   disableKBcontrols: boolean;
 
   /**
-   * Controls if the iframe api should be enabled in the youtube video.
+   * 控制是否应在 youtube 视频中启用 iframe api。
    * @default false
    * @example true
    */
   enableIFrameApi: boolean;
 
   /**
-   * The end time of the youtube video.
+   * youtube 视频的结束时间。
    * @default 0
    * @example 120
    */
   endTime: number;
 
   /**
-   * The height of the youtube video.
+   * youtube 视频的高度。
    * @default 480
    * @example 720
    */
   height: number;
 
   /**
-   * The language of the youtube video.
+   * youtube 视频的语言。
    * @default undefined
    * @example 'en'
    */
   interfaceLanguage?: string;
 
   /**
-   * Controls if the video annotations should be shown in the youtube video.
+   * 控制是否应在 youtube 视频中显示视频注释。
    * @default 0
    * @example 1
    */
   ivLoadPolicy: number;
 
   /**
-   * Controls if the youtube video should loop.
+   * 控制是否应在 youtube 视频中循环。
    * @default false
    * @example true
    */
   loop: boolean;
 
   /**
-   * Controls if the youtube video should show a small youtube logo.
+   * 控制是否应在 youtube 视频中显示一个小 youtube 徽标。
    * @default false
    * @example true
    */
   modestBranding: boolean;
 
   /**
-   * The HTML attributes for a youtube video node.
+   * youtube 视频节点的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
   HTMLAttributes: Record<string, any>;
 
   /**
-   * Controls if the youtube node should be inline or not.
+   * 控制 youtube 节点是否应内联。
    * @default false
    * @example true
    */
   inline: boolean;
 
   /**
-   * Controls if the youtube video should be loaded from youtube-nocookie.com.
+   * 控制是否应从 youtube-nocookie.com 加载 youtube 视频。
    * @default false
    * @example true
    */
   nocookie: boolean;
 
   /**
-   * The origin of the youtube video.
+   * youtube 视频的来源。
    * @default ''
    * @example 'https://tiptap.dev'
    */
   origin: string;
 
   /**
-   * The playlist of the youtube video.
+   * youtube 视频的播放列表。
    * @default ''
    * @example 'PLQg6GaokU5CwiVmsZ0dZm6VeIg0V5z1tK'
    */
   playlist: string;
 
   /**
-   * The color of the youtube video progress bar.
+   * youtube 视频进度条的颜色。
    * @default undefined
    * @example 'red'
    */
   progressBarColor?: string;
 
   /**
-   * The width of the youtube video.
+   * youtube 视频的宽度。
    * @default 640
    * @example 1280
    */
   width: number;
 
   /**
-   * Controls if the related youtube videos at the end are from the same channel.
+   * 控制是否在 youtube 视频结束时显示来自同一频道的相关 youtube 视频。
    * @default 1
    * @example 0
    */
@@ -159,7 +159,7 @@ export interface YoutubeOptions {
 }
 
 /**
- * The options for setting a youtube video.
+ * 设置 youtube 视频的选项。
  */
 type SetYoutubeVideoOptions = { src: string, width?: number, height?: number, start?: number }
 
@@ -167,7 +167,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     youtube: {
       /**
-       * Insert a youtube video
+       * 插入一个 youtube 视频
        * @param options The youtube video attributes
        * @example editor.commands.setYoutubeVideo({ src: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' })
        */
@@ -177,7 +177,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension adds support for youtube videos.
+ * 此扩展添加了对 youtube 视频的支持。
  * @see https://www.tiptap.dev/api/nodes/youtube
  */
 export const Youtube = Node.create<YoutubeOptions>({

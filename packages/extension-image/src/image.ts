@@ -6,22 +6,22 @@ import {
 
 export interface ImageOptions {
   /**
-   * Controls if the image node should be inline or not.
+   * 控制图像节点是否内联。
    * @default false
    * @example true
    */
   inline: boolean;
 
   /**
-   * Controls if base64 images are allowed. Enable this if you want to allow
-   * base64 image urls in the `src` attribute.
+   * 控制是否允许 base64 图像。启用此选项以允许
+   * base64 图像 URL 在 `src` 属性中。
    * @default false
    * @example true
    */
   allowBase64: boolean;
 
   /**
-   * HTML attributes to add to the image element.
+   * 要添加到图像元素的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -40,8 +40,8 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     image: {
       /**
-       * Add an image
-       * @param options The image attributes
+       * 添加一个图像
+       * @param options 图像属性
        * @example
        * editor
        *   .commands
@@ -53,12 +53,12 @@ declare module '@tiptap/core' {
 }
 
 /**
- * Matches an image to a ![image](src "title") on input.
+ * 匹配一个图像到 ![image](src "title") 在输入。
  */
 export const inputRegex = /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/
 
 /**
- * This extension allows you to insert images.
+ * 此扩展允许您插入图像。
  * @see https://www.tiptap.dev/api/nodes/image
  */
 export const Image = Node.create<ImageOptions>({

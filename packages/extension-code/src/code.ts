@@ -7,7 +7,7 @@ import {
 
 export interface CodeOptions {
   /**
-   * The HTML attributes applied to the code element.
+   * 应用于代码元素的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -18,15 +18,15 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     code: {
       /**
-       * Set a code mark
+       * 设置一个代码标记
        */
       setCode: () => ReturnType,
       /**
-       * Toggle inline code
+       * 切换内联代码
        */
       toggleCode: () => ReturnType,
       /**
-       * Unset a code mark
+       * 取消设置一个代码标记
        */
       unsetCode: () => ReturnType,
     }
@@ -34,23 +34,23 @@ declare module '@tiptap/core' {
 }
 
 /**
- * Regular expressions to match inline code blocks enclosed in backticks.
- *  It matches:
- *     - An opening backtick, followed by
- *     - Any text that doesn't include a backtick (captured for marking), followed by
- *     - A closing backtick.
- *  This ensures that any text between backticks is formatted as code,
- *  regardless of the surrounding characters (exception being another backtick).
+ * 匹配内联代码块的正则表达式，用反引号包围。
+ * 它匹配：
+ *     - 一个开头的反引号，后面跟着
+ *     - 任何不包含反引号的文本（捕获用于标记），后面跟着
+ *     - 一个闭合的反引号。
+ * 这确保了任何在反引号之间的文本都被格式化为代码，
+ * 无论周围的字符是什么（除了另一个反引号）。
  */
 export const inputRegex = /(^|[^`])`([^`]+)`(?!`)/
 
 /**
- * Matches inline code while pasting.
+ * 匹配内联代码块，当粘贴时。
  */
 export const pasteRegex = /(^|[^`])`([^`]+)`(?!`)/g
 
 /**
- * This extension allows you to mark text as inline code.
+ * 此扩展允许您将文本标记为内联代码。
  * @see https://tiptap.dev/api/marks/code
  */
 export const Code = Mark.create<CodeOptions>({

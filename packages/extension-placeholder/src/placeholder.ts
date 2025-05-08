@@ -5,21 +5,21 @@ import { Decoration, DecorationSet } from '@tiptap/pm/view'
 
 export interface PlaceholderOptions {
   /**
-   * **The class name for the empty editor**
+   * **用于空编辑器的类名**
    * @default 'is-editor-empty'
    */
   emptyEditorClass: string
 
   /**
-   * **The class name for empty nodes**
+   * **用于空节点的类名**
    * @default 'is-empty'
    */
   emptyNodeClass: string
 
   /**
-   * **The placeholder content**
+   * **占位符内容**
    *
-   * You can use a function to return a dynamic placeholder or a string.
+   * 您可以使用函数返回动态占位符或字符串。
    * @default 'Write something …'
    */
   placeholder:
@@ -32,42 +32,42 @@ export interface PlaceholderOptions {
     | string
 
   /**
-   * See https://github.com/ueberdosis/tiptap/pull/5278 for more information.
-   * @deprecated This option is no longer respected and this type will be removed in the next major version.
+   * 请参阅 https://github.com/ueberdosis/tiptap/pull/5278 了解更多信息。
+   * @deprecated 此选项不再受尊重，此类型将在下一个主要版本中删除。
    */
   considerAnyAsEmpty?: boolean
 
   /**
-   * **Checks if the placeholder should be only shown when the editor is editable.**
+   * **检查占位符是否仅在编辑器可编辑时显示。**
    *
-   * If true, the placeholder will only be shown when the editor is editable.
-   * If false, the placeholder will always be shown.
+   * 如果为 true，则占位符仅在编辑器可编辑时显示。
+   * 如果为 false，则占位符始终显示。
    * @default true
    */
   showOnlyWhenEditable: boolean
 
   /**
-   * **Checks if the placeholder should be only shown when the current node is empty.**
+   * **检查占位符是否仅在当前节点为空时显示。**
    *
-   * If true, the placeholder will only be shown when the current node is empty.
-   * If false, the placeholder will be shown when any node is empty.
+   * 如果为 true，则占位符仅在当前节点为空时显示。
+   * 如果为 false，则占位符在任何节点为空时显示。
    * @default true
    */
   showOnlyCurrent: boolean
 
   /**
-   * **Controls if the placeholder should be shown for all descendents.**
+   * **控制是否为所有后代显示占位符。**
    *
-   * If true, the placeholder will be shown for all descendents.
-   * If false, the placeholder will only be shown for the current node.
+   * 如果为 true，则占位符将为所有后代显示。
+   * 如果为 false，则占位符仅显示当前节点。
    * @default false
    */
   includeChildren: boolean
 }
 
 /**
- * This extension allows you to add a placeholder to your editor.
- * A placeholder is a text that appears when the editor or a node is empty.
+ * 此扩展允许您向编辑器添加占位符。
+ * 占位符是当编辑器或节点为空时出现的文本。
  * @see https://www.tiptap.dev/api/extensions/placeholder
  */
 export const Placeholder = Extension.create<PlaceholderOptions>({

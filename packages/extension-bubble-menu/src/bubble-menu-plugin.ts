@@ -7,41 +7,41 @@ import tippy, { Instance, Props } from 'tippy.js'
 
 export interface BubbleMenuPluginProps {
   /**
-   * The plugin key.
+   * 插件键。
    * @type {PluginKey | string}
    * @default 'bubbleMenu'
    */
   pluginKey: PluginKey | string
 
   /**
-   * The editor instance.
+   * 编辑器实例。
    */
   editor: Editor
 
   /**
-   * The DOM element that contains your menu.
+   * 包含您的菜单的 DOM 元素。
    * @type {HTMLElement}
    * @default null
    */
   element: HTMLElement
 
   /**
-   * The options for the tippy.js instance.
+   * tippy.js 实例的选项。
    * @see https://atomiks.github.io/tippyjs/v6/all-props/
    */
   tippyOptions?: Partial<Props>
 
   /**
-   * The delay in milliseconds before the menu should be updated.
-   * This can be useful to prevent performance issues.
+   * 在菜单应该更新之前等待的毫秒数。
+   * 这可以防止性能问题。
    * @type {number}
    * @default 250
    */
   updateDelay?: number
 
   /**
-   * A function that determines whether the menu should be shown or not.
-   * If this function returns `false`, the menu will be hidden, otherwise it will be shown.
+   * 一个函数，用于确定菜单是否应该显示。
+   * 如果此函数返回 `false`，菜单将被隐藏，否则将显示。
    */
   shouldShow?:
     | ((props: {
@@ -86,14 +86,14 @@ export class BubbleMenuView {
     const { doc, selection } = state
     const { empty } = selection
 
-    // Sometime check for `empty` is not enough.
-    // Doubleclick an empty paragraph returns a node size of 2.
-    // So we check also for an empty text size.
+    // 有时检查 `empty` 是不够的。
+    // 双击一个空段落返回一个节点大小为 2。
+    // 所以我们也检查一个空文本大小。
     const isEmptyTextBlock = !doc.textBetween(from, to).length && isTextSelection(state.selection)
 
-    // When clicking on a element inside the bubble menu the editor "blur" event
-    // is called and the bubble menu item is focussed. In this case we should
-    // consider the menu as part of the editor and keep showing the menu
+    // 当点击一个元素在气泡菜单中，编辑器 "blur" 事件被调用，
+    // 气泡菜单项被聚焦。在这种情况下，我们应该
+    // 考虑菜单作为编辑器的一部分并继续显示菜单
     const isChildOfMenu = this.element.contains(document.activeElement)
 
     const hasEditorFocus = view.hasFocus() || isChildOfMenu
@@ -127,7 +127,7 @@ export class BubbleMenuView {
     this.editor.on('focus', this.focusHandler)
     this.editor.on('blur', this.blurHandler)
     this.tippyOptions = tippyOptions
-    // Detaches menu content from its current parent
+    // 将菜单内容从其当前父级分离
     this.element.remove()
     this.element.style.visibility = 'visible'
   }
@@ -141,7 +141,7 @@ export class BubbleMenuView {
   }
 
   focusHandler = () => {
-    // we use `setTimeout` to make sure `selection` is already updated
+    // 我们使用 `setTimeout` 来确保 `selection` 已经更新
     setTimeout(() => this.update(this.editor.view))
   }
 
@@ -188,7 +188,7 @@ export class BubbleMenuView {
       ...this.tippyOptions,
     })
 
-    // maybe we have to hide tippy on its own blur event as well
+    // 也许我们也必须隐藏 tippy 的 own blur 事件
     if (this.tippy.popper.firstChild) {
       (this.tippy.popper.firstChild as HTMLElement).addEventListener('blur', this.tippyBlurHandler)
     }
@@ -238,7 +238,7 @@ export class BubbleMenuView {
 
     this.createTooltip()
 
-    // support for CellSelections
+    // 支持 CellSelections
     const { ranges } = selection
     const from = Math.min(...ranges.map(range => range.$from.pos))
     const to = Math.max(...ranges.map(range => range.$to.pos))

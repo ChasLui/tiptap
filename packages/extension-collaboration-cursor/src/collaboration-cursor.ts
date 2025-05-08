@@ -8,21 +8,21 @@ type CollaborationCursorStorage = {
 
 export interface CollaborationCursorOptions {
   /**
-   * The Hocuspocus provider instance. This can also be a TiptapCloudProvider instance.
+   * Hocuspocus 提供者实例。这也可以是 TiptapCloudProvider 实例。
    * @type {HocuspocusProvider | TiptapCloudProvider}
    * @example new HocuspocusProvider()
    */
   provider: any,
 
   /**
-   * The user details object – feel free to add properties to this object as needed
+   * 用户详情对象 – 可以随意添加属性
    * @example { name: 'John Doe', color: '#305500' }
    */
   user: Record<string, any>,
 
   /**
-   * A function that returns a DOM element for the cursor.
-   * @param user The user details object
+   * 一个返回光标 DOM 元素的函数。
+   * @param user 用户详情对象
    * @example
    * render: user => {
    *  const cursor = document.createElement('span')
@@ -41,8 +41,8 @@ export interface CollaborationCursorOptions {
   render (user: Record<string, any>): HTMLElement,
 
   /**
-   * A function that returns a ProseMirror DecorationAttrs object for the selection.
-   * @param user The user details object
+   * 一个返回 ProseMirror DecorationAttrs 对象的函数。
+   * @param user 用户详情对象
    * @example
    * selectionRender: user => {
    * return {
@@ -64,12 +64,12 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     collaborationCursor: {
       /**
-       * Update details of the current user
+       * 更新当前用户的详细信息
        * @example editor.commands.updateUser({ name: 'John Doe', color: '#305500' })
        */
       updateUser: (attributes: Record<string, any>) => ReturnType,
       /**
-       * Update details of the current user
+       * 更新当前用户的详细信息
        *
        * @deprecated The "user" command is deprecated. Please use "updateUser" instead. Read more: https://tiptap.dev/api/extensions/collaboration-cursor
        */
@@ -90,7 +90,7 @@ const awarenessStatesToArray = (states: Map<number, Record<string, any>>) => {
 const defaultOnUpdate = () => null
 
 /**
- * This extension allows you to add collaboration cursors to your editor.
+ * 此扩展允许您在您的编辑器中添加协作光标。
  * @see https://tiptap.dev/api/extensions/collaboration-cursor
  */
 export const CollaborationCursor = Extension.create<CollaborationCursorOptions, CollaborationCursorStorage>({

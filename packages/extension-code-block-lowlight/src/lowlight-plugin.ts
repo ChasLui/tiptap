@@ -109,14 +109,14 @@ export function LowlightPlugin({
 
         if (
           transaction.docChanged
-          // Apply decorations if:
-          // selection includes named node,
+          // 如果：
+          // 选择包括命名节点，
           && ([oldNodeName, newNodeName].includes(name)
-            // OR transaction adds/removes named node,
+            // OR 事务添加/删除命名节点，
             || newNodes.length !== oldNodes.length
-            // OR transaction has changes that completely encapsulte a node
-            // (for example, a transaction that affects the entire document).
-            // Such transactions can happen during collab syncing via y-prosemirror, for example.
+            // OR 事务完全封装了一个节点
+            // (例如，影响整个文档的事务)。
+            // 这样的事务可能会在通过 y-prosemirror 进行协作同步时发生，例如。
             || transaction.steps.some(step => {
               // @ts-ignore
               return (

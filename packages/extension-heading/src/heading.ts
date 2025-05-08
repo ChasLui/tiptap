@@ -1,20 +1,20 @@
 import { mergeAttributes, Node, textblockTypeInputRule } from '@tiptap/core'
 
 /**
- * The heading level options.
+ * 标题级别选项。
  */
 export type Level = 1 | 2 | 3 | 4 | 5 | 6
 
 export interface HeadingOptions {
   /**
-   * The available heading levels.
+   * 可用的标题级别。
    * @default [1, 2, 3, 4, 5, 6]
    * @example [1, 2, 3]
    */
   levels: Level[],
 
   /**
-   * The HTML attributes for a heading node.
+   * 标题节点的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -25,14 +25,14 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     heading: {
       /**
-       * Set a heading node
-       * @param attributes The heading attributes
+       * 设置一个标题节点
+       * @param attributes 标题属性
        * @example editor.commands.setHeading({ level: 1 })
        */
       setHeading: (attributes: { level: Level }) => ReturnType,
       /**
-       * Toggle a heading node
-       * @param attributes The heading attributes
+       * 切换一个标题节点
+       * @param attributes 标题属性
        * @example editor.commands.toggleHeading({ level: 1 })
        */
       toggleHeading: (attributes: { level: Level }) => ReturnType,
@@ -41,7 +41,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to create headings.
+ * 此扩展允许您创建标题。
  * @see https://www.tiptap.dev/api/nodes/heading
  */
 export const Heading = Node.create<HeadingOptions>({

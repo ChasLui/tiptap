@@ -44,8 +44,7 @@ export function findSuggestionMatch(config: Trigger): SuggestionMatch {
     return null
   }
 
-  // JavaScript doesn't have lookbehinds. This hacks a check that first character
-  // is a space or the start of the line
+  // JavaScript没有lookbehinds。这是一个检查第一个字符是一个空间或行的开始
   const matchPrefix = match.input.slice(Math.max(0, match.index - 1), match.index)
   const matchPrefixIsAllowed = new RegExp(`^[${allowedPrefixes?.join('')}\0]?$`).test(matchPrefix)
 
@@ -53,18 +52,17 @@ export function findSuggestionMatch(config: Trigger): SuggestionMatch {
     return null
   }
 
-  // The absolute position of the match in the document
+  // 文档中匹配的绝对位置
   const from = textFrom + match.index
   let to = from + match[0].length
 
-  // Edge case handling; if spaces are allowed and we're directly in between
-  // two triggers
+  // 边缘情况处理；如果允许空格并且我们直接在两个触发器之间
   if (allowSpaces && suffix.test(text.slice(to - 1, to + 1))) {
     match[0] += ' '
     to += 1
   }
 
-  // If the $position is located within the matched substring, return that range
+  // 如果$position位于匹配的子字符串中，则返回该范围
   if (from < $position.pos && to >= $position.pos) {
     return {
       range: {

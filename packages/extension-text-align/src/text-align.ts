@@ -2,21 +2,21 @@ import { Extension } from '@tiptap/core'
 
 export interface TextAlignOptions {
   /**
-   * The types where the text align attribute can be applied.
+   * 可以应用文本对齐属性的类型。
    * @default []
    * @example ['heading', 'paragraph']
    */
   types: string[],
 
   /**
-   * The alignments which are allowed.
+   * 允许的对齐方式。
    * @default ['left', 'center', 'right', 'justify']
    * @example ['left', 'right']
    */
   alignments: string[],
 
   /**
-   * The default alignment.
+   * 默认对齐方式。
    * @default null
    * @example 'center'
    */
@@ -27,19 +27,19 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     textAlign: {
       /**
-       * Set the text align attribute
-       * @param alignment The alignment
+       * 设置文本对齐属性
+       * @param alignment 对齐方式
        * @example editor.commands.setTextAlign('left')
        */
       setTextAlign: (alignment: string) => ReturnType,
       /**
-       * Unset the text align attribute
+       * 取消文本对齐属性
        * @example editor.commands.unsetTextAlign()
        */
       unsetTextAlign: () => ReturnType,
       /**
-       * Toggle the text align attribute
-       * @param alignment The alignment
+       * 切换文本对齐属性
+       * @param alignment 对齐方式
        * @example editor.commands.toggleTextAlign('right')
        */
       toggleTextAlign: (alignment: string) => ReturnType,
@@ -48,7 +48,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to align text.
+ * 此扩展允许您对齐文本。
  * @see https://www.tiptap.dev/api/extensions/text-align
  */
 export const TextAlign = Extension.create<TextAlignOptions>({

@@ -2,133 +2,133 @@ import { Extension, textInputRule } from '@tiptap/core'
 
 export interface TypographyOptions {
   /**
-   * The em dash character.
+   * 短破折号字符。
    * @default '—'
    */
   emDash: false | string,
 
   /**
-   * The ellipsis character.
+   * 省略号字符。
    * @default '…'
    */
   ellipsis: false | string,
 
   /**
-   * The open double quote character.
+   * 开双引号字符。
    * @default '“'
    */
   openDoubleQuote: false | string,
 
   /**
-   * The close double quote character.
+   * 闭双引号字符。
    * @default '”'
    */
   closeDoubleQuote: false | string,
 
   /**
-   * The open single quote character.
+   * 开单引号字符。
    * @default '‘'
    */
   openSingleQuote: false | string,
 
   /**
-   * The close single quote character.
+   * 闭单引号字符。
    * @default '’'
    */
   closeSingleQuote: false | string,
 
   /**
-   * The left arrow character.
+   * 左箭头字符。
    * @default '←'
    */
   leftArrow: false | string,
 
   /**
-   * The right arrow character.
+   * 右箭头字符。
    * @default '→'
    */
   rightArrow: false | string,
 
   /**
-   * The copyright character.
+   * 版权字符。
    * @default '©'
    */
   copyright: false | string,
 
   /**
-   * The trademark character.
+   * 商标字符。
    * @default '™'
    */
   trademark: false | string,
 
   /**
-   * The servicemark character.
+   * 服务标志字符。
    * @default '℠'
    */
   servicemark: false | string,
 
   /**
-   * The registered trademark character.
+   * 注册商标字符。
    * @default '®'
    */
   registeredTrademark: false | string,
 
   /**
-   * The one half character.
+   * 一半字符。
    * @default '½'
    */
   oneHalf: false | string,
 
   /**
-   * The plus minus character.
+   * 加减字符。
    * @default '±'
    */
   plusMinus: false | string,
 
   /**
-   * The not equal character.
+   * 不等于字符。
    * @default '≠'
    */
   notEqual: false | string,
 
   /**
-   * The laquo character.
+   * 左引号字符。
    * @default '«'
    */
   laquo: false | string,
 
   /**
-   * The raquo character.
+   * 右引号字符。
    * @default '»'
    */
   raquo: false | string,
 
   /**
-   * The multiplication character.
+   * 乘法字符。
    * @default '×'
    */
   multiplication: false | string,
 
   /**
-   * The superscript two character.
+   * 上标二字符。
    * @default '²'
    */
   superscriptTwo: false | string,
 
   /**
-   * The superscript three character.
+   * 上标三字符。
    * @default '³'
    */
   superscriptThree: false | string,
 
   /**
-   * The one quarter character.
+   * 四分之一字符。
    * @default '¼'
    */
   oneQuarter: false | string,
 
   /**
-   * The three quarters character.
+   * 四分之三字符。
    * @default '¾'
    */
   threeQuarters: false | string,
@@ -245,7 +245,7 @@ export const threeQuarters = (override?: string) => textInputRule({
 })
 
 /**
- * This extension allows you to add typography replacements for specific characters.
+ * 此扩展允许您添加特定字符的排版替换。
  * @see https://www.tiptap.dev/api/extensions/typography
  */
 export const Typography = Extension.create<TypographyOptions>({

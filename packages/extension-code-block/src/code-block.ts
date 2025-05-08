@@ -8,28 +8,28 @@ import {
 
 export interface CodeBlockOptions {
   /**
-   * Adds a prefix to language classes that are applied to code tags.
+   * 添加一个前缀到应用于代码标签的语言类。
    * @default 'language-'
    */
   languageClassPrefix: string
   /**
-   * Define whether the node should be exited on triple enter.
+   * 定义是否在三重 Enter 时退出节点。
    * @default true
    */
   exitOnTripleEnter: boolean
   /**
-   * Define whether the node should be exited on arrow down if there is no node after it.
+   * 定义是否在箭头向下时退出节点（如果后面没有节点）。
    * @default true
    */
   exitOnArrowDown: boolean
   /**
-   * The default language.
+   * 默认语言。
    * @default null
    * @example 'js'
    */
   defaultLanguage: string | null | undefined
   /**
-   * Custom HTML attributes that should be added to the rendered HTML tag.
+   * 应该添加到渲染的 HTML 标签中的自定义 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -40,14 +40,14 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     codeBlock: {
       /**
-       * Set a code block
-       * @param attributes Code block attributes
+       * 设置一个代码块
+       * @param attributes 代码块属性
        * @example editor.commands.setCodeBlock({ language: 'javascript' })
        */
       setCodeBlock: (attributes?: { language: string }) => ReturnType
       /**
-       * Toggle a code block
-       * @param attributes Code block attributes
+       * 切换一个代码块
+       * @param attributes 代码块属性
        * @example editor.commands.toggleCodeBlock({ language: 'javascript' })
        */
       toggleCodeBlock: (attributes?: { language: string }) => ReturnType
@@ -56,17 +56,17 @@ declare module '@tiptap/core' {
 }
 
 /**
- * Matches a code block with backticks.
+ * 匹配一个带有反引号的代码块。
  */
 export const backtickInputRegex = /^```([a-z]+)?[\s\n]$/
 
 /**
- * Matches a code block with tildes.
+ * 匹配一个带有波浪号的代码块。
  */
 export const tildeInputRegex = /^~~~([a-z]+)?[\s\n]$/
 
 /**
- * This extension allows you to create code blocks.
+ * 此扩展允许您创建代码块。
  * @see https://tiptap.dev/api/nodes/code-block
  */
 export const CodeBlock = Node.create<CodeBlockOptions>({
@@ -157,7 +157,7 @@ export const CodeBlock = Node.create<CodeBlockOptions>({
     return {
       'Mod-Alt-c': () => this.editor.commands.toggleCodeBlock(),
 
-      // remove code block when at start of document or code block is empty
+      // 当在文档开头或代码块为空时删除代码块
       Backspace: () => {
         const { empty, $anchor } = this.editor.state.selection
         const isAtStart = $anchor.pos === 1
@@ -173,7 +173,7 @@ export const CodeBlock = Node.create<CodeBlockOptions>({
         return false
       },
 
-      // exit node on triple enter
+      // 当在文档开头或代码块为空时删除代码块
       Enter: ({ editor }) => {
         if (!this.options.exitOnTripleEnter) {
           return false
@@ -205,7 +205,7 @@ export const CodeBlock = Node.create<CodeBlockOptions>({
           .run()
       },
 
-      // exit node on arrow down
+      // 当箭头向下时退出节点
       ArrowDown: ({ editor }) => {
         if (!this.options.exitOnArrowDown) {
           return false
@@ -266,8 +266,8 @@ export const CodeBlock = Node.create<CodeBlockOptions>({
 
   addProseMirrorPlugins() {
     return [
-      // this plugin creates a code block for pasted content from VS Code
-      // we can also detect the copied code language
+      // 此插件为从 VS Code 粘贴的内容创建一个代码块
+      // 我们还可以检测复制的代码语言
       new Plugin({
         key: new PluginKey('codeBlockVSCodeHandler'),
         props: {
@@ -276,7 +276,7 @@ export const CodeBlock = Node.create<CodeBlockOptions>({
               return false
             }
 
-            // don’t create a new code block within code blocks
+            // 不要在代码块内创建新的代码块
             if (this.editor.isActive(this.type.name)) {
               return false
             }
@@ -292,23 +292,23 @@ export const CodeBlock = Node.create<CodeBlockOptions>({
 
             const { tr, schema } = view.state
 
-            // prepare a text node
-            // strip carriage return chars from text pasted as code
-            // see: https://github.com/ProseMirror/prosemirror-view/commit/a50a6bcceb4ce52ac8fcc6162488d8875613aacd
+            // 准备一个文本节点
+            // 从粘贴的代码中删除回车字符
+            // 参见：https://github.com/ProseMirror/prosemirror-view/commit/a50a6bcceb4ce52ac8fcc6162488d8875613aacd
             const textNode = schema.text(text.replace(/\r\n?/g, '\n'))
 
-            // create a code block with the text node
-            // replace selection with the code block
+            // 用文本节点创建一个代码块
+            // 替换选择与代码块
             tr.replaceSelectionWith(this.type.create({ language }, textNode))
 
             if (tr.selection.$from.parent.type !== this.type) {
-              // put cursor inside the newly created code block
+              // 将光标放在新创建的代码块中
               tr.setSelection(TextSelection.near(tr.doc.resolve(Math.max(0, tr.selection.from - 2))))
             }
 
-            // store meta information
-            // this is useful for other plugins that depends on the paste event
-            // like the paste rule plugin
+            // 存储元信息
+            // 这对于依赖粘贴事件的其他插件很有用
+            // 如粘贴规则插件
             tr.setMeta('paste', true)
 
             view.dispatch(tr)

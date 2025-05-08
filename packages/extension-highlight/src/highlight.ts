@@ -7,14 +7,14 @@ import {
 
 export interface HighlightOptions {
   /**
-   * Allow multiple highlight colors
+   * 允许多个突出显示颜色
    * @default false
    * @example true
    */
   multicolor: boolean,
 
   /**
-   * HTML attributes to add to the highlight element.
+   * 要添加到突出显示元素的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -25,19 +25,19 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     highlight: {
       /**
-       * Set a highlight mark
-       * @param attributes The highlight attributes
+       * 设置一个突出显示标记
+       * @param attributes 突出显示属性
        * @example editor.commands.setHighlight({ color: 'red' })
        */
       setHighlight: (attributes?: { color: string }) => ReturnType,
       /**
-       * Toggle a highlight mark
-       * @param attributes The highlight attributes
+       * 切换一个突出显示标记
+       * @param attributes 突出显示属性
        * @example editor.commands.toggleHighlight({ color: 'red' })
        */
       toggleHighlight: (attributes?: { color: string }) => ReturnType,
       /**
-       * Unset a highlight mark
+       * 取消设置一个突出显示标记
        * @example editor.commands.unsetHighlight()
        */
       unsetHighlight: () => ReturnType,
@@ -46,17 +46,17 @@ declare module '@tiptap/core' {
 }
 
 /**
- * Matches a highlight to a ==highlight== on input.
+ * 匹配一个突出显示到 ==highlight== 在输入。
  */
 export const inputRegex = /(?:^|\s)(==(?!\s+==)((?:[^=]+))==(?!\s+==))$/
 
 /**
- * Matches a highlight to a ==highlight== on paste.
+ * 匹配一个突出显示到 ==highlight== 在粘贴。
  */
 export const pasteRegex = /(?:^|\s)(==(?!\s+==)((?:[^=]+))==(?!\s+==))/g
 
 /**
- * This extension allows you to highlight text.
+ * 此扩展允许您突出显示文本。
  * @see https://www.tiptap.dev/api/marks/highlight
  */
 export const Highlight = Mark.create<HighlightOptions>({

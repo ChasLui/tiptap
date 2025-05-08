@@ -4,7 +4,7 @@ import { BubbleMenuPlugin, BubbleMenuPluginProps } from './bubble-menu-plugin.js
 
 export type BubbleMenuOptions = Omit<BubbleMenuPluginProps, 'editor' | 'element'> & {
   /**
-   * The DOM element that contains your menu.
+   * 包含您的菜单的 DOM 元素。
    * @type {HTMLElement}
    * @default null
    */
@@ -12,7 +12,7 @@ export type BubbleMenuOptions = Omit<BubbleMenuPluginProps, 'editor' | 'element'
 }
 
 /**
- * This extension allows you to create a bubble menu.
+ * 此扩展允许您创建一个气泡菜单。
  * @see https://tiptap.dev/api/extensions/bubble-menu
  */
 export const BubbleMenu = Extension.create<BubbleMenuOptions>({

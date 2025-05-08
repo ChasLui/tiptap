@@ -2,21 +2,21 @@ import { mergeAttributes, Node } from '@tiptap/core'
 
 export interface ListItemOptions {
   /**
-   * The HTML attributes for a list item node.
+   * 列表项节点的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
   HTMLAttributes: Record<string, any>,
 
   /**
-   * The node type for bulletList nodes
+   * 无序列表节点的节点类型。
    * @default 'bulletList'
    * @example 'myCustomBulletList'
    */
   bulletListTypeName: string
 
   /**
-   * The node type for orderedList nodes
+   * 有序列表节点的节点类型。
    * @default 'orderedList'
    * @example 'myCustomOrderedList'
    */
@@ -24,7 +24,7 @@ export interface ListItemOptions {
 }
 
 /**
- * This extension allows you to create list items.
+ * 此扩展允许您创建列表项。
  * @see https://www.tiptap.dev/api/nodes/list-item
  */
 export const ListItem = Node.create<ListItemOptions>({

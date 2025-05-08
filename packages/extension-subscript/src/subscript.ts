@@ -3,7 +3,7 @@ import type { StyleParseRule } from '@tiptap/pm/model'
 
 export interface SubscriptExtensionOptions {
   /**
-   * HTML attributes to add to the subscript element.
+   * HTML 属性添加到下标元素。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -14,17 +14,17 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     subscript: {
       /**
-       * Set a subscript mark
+       * 设置一个下标标记
        * @example editor.commands.setSubscript()
        */
       setSubscript: () => ReturnType,
       /**
-       * Toggle a subscript mark
+       * 切换一个下标标记
        * @example editor.commands.toggleSubscript()
        */
       toggleSubscript: () => ReturnType,
       /**
-       * Unset a subscript mark
+       * 取消一个下标标记
        * @example editor.commands.unsetSubscript()
        */
       unsetSubscript: () => ReturnType,
@@ -33,7 +33,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to create subscript text.
+ * 此扩展允许您创建下标文本。
  * @see https://www.tiptap.dev/api/marks/subscript
  */
 export const Subscript = Mark.create<SubscriptExtensionOptions>({
@@ -53,12 +53,12 @@ export const Subscript = Mark.create<SubscriptExtensionOptions>({
       {
         style: 'vertical-align',
         getAttrs(value) {
-          // Don’t match this rule if the vertical align isn’t sub.
+          // 如果垂直对齐不是 sub，则不匹配此规则。
           if (value !== 'sub') {
             return false
           }
 
-          // If it falls through we’ll match, and this mark will be applied.
+          // 如果它通过了，我们将匹配，并且这个标记将被应用。
           return null
         },
       } as StyleParseRule,

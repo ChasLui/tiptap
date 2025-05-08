@@ -4,7 +4,7 @@ import { Extension } from '@tiptap/core'
 
 export type ColorOptions = {
   /**
-   * The types where the color can be applied
+   * 可以应用颜色的类型
    * @default ['textStyle']
    * @example ['heading', 'paragraph']
   */
@@ -15,14 +15,14 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     color: {
       /**
-       * Set the text color
-       * @param color The color to set
+       * 设置文本颜色
+       * @param color 要设置的颜色
        * @example editor.commands.setColor('red')
        */
       setColor: (color: string) => ReturnType,
 
       /**
-       * Unset the text color
+       * 取消设置文本颜色
        * @example editor.commands.unsetColor()
        */
       unsetColor: () => ReturnType,
@@ -31,7 +31,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to color your text.
+ * 此扩展允许您为文本着色。
  * @see https://tiptap.dev/api/extensions/color
  */
 export const Color = Extension.create<ColorOptions>({

@@ -2,7 +2,7 @@ import { mergeAttributes, Node } from '@tiptap/core'
 
 export interface ParagraphOptions {
   /**
-   * The HTML attributes for a paragraph node.
+   * 段落节点的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -13,7 +13,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     paragraph: {
       /**
-       * Toggle a paragraph
+       * 切换一个段落
        * @example editor.commands.toggleParagraph()
        */
       setParagraph: () => ReturnType,
@@ -22,7 +22,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to create paragraphs.
+ * 此扩展允许您创建段落。
  * @see https://www.tiptap.dev/api/nodes/paragraph
  */
 export const Paragraph = Node.create<ParagraphOptions>({

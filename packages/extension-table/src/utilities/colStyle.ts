@@ -1,10 +1,10 @@
 export function getColStyleDeclaration(minWidth: number, width: number | undefined): [string, string] {
   if (width) {
-    // apply the stored width unless it is below the configured minimum cell width
+    // 应用存储的宽度，除非它低于配置的最小单元格宽度
     return ['width', `${Math.max(width, minWidth)}px`]
   }
 
-  // set the minimum with on the column if it has no stored width
+  // 如果列没有存储宽度，则设置最小宽度
   return ['min-width', `${minWidth}px`]
 
 }

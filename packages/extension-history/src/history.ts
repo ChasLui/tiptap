@@ -3,14 +3,14 @@ import { history, redo, undo } from '@tiptap/pm/history'
 
 export interface HistoryOptions {
   /**
-   * The amount of history events that are collected before the oldest events are discarded.
+   * 收集历史事件的次数，直到最旧的事件被丢弃。
    * @default 100
    * @example 50
    */
   depth: number,
 
   /**
-   * The delay (in milliseconds) between changes after which a new group should be started.
+   * 在更改之间（以毫秒为单位）的延迟，直到应该开始一个新的组。
    * @default 500
    * @example 1000
    */
@@ -21,12 +21,12 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     history: {
       /**
-       * Undo recent changes
+       * 撤销最近的更改
        * @example editor.commands.undo()
        */
       undo: () => ReturnType,
       /**
-       * Reapply reverted changes
+       * 重新应用反转的更改
        * @example editor.commands.redo()
        */
       redo: () => ReturnType,
@@ -35,13 +35,12 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to undo and redo recent changes.
+ * 此扩展允许您撤销和重做最近的更改。
  * @see https://www.tiptap.dev/api/extensions/history
  *
- * **Important**: If the `@tiptap/extension-collaboration` package is used, make sure to remove
- * the `history` extension, as it is not compatible with the `collaboration` extension.
+ * **重要**: 如果使用 `@tiptap/extension-collaboration` 包，请确保删除 `history` 扩展，因为它与 `collaboration` 扩展不兼容。
  *
- * `@tiptap/extension-collaboration` uses its own history implementation.
+ * `@tiptap/extension-collaboration` 使用自己的历史实现。
  */
 export const History = Extension.create<HistoryOptions>({
   name: 'history',
@@ -76,7 +75,7 @@ export const History = Extension.create<HistoryOptions>({
       'Shift-Mod-z': () => this.editor.commands.redo(),
       'Mod-y': () => this.editor.commands.redo(),
 
-      // Russian keyboard layouts
+      // 俄罗斯键盘布局
       'Mod-я': () => this.editor.commands.undo(),
       'Shift-Mod-я': () => this.editor.commands.redo(),
     }

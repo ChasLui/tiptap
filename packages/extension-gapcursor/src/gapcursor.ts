@@ -9,7 +9,7 @@ import { gapCursor } from '@tiptap/pm/gapcursor'
 declare module '@tiptap/core' {
   interface NodeConfig<Options, Storage> {
     /**
-     * A function to determine whether the gap cursor is allowed at the current position. Must return `true` or `false`.
+     * 一个函数，用于确定当前位置是否允许间隙光标。必须返回 `true` 或 `false`。
      * @default null
      */
     allowGapCursor?:
@@ -25,9 +25,8 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to add a gap cursor to your editor.
- * A gap cursor is a cursor that appears when you click on a place
- * where no content is present, for example inbetween nodes.
+ * 此扩展允许您在您的编辑器中添加间隙光标。
+ * 间隙光标是一个光标，当您点击一个没有内容的地方时出现，例如在节点之间。
  * @see https://tiptap.dev/api/extensions/gapcursor
  */
 export const Gapcursor = Extension.create({

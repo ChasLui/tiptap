@@ -3,11 +3,11 @@ import { DOMParser, ParseOptions } from '@tiptap/pm/model'
 import { parseHTML } from 'zeed-dom'
 
 /**
- * Generates a JSON object from the given HTML string and converts it into a Prosemirror node with content.
- * @param {string} html - The HTML string to be converted into a Prosemirror node.
- * @param {Extensions} extensions - The extensions to be used for generating the schema.
- * @param {ParseOptions} options - The options to be supplied to the parser.
- * @returns {Record<string, any>} - The generated JSON object.
+ * 从给定的 HTML 字符串生成 JSON 对象，并将其转换为具有内容的 Prosemirror 节点。
+ * @param {string} html - 要转换为 Prosemirror 节点的 HTML 字符串。
+ * @param {Extensions} extensions - 用于生成模式的扩展。
+ * @param {ParseOptions} options - 要提供给解析器的选项。
+ * @returns {Record<string, any>} - 生成的 JSON 对象。
  * @example
  * const html = '<p>Hello, world!</p>'
  * const extensions = [...]

@@ -4,13 +4,13 @@ import { LowlightPlugin } from './lowlight-plugin.js'
 
 export interface CodeBlockLowlightOptions extends CodeBlockOptions {
   /**
-   * The lowlight instance.
+   * lowlight 实例。
    */
   lowlight: any,
 }
 
 /**
- * This extension allows you to highlight code blocks with lowlight.
+ * 此扩展允许您使用 lowlight 突出显示代码块。
  * @see https://tiptap.dev/api/nodes/code-block-lowlight
  */
 export const CodeBlockLowlight = CodeBlock.extend<CodeBlockLowlightOptions>({

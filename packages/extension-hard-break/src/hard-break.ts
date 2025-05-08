@@ -2,14 +2,14 @@ import { mergeAttributes, Node } from '@tiptap/core'
 
 export interface HardBreakOptions {
   /**
-   * Controls if marks should be kept after being split by a hard break.
+   * 控制是否在硬断行后保留标记。
    * @default true
    * @example false
    */
   keepMarks: boolean,
 
   /**
-   * HTML attributes to add to the hard break element.
+   * 要添加到硬断行元素的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -20,7 +20,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     hardBreak: {
       /**
-       * Add a hard break
+       * 添加一个硬断行
        * @example editor.commands.setHardBreak()
        */
       setHardBreak: () => ReturnType,
@@ -29,7 +29,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to insert hard breaks.
+ * 此扩展允许您插入硬断行。
  * @see https://www.tiptap.dev/api/nodes/hard-break
  */
 export const HardBreak = Node.create<HardBreakOptions>({

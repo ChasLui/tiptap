@@ -18,12 +18,12 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     collaboration: {
       /**
-       * Undo recent changes
+       * 撤销最近的更改
        * @example editor.commands.undo()
        */
       undo: () => ReturnType;
       /**
-       * Reapply reverted changes
+       * 重新应用反转的更改
        * @example editor.commands.redo()
        */
       redo: () => ReturnType;
@@ -33,50 +33,50 @@ declare module '@tiptap/core' {
 
 export interface CollaborationStorage {
   /**
-   * Whether collaboration is currently disabled.
-   * Disabling collaboration will prevent any changes from being synced with other users.
+   * 是否当前禁用协作。
+   * 禁用协作将阻止任何更改与他人同步。
    */
   isDisabled: boolean;
 }
 
 export interface CollaborationOptions {
   /**
-   * An initialized Y.js document.
+   * 一个初始化的 Y.js 文档。
    * @example new Y.Doc()
    */
   document?: Doc | null;
 
   /**
-   * Name of a Y.js fragment, can be changed to sync multiple fields with one Y.js document.
+   * Y.js 片段的名称，可以更改以与一个 Y.js 文档同步多个字段。
    * @default 'default'
    * @example 'my-custom-field'
    */
   field?: string;
 
   /**
-   * A raw Y.js fragment, can be used instead of `document` and `field`.
+   * 一个原始的 Y.js 片段，可以代替 `document` 和 `field`。
    * @example new Y.Doc().getXmlFragment('body')
    */
   fragment?: XmlFragment | null;
 
   /**
-   * Fired when the content from Yjs is initially rendered to Tiptap.
+   * 当 Yjs 内容最初渲染到 Tiptap 时触发。
    */
   onFirstRender?: () => void;
 
   /**
-   * Options for the Yjs sync plugin.
+   * Yjs 同步插件的选项。
    */
   ySyncOptions?: YSyncOpts;
 
   /**
-   * Options for the Yjs undo plugin.
+   * Yjs 撤销插件的选项。
    */
   yUndoOptions?: YUndoOpts;
 }
 
 /**
- * This extension allows you to collaborate with others in real-time.
+ * 此扩展允许您与其他人实时协作。
  * @see https://tiptap.dev/api/extensions/collaboration
  */
 export const Collaboration = Extension.create<CollaborationOptions, CollaborationStorage>({
@@ -156,8 +156,8 @@ export const Collaboration = Extension.create<CollaborationOptions, Collaboratio
       ? this.options.fragment
       : (this.options.document as Doc).getXmlFragment(this.options.field)
 
-    // Quick fix until there is an official implementation (thanks to @hamflx).
-    // See https://github.com/yjs/y-prosemirror/issues/114 and https://github.com/yjs/y-prosemirror/issues/102
+    // 快速修复，直到有官方实现（感谢 @hamflx）。
+    // 参见 https://github.com/yjs/y-prosemirror/issues/114 和 https://github.com/yjs/y-prosemirror/issues/102
     const yUndoPluginInstance = yUndoPlugin(this.options.yUndoOptions)
     const originalUndoPluginView = yUndoPluginInstance.spec.view
 
@@ -222,7 +222,7 @@ export const Collaboration = Extension.create<CollaborationOptions, Collaboratio
               this.storage.isDisabled = true
             },
           })
-          // If the content is invalid, return false to prevent the transaction from being applied
+          // 如果内容无效，返回 false 以防止事务被应用
           return false
         }
       })
@@ -231,14 +231,14 @@ export const Collaboration = Extension.create<CollaborationOptions, Collaboratio
     return [
       ySyncPluginInstance,
       yUndoPluginInstance,
-      // Only add the filterInvalidContent plugin if content checking is enabled
+      // 仅在内容检查启用时添加 filterInvalidContent 插件
       this.editor.options.enableContentCheck
         && new Plugin({
           key: new PluginKey('filterInvalidContent'),
           filterTransaction: () => {
-            // When collaboration is disabled, prevent any sync transactions from being applied
+            // 当协作被禁用时，阻止任何同步事务被应用
             if (this.storage.isDisabled) {
-              // Destroy the Yjs document to prevent any further sync transactions
+              // 销毁 Yjs 文档以防止任何进一步的同步事务
               fragment.doc?.destroy()
 
               return true

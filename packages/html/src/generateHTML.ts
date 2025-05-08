@@ -4,10 +4,10 @@ import { Node } from '@tiptap/pm/model'
 import { getHTMLFromFragment } from './getHTMLFromFragment.js'
 
 /**
- * Generates HTML from a ProseMirror JSON content object.
- * @param doc - The ProseMirror JSON content object.
- * @param extensions - The Tiptap extensions used to build the schema.
- * @returns The generated HTML string.
+ * 从 ProseMirror JSON 内容对象生成 HTML。
+ * @param doc - ProseMirror JSON 内容对象。
+ * @param extensions - 用于构建模式的 Tiptap 扩展。
+ * @returns 生成的 HTML 字符串。
  * @example
  * const doc = {
  *   type: 'doc',

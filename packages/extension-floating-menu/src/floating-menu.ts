@@ -4,7 +4,7 @@ import { FloatingMenuPlugin, FloatingMenuPluginProps } from './floating-menu-plu
 
 export type FloatingMenuOptions = Omit<FloatingMenuPluginProps, 'editor' | 'element'> & {
   /**
-   * The DOM element that contains your menu.
+   * 包含您的菜单的 DOM 元素。
    * @type {HTMLElement}
    * @default null
    */
@@ -12,7 +12,7 @@ export type FloatingMenuOptions = Omit<FloatingMenuPluginProps, 'editor' | 'elem
 }
 
 /**
- * This extension allows you to create a floating menu.
+ * 此扩展允许您创建一个浮动菜单。
  * @see https://tiptap.dev/api/extensions/floating-menu
  */
 export const FloatingMenu = Extension.create<FloatingMenuOptions>({

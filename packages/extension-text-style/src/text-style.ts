@@ -5,16 +5,16 @@ import {
 
 export interface TextStyleOptions {
   /**
-   * HTML attributes to add to the span element.
+   * HTML 属性添加到 span 元素。
    * @default {}
    * @example { class: 'foo' }
    */
   HTMLAttributes: Record<string, any>,
   /**
-   * When enabled, merges the styles of nested spans into the child span during HTML parsing.
-   * This prioritizes the style of the child span.
-   * Used when parsing content created in other editors.
-   * (Fix for ProseMirror's default behavior.)
+   * 启用时，在 HTML 解析期间将嵌套的 span 样式合并到子 span 中。
+   * 这优先考虑子 span 的样式。
+   * 用于解析在其他编辑器中创建的内容。
+   * （修复 ProseMirror 的默认行为。）
    * @default false
    */
   mergeNestedSpanStyles: boolean,
@@ -24,7 +24,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     textStyle: {
       /**
-       * Remove spans without inline style attributes.
+       * 删除没有内联样式属性的 span。
        * @example editor.commands.removeEmptyTextStyle()
        */
       removeEmptyTextStyle: () => ReturnType,
@@ -48,8 +48,7 @@ const mergeNestedSpanStyles = (element: HTMLElement) => {
 }
 
 /**
- * This extension allows you to create text styles. It is required by default
- * for the `textColor` and `backgroundColor` extensions.
+ * 此扩展允许您创建文本样式。它是默认情况下为 `textColor` 和 `backgroundColor` 扩展所需的。
  * @see https://www.tiptap.dev/api/marks/text-style
  */
 export const TextStyle = Mark.create<TextStyleOptions>({
@@ -92,25 +91,23 @@ export const TextStyle = Mark.create<TextStyleOptions>({
 
         const { selection } = tr
 
-        // Gather all of the nodes within the selection range.
-        // We would need to go through each node individually
-        // to check if it has any inline style attributes.
-        // Otherwise, calling commands.unsetMark(this.name)
-        // removes everything from all the nodes
-        // within the selection range.
+        // 收集选择范围内的所有节点。
+        // 我们需要单独遍历每个节点
+        // 检查它是否有任何内联样式属性。
+        // 否则，调用 commands.unsetMark(this.name)
+        // 从选择范围内的所有节点中删除所有内容。
         tr.doc.nodesBetween(selection.from, selection.to, (node, pos) => {
 
-          // Check if it's a paragraph element, if so, skip this node as we apply
-          // the text style to inline text nodes only (span).
+          // 检查它是否是段落元素，如果是，则跳过此节点，因为我们只对内联文本节点（span）应用文本样式。
           if (node.isTextblock) {
             return true
           }
 
-          // Check if the node has no inline style attributes.
-          // Filter out non-`textStyle` marks.
+          // 检查节点是否没有内联样式属性。
+          // 过滤掉非`textStyle`标记。
           if (
             !node.marks.filter(mark => mark.type === this.type).some(mark => Object.values(mark.attrs).some(value => !!value))) {
-            // Proceed with the removal of the `textStyle` mark for this node only
+            // 仅为此节点删除`textStyle`标记
             tr.removeMark(pos, pos + node.nodeSize, this.type)
           }
         })

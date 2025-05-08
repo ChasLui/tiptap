@@ -5,28 +5,28 @@ const TextStyleName = 'textStyle'
 
 export interface BulletListOptions {
   /**
-   * The node name for the list items
+   * 列表项的节点名称
    * @default 'listItem'
    * @example 'paragraph'
    */
   itemTypeName: string,
 
   /**
-   * HTML attributes to add to the bullet list element
+   * 添加到列表项元素的 HTML 属性
    * @default {}
    * @example { class: 'foo' }
    */
   HTMLAttributes: Record<string, any>,
 
   /**
-   * Keep the marks when splitting the list
+   * 在拆分列表时保持标记
    * @default false
    * @example true
    */
   keepMarks: boolean,
 
   /**
-   * Keep the attributes when splitting the list
+   * 在拆分列表时保持属性
    * @default false
    * @example true
    */
@@ -37,7 +37,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     bulletList: {
       /**
-       * Toggle a bullet list
+       * 切换一个列表
        */
       toggleBulletList: () => ReturnType,
     }
@@ -45,13 +45,13 @@ declare module '@tiptap/core' {
 }
 
 /**
- * Matches a bullet list to a dash or asterisk.
+ * 匹配一个列表到破折号或星号。
  */
 export const inputRegex = /^\s*([-+*])\s$/
 
 /**
- * This extension allows you to create bullet lists.
- * This requires the ListItem extension
+ * 此扩展允许您创建列表。
+ * 这需要 ListItem 扩展。
  * @see https://tiptap.dev/api/nodes/bullet-list
  * @see https://tiptap.dev/api/nodes/list-item.
  */

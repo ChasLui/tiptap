@@ -5,29 +5,29 @@ import { Node as ProseMirrorNode } from '@tiptap/pm/model'
 
 export interface TaskItemOptions {
   /**
-   * A callback function that is called when the checkbox is clicked while the editor is in readonly mode.
-   * @param node The prosemirror node of the task item
-   * @param checked The new checked state
+   * 一个回调函数，当复选框在只读模式下被点击时被调用。
+   * @param node 任务项的 ProseMirror 节点
+   * @param checked 新的选中状态
    * @returns boolean
    */
   onReadOnlyChecked?: (node: ProseMirrorNode, checked: boolean) => boolean
 
   /**
-   * Controls whether the task items can be nested or not.
+   * 控制任务项是否可以嵌套。
    * @default false
    * @example true
    */
   nested: boolean
 
   /**
-   * HTML attributes to add to the task item element.
+   * 要添加到任务项元素的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
   HTMLAttributes: Record<string, any>
 
   /**
-   * The node type for taskList nodes
+   * 任务列表节点的节点类型。
    * @default 'taskList'
    * @example 'myCustomTaskList'
    */
@@ -35,12 +35,12 @@ export interface TaskItemOptions {
 }
 
 /**
- * Matches a task item to a - [ ] on input.
+ * 匹配任务项到 - [ ] 输入。
  */
 export const inputRegex = /^\s*(\[([( |x])?\])\s$/
 
 /**
- * This extension allows you to create task items.
+ * 此扩展允许您创建任务项。
  * @see https://www.tiptap.dev/api/nodes/task-item
  */
 export const TaskItem = Node.create<TaskItemOptions>({
@@ -139,8 +139,7 @@ export const TaskItem = Node.create<TaskItemOptions>({
       checkbox.type = 'checkbox'
       checkbox.addEventListener('mousedown', event => event.preventDefault())
       checkbox.addEventListener('change', event => {
-        // if the editor isn’t editable and we don't have a handler for
-        // readonly checks we have to undo the latest change
+        // 如果编辑器不可编辑并且我们没有处理只读检查的回调，我们必须撤销最新的更改
         if (!editor.isEditable && !this.options.onReadOnlyChecked) {
           checkbox.checked = !checkbox.checked
 
@@ -171,7 +170,7 @@ export const TaskItem = Node.create<TaskItemOptions>({
             .run()
         }
         if (!editor.isEditable && this.options.onReadOnlyChecked) {
-          // Reset state if onReadOnlyChecked returns false
+          // 如果 onReadOnlyChecked 返回 false，重置状态
           if (!this.options.onReadOnlyChecked(node, checked)) {
             checkbox.checked = !checkbox.checked
           }

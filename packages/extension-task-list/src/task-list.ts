@@ -2,14 +2,14 @@ import { mergeAttributes, Node } from '@tiptap/core'
 
 export interface TaskListOptions {
   /**
-   * The node type name for a task item.
+   * 任务项的节点类型名称。
    * @default 'taskItem'
    * @example 'myCustomTaskItem'
    */
   itemTypeName: string,
 
   /**
-   * The HTML attributes for a task list node.
+   * 任务列表节点的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -20,7 +20,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     taskList: {
       /**
-       * Toggle a task list
+       * 切换任务列表
        * @example editor.commands.toggleTaskList()
        */
       toggleTaskList: () => ReturnType,
@@ -29,7 +29,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to create task lists.
+ * 此扩展允许您创建任务列表。
  * @see https://www.tiptap.dev/api/nodes/task-list
  */
 export const TaskList = Node.create<TaskListOptions>({

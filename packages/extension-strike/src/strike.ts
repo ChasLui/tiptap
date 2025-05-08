@@ -7,7 +7,7 @@ import {
 
 export interface StrikeOptions {
   /**
-   * HTML attributes to add to the strike element.
+   * HTML 属性添加到删除线元素。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -18,17 +18,17 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     strike: {
       /**
-       * Set a strike mark
+       * 设置一个删除线标记
        * @example editor.commands.setStrike()
        */
       setStrike: () => ReturnType,
       /**
-       * Toggle a strike mark
+       * 切换一个删除线标记
        * @example editor.commands.toggleStrike()
        */
       toggleStrike: () => ReturnType,
       /**
-       * Unset a strike mark
+       * 取消一个删除线标记
        * @example editor.commands.unsetStrike()
        */
       unsetStrike: () => ReturnType,
@@ -37,17 +37,17 @@ declare module '@tiptap/core' {
 }
 
 /**
- * Matches a strike to a ~~strike~~ on input.
+ * 匹配一个删除线到 ~~strike~~ 在输入。
  */
 export const inputRegex = /(?:^|\s)(~~(?!\s+~~)((?:[^~]+))~~(?!\s+~~))$/
 
 /**
- * Matches a strike to a ~~strike~~ on paste.
+ * 匹配一个删除线到 ~~strike~~ 在粘贴。
  */
 export const pasteRegex = /(?:^|\s)(~~(?!\s+~~)((?:[^~]+))~~(?!\s+~~))/g
 
 /**
- * This extension allows you to create strike text.
+ * 此扩展允许您创建删除线文本。
  * @see https://www.tiptap.dev/api/marks/strike
  */
 export const Strike = Mark.create<StrikeOptions>({

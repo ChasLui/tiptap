@@ -4,26 +4,26 @@ import { Plugin, PluginKey } from '@tiptap/pm/state'
 
 export interface CharacterCountOptions {
   /**
-   * The maximum number of characters that should be allowed. Defaults to `0`.
+   * 应该允许的最大字符数。默认为 `0`。
    * @default null
    * @example 180
    */
   limit: number | null | undefined
   /**
-   * The mode by which the size is calculated. If set to `textSize`, the textContent of the document is used.
-   * If set to `nodeSize`, the nodeSize of the document is used.
+   * 用于计算大小的模式。如果设置为 `textSize`，则使用文档的 `textContent`。
+   * 如果设置为 `nodeSize`，则使用文档的 `nodeSize`。
    * @default 'textSize'
    * @example 'textSize'
    */
   mode: 'textSize' | 'nodeSize'
   /**
- * The text counter function to use. Defaults to a simple character count.
- * @default (text) => text.length
- * @example (text) => [...new Intl.Segmenter().segment(text)].length
- */
+   * 使用的文本计数器函数。默认为简单的字符计数。
+   * @default (text) => text.length
+   * @example (text) => [...new Intl.Segmenter().segment(text)].length
+   */
   textCounter: (text: string) => number
   /**
-   * The word counter function to use. Defaults to a simple word count.
+   * 使用的单词计数器函数。默认为简单的单词计数。
    * @default (text) => text.split(' ').filter(word => word !== '').length
    * @example (text) => text.split(/\s+/).filter(word => word !== '').length
    */
@@ -32,23 +32,23 @@ export interface CharacterCountOptions {
 
 export interface CharacterCountStorage {
   /**
-   * Get the number of characters for the current document.
-   * @param options The options for the character count. (optional)
-   * @param options.node The node to get the characters from. Defaults to the current document.
-   * @param options.mode The mode by which the size is calculated. If set to `textSize`, the textContent of the document is used.
+   * 获取当前文档的字符数。
+   * @param options 字符计数的选项。（可选）
+   * @param options.node 要获取字符的节点。默认为当前文档。
+   * @param options.mode 用于计算大小的模式。如果设置为 `textSize`，则使用文档的 `textContent`。
    */
   characters: (options?: { node?: ProseMirrorNode; mode?: 'textSize' | 'nodeSize' }) => number
 
   /**
-   * Get the number of words for the current document.
-   * @param options The options for the character count. (optional)
-   * @param options.node The node to get the words from. Defaults to the current document.
+   * 获取当前文档的单词数。
+   * @param options 字符计数的选项。（可选）
+   * @param options.node 要获取单词的节点。默认为当前文档。
    */
   words: (options?: { node?: ProseMirrorNode }) => number
 }
 
 /**
- * This extension allows you to count the characters and words of your document.
+ * 此扩展允许您计算文档的字符和单词。
  * @see https://tiptap.dev/api/extensions/character-count
  */
 export const CharacterCount = Extension.create<CharacterCountOptions, CharacterCountStorage>({
@@ -129,7 +129,7 @@ export const CharacterCount = Extension.create<CharacterCountOptions, CharacterC
         filterTransaction: (transaction, state) => {
           const limit = this.options.limit
 
-          // Nothing has changed or no limit is defined. Ignore it.
+          // 没有变化或没有限制。忽略它。
           if (!transaction.docChanged || limit === 0 || limit === null || limit === undefined) {
             return true
           }
@@ -137,42 +137,42 @@ export const CharacterCount = Extension.create<CharacterCountOptions, CharacterC
           const oldSize = this.storage.characters({ node: state.doc })
           const newSize = this.storage.characters({ node: transaction.doc })
 
-          // Everything is in the limit. Good.
+          // 一切都在限制之内。很好。
           if (newSize <= limit) {
             return true
           }
 
-          // The limit has already been exceeded but will be reduced.
+          // 限制已经超出，但将被减少。
           if (oldSize > limit && newSize > limit && newSize <= oldSize) {
             return true
           }
 
-          // The limit has already been exceeded and will be increased further.
+          // 限制已经超出，并且将被进一步增加。
           if (oldSize > limit && newSize > limit && newSize > oldSize) {
             return false
           }
 
           const isPaste = transaction.getMeta('paste')
 
-          // Block all exceeding transactions that were not pasted.
+          // 阻止所有未粘贴的超出限制的事务。
           if (!isPaste) {
             return false
           }
 
-          // For pasted content, we try to remove the exceeding content.
+          // 对于粘贴的内容，我们尝试删除超出限制的内容。
           const pos = transaction.selection.$head.pos
           const over = newSize - limit
           const from = pos - over
           const to = pos
 
-          // It’s probably a bad idea to mutate transactions within `filterTransaction`
-          // but for now this is working fine.
+          // 在 `filterTransaction` 中修改事务可能不是一个好主意，
+          // 但目前这工作得很好。
           transaction.deleteRange(from, to)
 
-          // In some situations, the limit will continue to be exceeded after trimming.
-          // This happens e.g. when truncating within a complex node (e.g. table)
-          // and ProseMirror has to close this node again.
-          // If this is the case, we prevent the transaction completely.
+          // 在某些情况下，在修剪后限制将继续超出。
+          // 例如，当在复杂节点（例如表格）中截断时，
+          // 并且 ProseMirror 必须再次关闭此节点。
+          // 如果是这种情况，我们完全阻止事务。
           const updatedSize = this.storage.characters({ node: transaction.doc })
 
           if (updatedSize > limit) {

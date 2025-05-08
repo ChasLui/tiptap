@@ -5,7 +5,7 @@ import { NodeSelection, TextSelection } from '@tiptap/pm/state'
 
 export interface HorizontalRuleOptions {
   /**
-   * The HTML attributes for a horizontal rule node.
+   * 水平规则节点的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
@@ -16,7 +16,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     horizontalRule: {
       /**
-       * Add a horizontal rule
+       * 添加一个水平规则
        * @example editor.commands.setHorizontalRule()
        */
       setHorizontalRule: () => ReturnType
@@ -25,7 +25,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to insert horizontal rules.
+ * 此扩展允许您插入水平规则。
  * @see https://www.tiptap.dev/api/nodes/horizontal-rule
  */
 export const HorizontalRule = Node.create<HorizontalRuleOptions>({
@@ -76,7 +76,7 @@ export const HorizontalRule = Node.create<HorizontalRuleOptions>({
 
           return (
             currentChain
-              // set cursor after horizontal rule
+              // 设置光标水平规则后
               .command(({ tr, dispatch }) => {
                 if (dispatch) {
                   const { $to } = tr.selection
@@ -91,7 +91,7 @@ export const HorizontalRule = Node.create<HorizontalRuleOptions>({
                       tr.setSelection(TextSelection.create(tr.doc, $to.pos))
                     }
                   } else {
-                    // add node after horizontal rule if it’s the end of the document
+                    // 如果它是文档的末尾，则在水平规则后添加一个节点
                     const node = $to.parent.type.contentMatch.defaultType?.create()
 
                     if (node) {

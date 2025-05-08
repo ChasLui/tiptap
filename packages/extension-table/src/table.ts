@@ -31,48 +31,48 @@ import { deleteTableWhenAllCellsSelected } from './utilities/deleteTableWhenAllC
 
 export interface TableOptions {
   /**
-   * HTML attributes for the table element.
+   * 表元素的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
   HTMLAttributes: Record<string, any>
 
   /**
-   * Enables the resizing of tables.
+   * 启用表格调整大小。
    * @default false
    * @example true
    */
   resizable: boolean
 
   /**
-   * The width of the resize handle.
+   * 调整大小的句柄宽度。
    * @default 5
    * @example 10
    */
   handleWidth: number
 
   /**
-   * The minimum width of a cell.
+   * 单元格的最小宽度。
    * @default 25
    * @example 50
    */
   cellMinWidth: number
 
   /**
-   * The node view to render the table.
+   * 渲染表格的节点视图。
    * @default TableView
    */
   View: (new (node: ProseMirrorNode, cellMinWidth: number, view: EditorView) => NodeView) | null
 
   /**
-   * Enables the resizing of the last column.
+   * 启用最后一列的调整大小。
    * @default true
    * @example false
    */
   lastColumnResizable: boolean
 
   /**
-   * Allow table node selection.
+   * 允许表节点选择。
    * @default false
    * @example true
    */
@@ -83,9 +83,9 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     table: {
       /**
-       * Insert a table
-       * @param options The table attributes
-       * @returns True if the command was successful, otherwise false
+       * 插入一个表格
+       * @param options 表格属性
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.insertTable({ rows: 3, cols: 3, withHeaderRow: true })
        */
       insertTable: (options?: {
@@ -95,130 +95,130 @@ declare module '@tiptap/core' {
       }) => ReturnType
 
       /**
-       * Add a column before the current column
-       * @returns True if the command was successful, otherwise false
+       * 在当前列之前添加一列
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.addColumnBefore()
        */
       addColumnBefore: () => ReturnType
 
       /**
-       * Add a column after the current column
-       * @returns True if the command was successful, otherwise false
+       * 在当前列之后添加一列
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.addColumnAfter()
        */
       addColumnAfter: () => ReturnType
 
       /**
-       * Delete the current column
-       * @returns True if the command was successful, otherwise false
+       * 删除当前列
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.deleteColumn()
        */
       deleteColumn: () => ReturnType
 
       /**
-       * Add a row before the current row
-       * @returns True if the command was successful, otherwise false
+       * 在当前行之前添加一行
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.addRowBefore()
        */
       addRowBefore: () => ReturnType
 
       /**
-       * Add a row after the current row
-       * @returns True if the command was successful, otherwise false
+       * 在当前行之后添加一行
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.addRowAfter()
        */
       addRowAfter: () => ReturnType
 
       /**
-       * Delete the current row
-       * @returns True if the command was successful, otherwise false
+       * 删除当前行
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.deleteRow()
        */
       deleteRow: () => ReturnType
 
       /**
-       * Delete the current table
-       * @returns True if the command was successful, otherwise false
+       * 删除当前表格
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.deleteTable()
        */
       deleteTable: () => ReturnType
 
       /**
-       * Merge the currently selected cells
-       * @returns True if the command was successful, otherwise false
+       * 合并当前选中的单元格
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.mergeCells()
        */
       mergeCells: () => ReturnType
 
       /**
-       * Split the currently selected cell
-       * @returns True if the command was successful, otherwise false
+       * 拆分当前选中的单元格
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.splitCell()
        */
       splitCell: () => ReturnType
 
       /**
-       * Toggle the header column
-       * @returns True if the command was successful, otherwise false
+       * 切换头列
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.toggleHeaderColumn()
        */
       toggleHeaderColumn: () => ReturnType
 
       /**
-       * Toggle the header row
-       * @returns True if the command was successful, otherwise false
+       * 切换头行
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.toggleHeaderRow()
        */
       toggleHeaderRow: () => ReturnType
 
       /**
-       * Toggle the header cell
-       * @returns True if the command was successful, otherwise false
+       * 切换头单元格
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.toggleHeaderCell()
        */
       toggleHeaderCell: () => ReturnType
 
       /**
-       * Merge or split the currently selected cells
-       * @returns True if the command was successful, otherwise false
+       * 合并或拆分当前选中的单元格
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.mergeOrSplit()
        */
       mergeOrSplit: () => ReturnType
 
       /**
-       * Set a cell attribute
-       * @param name The attribute name
-       * @param value The attribute value
-       * @returns True if the command was successful, otherwise false
+       * 设置单元格属性
+       * @param name 属性名称
+       * @param value 属性值
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.setCellAttribute('align', 'right')
        */
       setCellAttribute: (name: string, value: any) => ReturnType
 
       /**
-       * Moves the selection to the next cell
-       * @returns True if the command was successful, otherwise false
+       * 移动到下一个单元格
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.goToNextCell()
        */
       goToNextCell: () => ReturnType
 
       /**
-       * Moves the selection to the previous cell
-       * @returns True if the command was successful, otherwise false
+       * 移动到上一个单元格
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.goToPreviousCell()
        */
       goToPreviousCell: () => ReturnType
 
       /**
-       * Try to fix the table structure if necessary
-       * @returns True if the command was successful, otherwise false
+       * 尝试修复表格结构（如果需要）
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.fixTables()
        */
       fixTables: () => ReturnType
 
       /**
-       * Set a cell selection inside the current table
-       * @param position The cell position
-       * @returns True if the command was successful, otherwise false
+       * 在当前表格中设置单元格选择
+       * @param position 单元格位置
+       * @returns 如果命令成功，则为 true，否则为 false
        * @example editor.commands.setCellSelection({ anchorCell: 1, headCell: 2 })
        */
       setCellSelection: (position: { anchorCell: number; headCell?: number }) => ReturnType
@@ -227,7 +227,7 @@ declare module '@tiptap/core' {
 
   interface NodeConfig<Options, Storage> {
     /**
-     * A string or function to determine the role of the table.
+     * 一个字符串或函数来确定表格的角色。
      * @default 'table'
      * @example () => 'table'
      */
@@ -243,7 +243,7 @@ declare module '@tiptap/core' {
 }
 
 /**
- * This extension allows you to create tables.
+ * 此扩展允许您创建表格。
  * @see https://www.tiptap.dev/api/nodes/table
  */
 export const Table = Node.create<TableOptions>({

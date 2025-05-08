@@ -5,28 +5,28 @@ const TextStyleName = 'textStyle'
 
 export interface OrderedListOptions {
   /**
-   * The node type name for list items.
+   * 列表项的节点类型名称。
    * @default 'listItem'
    * @example 'myListItem'
    */
   itemTypeName: string,
 
   /**
-   * The HTML attributes for an ordered list node.
+   * 有序列表节点的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
   HTMLAttributes: Record<string, any>,
 
   /**
-   * Keep the marks when splitting a list item.
+   * 在拆分列表项时保持标记。
    * @default false
    * @example true
    */
   keepMarks: boolean,
 
   /**
-   * Keep the attributes when splitting a list item.
+   * 在拆分列表项时保持属性。
    * @default false
    * @example true
    */
@@ -37,7 +37,7 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     orderedList: {
       /**
-       * Toggle an ordered list
+       * 切换一个有序列表
        * @example editor.commands.toggleOrderedList()
        */
       toggleOrderedList: () => ReturnType,
@@ -46,13 +46,13 @@ declare module '@tiptap/core' {
 }
 
 /**
- * Matches an ordered list to a 1. on input (or any number followed by a dot).
+ * 匹配有序列表到 1. 在输入（或任何数字后跟一个点）。
  */
 export const inputRegex = /^(\d+)\.\s$/
 
 /**
- * This extension allows you to create ordered lists.
- * This requires the ListItem extension
+ * 此扩展允许您创建有序列表。
+ * 这需要 ListItem 扩展。
  * @see https://www.tiptap.dev/api/nodes/ordered-list
  * @see https://www.tiptap.dev/api/nodes/list-item
  */

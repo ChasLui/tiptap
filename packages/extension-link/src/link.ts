@@ -10,15 +10,15 @@ import { pasteHandler } from './helpers/pasteHandler.js'
 
 export interface LinkProtocolOptions {
   /**
-   * The protocol scheme to be registered.
-   * @default '''
+   * 要注册的协议方案。
+   * @default ''
    * @example 'ftp'
    * @example 'git'
    */
   scheme: string;
 
   /**
-   * If enabled, it allows optional slashes after the protocol.
+   * 如果启用，则允许在协议后使用可选的斜杠。
    * @default false
    * @example true
    */
@@ -28,63 +28,63 @@ export interface LinkProtocolOptions {
 export const pasteRegex = /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{2,}\b(?:[-a-zA-Z0-9@:%._+~#=?!&/]*)(?:[-a-zA-Z0-9@:%._+~#=?!&/]*)/gi
 
 /**
- * @deprecated The default behavior is now to open links when the editor is not editable.
+ * @deprecated 现在默认行为是当编辑器不可编辑时打开链接。
  */
 type DeprecatedOpenWhenNotEditable = 'whenNotEditable';
 
 export interface LinkOptions {
   /**
-   * If enabled, the extension will automatically add links as you type.
+   * 如果启用，则扩展将在您键入时自动添加链接。
    * @default true
    * @example false
    */
   autolink: boolean;
 
   /**
-   * An array of custom protocols to be registered with linkifyjs.
+   * 一个数组，包含要与 linkifyjs 注册的自定义协议。
    * @default []
    * @example ['ftp', 'git']
    */
   protocols: Array<LinkProtocolOptions | string>;
 
   /**
-   * Default protocol to use when no protocol is specified.
+   * 当没有指定协议时使用的默认协议。
    * @default 'http'
    */
   defaultProtocol: string;
   /**
-   * If enabled, links will be opened on click.
+   * 如果启用，则链接将在点击时打开。
    * @default true
    * @example false
    */
   openOnClick: boolean | DeprecatedOpenWhenNotEditable;
   /**
-   * Adds a link to the current selection if the pasted content only contains an url.
+   * 如果粘贴的内容仅包含一个 URL，则将链接添加到当前选择中。
    * @default true
    * @example false
    */
   linkOnPaste: boolean;
 
   /**
-   * HTML attributes to add to the link element.
+   * 要添加到链接元素的 HTML 属性。
    * @default {}
    * @example { class: 'foo' }
    */
   HTMLAttributes: Record<string, any>;
 
   /**
-   * @deprecated Use the `shouldAutoLink` option instead.
-   * A validation function that modifies link verification for the auto linker.
-   * @param url - The url to be validated.
-   * @returns - True if the url is valid, false otherwise.
+   * @deprecated 使用 `shouldAutoLink` 选项代替。
+   * 一个验证函数，用于修改自动链接的链接验证。
+   * @param url - 要验证的 URL。
+   * @returns - 如果 URL 有效，则为 true，否则为 false。
    */
   validate: (url: string) => boolean;
 
   /**
-   * A validation function which is used for configuring link verification for preventing XSS attacks.
-   * Only modify this if you know what you're doing.
+   * 一个验证函数，用于配置链接验证以防止 XSS 攻击。
+   * 仅在您知道自己在做什么时修改此选项。
    *
-   * @returns {boolean} `true` if the URL is valid, `false` otherwise.
+   * @returns {boolean} `true` 如果 URL 有效，`false` 否则。
    *
    * @example
    * isAllowedUri: (url, { defaultValidate, protocols, defaultProtocol }) => {
@@ -93,30 +93,30 @@ export interface LinkOptions {
    */
   isAllowedUri: (
     /**
-     * The URL to be validated.
+     * 要验证的 URL。
      */
     url: string,
     ctx: {
       /**
-       * The default validation function.
+       * 默认验证函数。
        */
       defaultValidate: (url: string) => boolean;
       /**
-       * An array of allowed protocols for the URL (e.g., "http", "https"). As defined in the `protocols` option.
+       * 一个数组，包含 URL 的允许协议（例如，"http", "https"）。作为 `protocols` 选项定义。
        */
       protocols: Array<LinkProtocolOptions | string>;
       /**
-       * A string that represents the default protocol (e.g., 'http'). As defined in the `defaultProtocol` option.
+       * 一个字符串，表示默认协议（例如，'http'）。作为 `defaultProtocol` 选项定义。
        */
       defaultProtocol: string;
     }
   ) => boolean;
 
   /**
-   * Determines whether a valid link should be automatically linked in the content.
+   * 确定是否应自动链接有效的链接。
    *
-   * @param {string} url - The URL that has already been validated.
-   * @returns {boolean} - True if the link should be auto-linked; false if it should not be auto-linked.
+   * @param {string} url - 已经验证的 URL。
+   * @returns {boolean} - 如果链接应自动链接，则为 true，否则为 false。
    */
   shouldAutoLink: (url: string) => boolean;
 }
@@ -125,8 +125,8 @@ declare module '@tiptap/core' {
   interface Commands<ReturnType> {
     link: {
       /**
-       * Set a link mark
-       * @param attributes The link attributes
+       * 设置一个链接标记
+       * @param attributes 链接属性
        * @example editor.commands.setLink({ href: 'https://tiptap.dev' })
        */
       setLink: (attributes: {
@@ -136,8 +136,8 @@ declare module '@tiptap/core' {
         class?: string | null;
       }) => ReturnType;
       /**
-       * Toggle a link mark
-       * @param attributes The link attributes
+       * 切换一个链接标记
+       * @param attributes 链接属性
        * @example editor.commands.toggleLink({ href: 'https://tiptap.dev' })
        */
       toggleLink: (attributes: {
@@ -147,7 +147,7 @@ declare module '@tiptap/core' {
         class?: string | null;
       }) => ReturnType;
       /**
-       * Unset a link mark
+       * 取消设置一个链接标记
        * @example editor.commands.unsetLink()
        */
       unsetLink: () => ReturnType;
@@ -199,7 +199,7 @@ export function isAllowedUri(uri: string | undefined, protocols?: LinkOptions['p
 }
 
 /**
- * This extension allows you to create links.
+ * 此扩展允许您创建链接。
  * @see https://www.tiptap.dev/api/marks/link
  */
 export const Link = Mark.create<LinkOptions>({
@@ -213,7 +213,7 @@ export const Link = Mark.create<LinkOptions>({
 
   onCreate() {
     if (this.options.validate && !this.options.shouldAutoLink) {
-      // Copy the validate function to the shouldAutoLink option
+      // 将 validate 函数复制到 shouldAutoLink 选项
       this.options.shouldAutoLink = this.options.validate
       console.warn(
         'The `validate` option is deprecated. Rename to the `shouldAutoLink` option instead.',
@@ -281,7 +281,7 @@ export const Link = Mark.create<LinkOptions>({
         getAttrs: dom => {
           const href = (dom as HTMLElement).getAttribute('href')
 
-          // prevent XSS attacks
+          // 防止 XSS 攻击
           if (
             !href
             || !this.options.isAllowedUri(href, {
@@ -299,7 +299,7 @@ export const Link = Mark.create<LinkOptions>({
   },
 
   renderHTML({ HTMLAttributes }) {
-    // prevent XSS attacks
+    // 防止 XSS 攻击
     if (
       !this.options.isAllowedUri(HTMLAttributes.href, {
         defaultValidate: href => !!isAllowedUri(href, this.options.protocols),
@@ -307,7 +307,7 @@ export const Link = Mark.create<LinkOptions>({
         defaultProtocol: this.options.defaultProtocol,
       })
     ) {
-      // strip out the href
+      // 删除 href
       return [
         'a',
         mergeAttributes(this.options.HTMLAttributes, { ...HTMLAttributes, href: '' }),
